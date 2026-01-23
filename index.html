@@ -947,8 +947,9 @@
   <section class="cta" id="waitlist">
     <h2>Ready to get started?</h2>
     <p>Join the waitlist and be first to accept global AI payments.</p>
-    <form class="cta-form" onsubmit="handleSubmit(event)">
-      <input type="email" placeholder="Enter your email" required>
+    <form class="cta-form" action="https://formspree.io/f/xwpewpvn" method="POST" id="waitlist-form">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="hidden" name="_subject" value="New AsterPay Waitlist Signup!">
       <button type="submit" class="btn btn-primary">Join Waitlist</button>
     </form>
   </section>
@@ -972,20 +973,45 @@
   </footer>
 
   <script>
-    function handleSubmit(e) {
+    // Formspree form handling
+    const form = document.getElementById('waitlist-form');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = e.target.querySelector('button');
+      const btn = form.querySelector('button');
+      const email = form.querySelector('input[name="email"]');
+      
       btn.textContent = 'Joining...';
-      setTimeout(() => {
-        btn.textContent = '✓ You\'re on the list!';
-        btn.style.background = '#14b8a6';
-        e.target.querySelector('input').value = '';
+      btn.disabled = true;
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        if (response.ok) {
+          btn.textContent = '✓ You\'re on the list!';
+          btn.style.background = '#14b8a6';
+          email.value = '';
+          setTimeout(() => {
+            btn.textContent = 'Join Waitlist';
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        } else {
+          throw new Error('Failed');
+        }
+      } catch (error) {
+        btn.textContent = 'Try again';
+        btn.style.background = '#ef4444';
+        btn.disabled = false;
         setTimeout(() => {
           btn.textContent = 'Join Waitlist';
           btn.style.background = '';
-        }, 3000);
-      }, 1000);
-    }
+        }, 2000);
+      }
+    });
   </script>
 </body>
 </html>
