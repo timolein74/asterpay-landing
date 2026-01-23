@@ -1,76 +1,114 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
   <defs>
-    <linearGradient id="lineGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#7c3aed"/>
-      <stop offset="50%" style="stop-color:#6366f1"/>
-      <stop offset="100%" style="stop-color:#22d3ee"/>
+    <linearGradient id="circuitGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ec4899"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
     </linearGradient>
     <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#6366f1"/>
-      <stop offset="100%" style="stop-color:#22d3ee"/>
+      <stop offset="0%" style="stop-color:#ec4899"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
     </linearGradient>
   </defs>
   
   <!-- Dark background -->
-  <rect width="1500" height="500" fill="#0f172a"/>
+  <rect width="1500" height="500" fill="#0a0e27"/>
   
-  <!-- 3D Wireframe Cube - centered left -->
-  <g transform="translate(380, 250)" stroke="url(#lineGrad)" stroke-width="2" fill="none">
+  <!-- Hexagon circuit logo - left side -->
+  <g transform="translate(320, 250) scale(0.9)" stroke="url(#circuitGrad)" fill="none">
     
-    <!-- Back face -->
-    <g opacity="0.5">
-      <line x1="-80" y1="25" x2="-80" y2="-95"/>
-      <line x1="-60" y1="35" x2="-60" y2="-85"/>
-      <line x1="-40" y1="45" x2="-40" y2="-75"/>
-      <line x1="-20" y1="55" x2="-20" y2="-65"/>
-      <line x1="0" y1="65" x2="0" y2="-55"/>
+    <!-- Outer hexagon -->
+    <g stroke-width="4" stroke-linecap="round">
+      <line x1="0" y1="-90" x2="78" y2="-45"/>
+      <line x1="0" y1="-90" x2="-78" y2="-45"/>
+      <line x1="78" y1="-45" x2="78" y2="45"/>
+      <line x1="-78" y1="-45" x2="-78" y2="45"/>
+      <line x1="78" y1="45" x2="0" y2="90"/>
+      <line x1="-78" y1="45" x2="0" y2="90"/>
     </g>
     
-    <!-- Front face -->
-    <g opacity="1">
-      <line x1="10" y1="60" x2="10" y2="-60"/>
-      <line x1="30" y1="50" x2="30" y2="-70"/>
-      <line x1="50" y1="40" x2="50" y2="-80"/>
-      <line x1="70" y1="30" x2="70" y2="-90"/>
-      <line x1="90" y1="20" x2="90" y2="-100"/>
+    <!-- Inner hexagon -->
+    <g stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="-50" x2="43" y2="-25"/>
+      <line x1="0" y1="-50" x2="-43" y2="-25"/>
+      <line x1="43" y1="-25" x2="43" y2="25"/>
+      <line x1="-43" y1="-25" x2="-43" y2="25"/>
+      <line x1="43" y1="25" x2="0" y2="50"/>
+      <line x1="-43" y1="25" x2="0" y2="50"/>
     </g>
     
-    <!-- Top face -->
-    <g opacity="0.8">
-      <line x1="-80" y1="-95" x2="90" y2="-100"/>
-      <line x1="-75" y1="-75" x2="85" y2="-80"/>
-      <line x1="-70" y1="-55" x2="80" y2="-60"/>
-      <line x1="-65" y1="-35" x2="75" y2="-40"/>
+    <!-- Connecting lines -->
+    <g stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="-90" x2="0" y2="-50"/>
+      <line x1="78" y1="-45" x2="43" y2="-25"/>
+      <line x1="-78" y1="-45" x2="-43" y2="-25"/>
+      <line x1="78" y1="45" x2="43" y2="25"/>
+      <line x1="-78" y1="45" x2="-43" y2="25"/>
+      <line x1="0" y1="90" x2="0" y2="50"/>
+      <line x1="78" y1="0" x2="43" y2="0"/>
+      <line x1="-78" y1="0" x2="-43" y2="0"/>
     </g>
     
-    <!-- Bottom face -->
-    <g opacity="0.4">
-      <line x1="-80" y1="25" x2="90" y2="20"/>
-      <line x1="-75" y1="45" x2="85" y2="40"/>
-      <line x1="-70" y1="65" x2="80" y2="60"/>
-      <line x1="-65" y1="85" x2="75" y2="80"/>
+    <!-- Extended traces -->
+    <g stroke-width="2.5" stroke-linecap="round">
+      <line x1="0" y1="-90" x2="0" y2="-110"/>
+      <line x1="78" y1="-45" x2="95" y2="-55"/>
+      <line x1="-78" y1="-45" x2="-95" y2="-55"/>
+      <line x1="78" y1="45" x2="95" y2="55"/>
+      <line x1="-78" y1="45" x2="-95" y2="55"/>
+      <line x1="0" y1="90" x2="0" y2="110"/>
+      <line x1="78" y1="0" x2="100" y2="0"/>
+      <line x1="-78" y1="0" x2="-100" y2="0"/>
     </g>
     
-    <!-- Cube edges -->
-    <g stroke-width="2.5">
-      <path d="M 90,-100 L 90,20 L 10,60 L 10,-60 Z"/>
-      <path d="M -80,-95 L -80,25 L 0,65 L 0,-55 Z" opacity="0.4"/>
-      <line x1="-80" y1="-95" x2="90" y2="-100"/>
-      <line x1="-80" y1="25" x2="90" y2="20" opacity="0.5"/>
+    <!-- Nodes -->
+    <g fill="url(#circuitGrad)">
+      <circle cx="0" cy="-90" r="6"/>
+      <circle cx="78" cy="-45" r="6"/>
+      <circle cx="-78" cy="-45" r="6"/>
+      <circle cx="78" cy="45" r="6"/>
+      <circle cx="-78" cy="45" r="6"/>
+      <circle cx="0" cy="90" r="6"/>
+      <circle cx="0" cy="-50" r="5"/>
+      <circle cx="43" cy="-25" r="5"/>
+      <circle cx="-43" cy="-25" r="5"/>
+      <circle cx="43" cy="25" r="5"/>
+      <circle cx="-43" cy="25" r="5"/>
+      <circle cx="0" cy="50" r="5"/>
+      <circle cx="78" cy="0" r="5"/>
+      <circle cx="-78" cy="0" r="5"/>
+      <circle cx="43" cy="0" r="4"/>
+      <circle cx="-43" cy="0" r="4"/>
+      <circle cx="0" cy="-110" r="4"/>
+      <circle cx="95" cy="-55" r="4"/>
+      <circle cx="-95" cy="-55" r="4"/>
+      <circle cx="95" cy="55" r="4"/>
+      <circle cx="-95" cy="55" r="4"/>
+      <circle cx="0" cy="110" r="4"/>
+      <circle cx="100" cy="0" r="4"/>
+      <circle cx="-100" cy="0" r="4"/>
     </g>
   </g>
   
-  <!-- Text -->
-  <text x="550" y="235" font-family="'Inter', 'Arial Black', sans-serif" font-size="72" font-weight="900" fill="url(#textGrad)" letter-spacing="-2">ASTERPAY</text>
+  <!-- Brand text -->
+  <text x="500" y="230" font-family="'Inter', 'Segoe UI', sans-serif" font-size="72" font-weight="800" fill="url(#textGrad)" letter-spacing="-2">AsterPay</text>
   
   <!-- Tagline -->
-  <text x="553" y="290" font-family="'Inter', Arial, sans-serif" font-size="22" fill="#22d3ee" letter-spacing="6" opacity="0.8">AI PAYMENT INFRASTRUCTURE</text>
+  <text x="503" y="290" font-family="'Inter', 'Segoe UI', sans-serif" font-size="20" fill="#06b6d4" letter-spacing="4" opacity="0.9">AI PAYMENT INFRASTRUCTURE</text>
   
-  <!-- Decorative elements -->
-  <line x1="550" y1="320" x2="750" y2="320" stroke="url(#lineGrad)" stroke-width="2" opacity="0.5"/>
-  
-  <!-- Small cubes/dots -->
-  <rect x="1350" y="100" width="8" height="8" fill="#6366f1" opacity="0.6" transform="rotate(45, 1354, 104)"/>
-  <rect x="1380" y="380" width="6" height="6" fill="#22d3ee" opacity="0.5" transform="rotate(45, 1383, 383)"/>
-  <rect x="100" y="420" width="5" height="5" fill="#7c3aed" opacity="0.4" transform="rotate(45, 102, 422)"/>
+  <!-- Decorative circuit elements on right -->
+  <g stroke="url(#circuitGrad)" stroke-width="2" fill="none" opacity="0.3">
+    <line x1="1200" y1="150" x2="1350" y2="150"/>
+    <line x1="1350" y1="150" x2="1350" y2="250"/>
+    <line x1="1200" y1="350" x2="1350" y2="350"/>
+    <line x1="1350" y1="350" x2="1350" y2="250"/>
+  </g>
+  <g fill="url(#circuitGrad)" opacity="0.4">
+    <circle cx="1200" cy="150" r="4"/>
+    <circle cx="1350" cy="150" r="4"/>
+    <circle cx="1350" cy="250" r="4"/>
+    <circle cx="1200" cy="350" r="4"/>
+    <circle cx="1350" cy="350" r="4"/>
+  </g>
 </svg>
