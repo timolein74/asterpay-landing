@@ -688,7 +688,11 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      h1 { font-size: 44px; }
+      h1 { font-size: 40px; }
+      
+      .section-header h2 {
+        font-size: 32px;
+      }
       
       .features-grid,
       .steps {
@@ -701,7 +705,7 @@
 
       .stats {
         flex-direction: column;
-        gap: 32px;
+        gap: 24px;
       }
 
       .nav-links {
@@ -713,13 +717,31 @@
         gap: 24px;
         text-align: center;
       }
+      
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+      
+      .features, .how-it-works, .pricing, .cta {
+        padding: 80px 24px;
+      }
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 36px; }
+      h1 { font-size: 32px; }
+      
+      .section-header h2 {
+        font-size: 28px;
+      }
       
       .hero {
-        padding: 100px 24px 60px;
+        padding: 100px 20px 60px;
+      }
+      
+      nav .container {
+        padding: 0 20px;
       }
 
       .hero-buttons {
@@ -731,6 +753,62 @@
 
       .cta-form {
         flex-direction: column;
+      }
+      
+      .code-window {
+        margin: 30px -10px;
+        border-radius: 12px;
+      }
+      
+      .code-body {
+        padding: 16px;
+      }
+      
+      .code-body pre {
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      
+      .stat-value {
+        font-size: 32px;
+      }
+      
+      .pricing-price {
+        font-size: 36px;
+      }
+      
+      .cta h2 {
+        font-size: 28px;
+      }
+      
+      .feature-card {
+        padding: 28px 24px;
+      }
+      
+      .pricing-card {
+        padding: 28px 24px;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      h1 { font-size: 28px; }
+      
+      .hero-text {
+        font-size: 16px;
+      }
+      
+      .code-body pre {
+        font-size: 10px;
+      }
+      
+      .logo-box {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+      
+      .logo {
+        font-size: 18px;
       }
     }
 
