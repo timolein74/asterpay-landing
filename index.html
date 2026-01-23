@@ -83,14 +83,14 @@
     .logo-box {
       width: 36px;
       height: 36px;
-      background: var(--accent);
-      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 800;
-      font-size: 16px;
+    }
+    
+    .logo-box svg {
+      width: 100%;
+      height: 100%;
     }
 
     .nav-links {
@@ -897,7 +897,30 @@
   <nav>
     <div class="container">
       <a href="/" class="logo">
-        <div class="logo-box">A</div>
+        <div class="logo-box">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ec4899"/>
+                <stop offset="50%" style="stop-color:#8b5cf6"/>
+                <stop offset="100%" style="stop-color:#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(50, 50)" stroke="url(#logoGrad)" fill="none" stroke-width="3" stroke-linecap="round">
+              <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11" stroke-width="2.5"/>
+              <polygon points="0,-12 10,-6 10,6 0,12 -10,6 -10,-6" stroke-width="2"/>
+              <line x1="0" y1="-22" x2="0" y2="-12"/><line x1="19" y1="-11" x2="10" y2="-6"/>
+              <line x1="19" y1="11" x2="10" y2="6"/><line x1="0" y1="22" x2="0" y2="12"/>
+              <line x1="-19" y1="11" x2="-10" y2="6"/><line x1="-19" y1="-11" x2="-10" y2="-6"/>
+              <g fill="url(#logoGrad)">
+                <circle cx="0" cy="-22" r="3"/><circle cx="19" cy="-11" r="3"/><circle cx="19" cy="11" r="3"/>
+                <circle cx="0" cy="22" r="3"/><circle cx="-19" cy="11" r="3"/><circle cx="-19" cy="-11" r="3"/>
+                <circle cx="0" cy="-12" r="2.5"/><circle cx="10" cy="-6" r="2.5"/><circle cx="10" cy="6" r="2.5"/>
+                <circle cx="0" cy="12" r="2.5"/><circle cx="-10" cy="6" r="2.5"/><circle cx="-10" cy="-6" r="2.5"/>
+              </g>
+            </g>
+          </svg>
+        </div>
         <span>AsterPay</span>
       </a>
       <div class="nav-links">
@@ -1098,7 +1121,30 @@
   <footer>
     <div class="footer-content">
       <a href="/" class="logo">
-        <div class="logo-box">A</div>
+        <div class="logo-box">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ec4899"/>
+                <stop offset="50%" style="stop-color:#8b5cf6"/>
+                <stop offset="100%" style="stop-color:#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(50, 50)" stroke="url(#logoGrad)" fill="none" stroke-width="3" stroke-linecap="round">
+              <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11" stroke-width="2.5"/>
+              <polygon points="0,-12 10,-6 10,6 0,12 -10,6 -10,-6" stroke-width="2"/>
+              <line x1="0" y1="-22" x2="0" y2="-12"/><line x1="19" y1="-11" x2="10" y2="-6"/>
+              <line x1="19" y1="11" x2="10" y2="6"/><line x1="0" y1="22" x2="0" y2="12"/>
+              <line x1="-19" y1="11" x2="-10" y2="6"/><line x1="-19" y1="-11" x2="-10" y2="-6"/>
+              <g fill="url(#logoGrad)">
+                <circle cx="0" cy="-22" r="3"/><circle cx="19" cy="-11" r="3"/><circle cx="19" cy="11" r="3"/>
+                <circle cx="0" cy="22" r="3"/><circle cx="-19" cy="11" r="3"/><circle cx="-19" cy="-11" r="3"/>
+                <circle cx="0" cy="-12" r="2.5"/><circle cx="10" cy="-6" r="2.5"/><circle cx="10" cy="6" r="2.5"/>
+                <circle cx="0" cy="12" r="2.5"/><circle cx="-10" cy="6" r="2.5"/><circle cx="-10" cy="-6" r="2.5"/>
+              </g>
+            </g>
+          </svg>
+        </div>
         <span>AsterPay</span>
       </a>
       <div class="footer-links">
