@@ -711,6 +711,15 @@
       .nav-links {
         display: none;
       }
+      
+      nav .container {
+        padding: 0 20px;
+      }
+      
+      nav .btn-primary {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
 
       .footer-content {
         flex-direction: column;
@@ -808,7 +817,23 @@
       }
       
       .logo {
-        font-size: 18px;
+        font-size: 16px;
+      }
+      
+      nav .btn-primary {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      .logo span {
+        display: none;
+      }
+      
+      nav .btn-primary {
+        padding: 8px 14px;
+        font-size: 12px;
       }
     }
 
@@ -836,7 +861,7 @@
     <div class="container">
       <a href="/" class="logo">
         <div class="logo-box">A</div>
-        AsterPay
+        <span>AsterPay</span>
       </a>
       <div class="nav-links">
         <a href="#features">Features</a>
@@ -1037,7 +1062,7 @@
     <div class="footer-content">
       <a href="/" class="logo">
         <div class="logo-box">A</div>
-        AsterPay
+        <span>AsterPay</span>
       </a>
       <div class="footer-links">
         <a href="#">Features</a>
