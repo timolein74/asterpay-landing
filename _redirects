@@ -1,0 +1,5 @@
+# Checkout page - handle all /pay/* routes
+/pay/* /pay/index.html 200
+
+# Dashboard routes
+/dashboard/* /dashboard/index.html 200
