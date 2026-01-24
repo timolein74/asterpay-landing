@@ -679,16 +679,119 @@
 
     @media (max-width: 768px) {
       .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        width: 280px;
+      }
+      
+      .sidebar.open {
+        left: 0;
+      }
+      
+      .sidebar-overlay {
         display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 999;
+      }
+      
+      .sidebar-overlay.open {
+        display: block;
+      }
+      
+      .mobile-header {
+        display: flex !important;
       }
       
       .main {
         margin-left: 0;
         padding: 20px;
+        padding-top: 80px;
       }
       
       .stats-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .page-title {
+        font-size: 24px;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 998;
+    }
+    
+    .mobile-header .logo {
+      margin-bottom: 0;
+      padding: 0;
+    }
+    
+    .hamburger-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    
+    .hamburger-btn:hover {
+      background: var(--bg-tertiary);
+    }
+    
+    .hamburger-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .sidebar-close {
+      display: none;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    
+    .sidebar-close:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+    
+    @media (max-width: 768px) {
+      .sidebar-close {
+        display: block;
       }
     }
 
@@ -715,9 +818,42 @@
   </style>
 </head>
 <body>
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" stroke="white" stroke-width="4" fill="none"/>
+          <circle cx="50" cy="30" r="6" fill="white"/>
+          <circle cx="75" cy="50" r="6" fill="white"/>
+          <circle cx="50" cy="70" r="6" fill="white"/>
+          <circle cx="25" cy="50" r="6" fill="white"/>
+          <line x1="50" y1="30" x2="75" y2="50" stroke="white" stroke-width="2"/>
+          <line x1="75" y1="50" x2="50" y2="70" stroke="white" stroke-width="2"/>
+          <line x1="50" y1="70" x2="25" y2="50" stroke="white" stroke-width="2"/>
+          <line x1="25" y1="50" x2="50" y2="30" stroke="white" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="logo-text">AsterPay</span>
+    </a>
+    <button class="hamburger-btn" onclick="toggleSidebar()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </header>
+  
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
   <div class="app">
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
+      <button class="sidebar-close" onclick="toggleSidebar()">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
       <a href="/" class="logo">
         <div class="logo-icon">
           <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1242,6 +1378,14 @@
       document.querySelectorAll('.nav-item[data-page]').forEach(item => {
         item.addEventListener('click', () => {
           showPage(item.dataset.page);
+          // Close sidebar on mobile
+          if (window.innerWidth <= 768) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+          }
         });
       });
       
@@ -1723,6 +1867,15 @@
       // In real app, this would copy the actual webhook secret
       navigator.clipboard.writeText('whsec_' + currentUser.id);
       alert('Webhook secret copied!');
+    }
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
     }
 
     function logout() {
