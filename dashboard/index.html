@@ -1122,7 +1122,7 @@
   <div class="modal-overlay" id="create-payment-modal">
     <div class="modal">
       <div class="modal-header">
-        <h2 class="modal-title">Create Payment Intent</h2>
+        <h2 class="modal-title">Create Payment</h2>
       </div>
       <form id="create-payment-form">
         <div class="form-group">
@@ -1130,9 +1130,13 @@
           <input type="number" class="form-input" id="payment-amount" placeholder="10.00" step="0.01" min="0.01" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Chain</label>
+          <label class="form-label">Description (optional)</label>
+          <input type="text" class="form-input" id="payment-description" placeholder="Order #123, Subscription, etc.">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Network</label>
           <select class="form-input" id="payment-chain" required>
-            <option value="base">Base</option>
+            <option value="base">Base (Recommended - Low fees)</option>
             <option value="ethereum">Ethereum</option>
             <option value="polygon">Polygon</option>
             <option value="arbitrum">Arbitrum</option>
@@ -1140,17 +1144,73 @@
         </div>
         <div style="display: flex; gap: 12px; margin-top: 24px;">
           <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn btn-primary" style="flex: 1;">Create Payment</button>
+          <button type="submit" class="btn btn-primary" style="flex: 1;" id="create-btn">Create Payment</button>
         </div>
       </form>
     </div>
   </div>
 
+  <!-- Payment Created Success Modal -->
+  <div class="modal-overlay" id="payment-success-modal">
+    <div class="modal" style="max-width: 520px;">
+      <div class="modal-header" style="text-align: center;">
+        <div style="width: 60px; height: 60px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+          <svg width="32" height="32" fill="none" stroke="var(--success)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 class="modal-title">Payment Created!</h2>
+        <p style="color: var(--text-secondary); margin-top: 8px;">Share this payment link or QR code with your customer</p>
+      </div>
+      
+      <div style="background: var(--bg-tertiary); border-radius: 12px; padding: 24px; margin: 24px 0; text-align: center;">
+        <div style="font-size: 32px; font-weight: 700; color: var(--success); margin-bottom: 8px;" id="success-amount">$10.00</div>
+        <div style="font-size: 14px; color: var(--text-muted);" id="success-chain">USDC on Base</div>
+      </div>
+
+      <!-- QR Code -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div id="qr-code" style="background: white; padding: 16px; border-radius: 12px; display: inline-block;"></div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">Scan to pay with any crypto wallet</p>
+      </div>
+
+      <!-- Wallet Address -->
+      <div class="form-group">
+        <label class="form-label">Payment Address</label>
+        <div class="api-key-display" style="background: var(--bg-primary);">
+          <span class="api-key-value" id="success-wallet" style="font-size: 12px;">0x...</span>
+          <button class="copy-btn" onclick="copyWalletAddress()" title="Copy Address" id="copy-wallet-btn">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <div class="spinner" style="width: 20px; height: 20px; border-width: 2px; border-top-color: var(--warning);"></div>
+        <div>
+          <div style="font-weight: 500; color: var(--warning);">Waiting for payment...</div>
+          <div style="font-size: 12px; color: var(--text-muted);" id="success-expires">Expires in 30 minutes</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <button class="btn btn-secondary" style="flex: 1;" onclick="closeSuccessModal()">Close</button>
+        <button class="btn btn-primary" style="flex: 1;" onclick="copyPaymentLink()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+          Share Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Code Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  
   <script>
     const API_BASE = 'https://api.asterpay.io';
     let currentUser = null;
     let apiKey = null;
     let apiKeyVisible = false;
+    let currentPayment = null;
 
     // Check authentication on load
     document.addEventListener('DOMContentLoaded', () => {
@@ -1322,6 +1382,11 @@
       
       const amount = document.getElementById('payment-amount').value;
       const chain = document.getElementById('payment-chain').value;
+      const description = document.getElementById('payment-description').value;
+      const createBtn = document.getElementById('create-btn');
+      
+      createBtn.disabled = true;
+      createBtn.innerHTML = '<div class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></div> Creating...';
       
       try {
         const response = await fetch(`${API_BASE}/v1/payment_intents`, {
@@ -1333,15 +1398,25 @@
           body: JSON.stringify({
             amount: amount,
             currency: 'USDC',
-            chain: chain
+            chain: chain,
+            description: description || undefined
           })
         });
         
         if (response.ok) {
+          const payment = await response.json();
+          currentPayment = payment;
+          
+          // Close create modal
           closeModal();
+          document.getElementById('create-payment-form').reset();
+          
+          // Show success modal
+          showPaymentSuccess(payment);
+          
+          // Refresh data
           loadPayments('all');
           loadDashboardData();
-          document.getElementById('create-payment-form').reset();
         } else {
           const error = await response.json();
           alert('Failed to create payment: ' + (error.message || 'Unknown error'));
@@ -1349,6 +1424,145 @@
       } catch (error) {
         console.error('Failed to create payment:', error);
         alert('Failed to create payment');
+      } finally {
+        createBtn.disabled = false;
+        createBtn.innerHTML = 'Create Payment';
+      }
+    }
+
+    function showPaymentSuccess(payment) {
+      // Update modal content
+      document.getElementById('success-amount').textContent = `$${parseFloat(payment.amount).toFixed(2)}`;
+      document.getElementById('success-chain').textContent = `USDC on ${payment.chain.charAt(0).toUpperCase() + payment.chain.slice(1)}`;
+      document.getElementById('success-wallet').textContent = payment.wallet_address;
+      
+      // Calculate expiry
+      const expiresAt = new Date(payment.expires_at);
+      const now = new Date();
+      const minutesLeft = Math.max(0, Math.round((expiresAt - now) / 60000));
+      document.getElementById('success-expires').textContent = `Expires in ${minutesLeft} minutes`;
+      
+      // Generate QR code
+      const qrContainer = document.getElementById('qr-code');
+      qrContainer.innerHTML = '';
+      
+      // Create EIP-681 payment URI for better wallet compatibility
+      const paymentUri = `ethereum:${payment.wallet_address}@${getChainId(payment.chain)}`;
+      
+      QRCode.toCanvas(paymentUri, {
+        width: 180,
+        margin: 0,
+        color: { dark: '#000000', light: '#ffffff' }
+      }, (error, canvas) => {
+        if (!error) {
+          qrContainer.appendChild(canvas);
+        }
+      });
+      
+      // Show modal
+      document.getElementById('payment-success-modal').classList.add('active');
+      
+      // Start polling for payment status
+      startPaymentStatusPolling(payment.id);
+    }
+
+    function getChainId(chain) {
+      const chainIds = {
+        'ethereum': 1,
+        'base': 8453,
+        'polygon': 137,
+        'arbitrum': 42161
+      };
+      return chainIds[chain] || 1;
+    }
+
+    let statusPollingInterval = null;
+
+    function startPaymentStatusPolling(paymentId) {
+      // Clear any existing polling
+      if (statusPollingInterval) {
+        clearInterval(statusPollingInterval);
+      }
+      
+      statusPollingInterval = setInterval(async () => {
+        try {
+          const response = await fetch(`${API_BASE}/v1/payment_intents/${paymentId}`, {
+            headers: { 'Authorization': `Bearer ${apiKey}` }
+          });
+          
+          if (response.ok) {
+            const payment = await response.json();
+            
+            if (payment.status === 'paid') {
+              clearInterval(statusPollingInterval);
+              showPaymentComplete();
+            } else if (payment.status === 'expired') {
+              clearInterval(statusPollingInterval);
+              showPaymentExpired();
+            }
+          }
+        } catch (error) {
+          console.error('Status poll error:', error);
+        }
+      }, 5000); // Poll every 5 seconds
+    }
+
+    function showPaymentComplete() {
+      const statusDiv = document.querySelector('#payment-success-modal .alert-warning') || 
+                        document.querySelector('#payment-success-modal [style*="rgba(245, 158, 11"]');
+      if (statusDiv) {
+        statusDiv.style.background = 'rgba(16, 185, 129, 0.1)';
+        statusDiv.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+        statusDiv.innerHTML = `
+          <svg width="24" height="24" fill="none" stroke="var(--success)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <div>
+            <div style="font-weight: 500; color: var(--success);">Payment Received! ✓</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Funds will be sent to your payout wallet</div>
+          </div>
+        `;
+      }
+      loadDashboardData();
+      loadPayments('all');
+    }
+
+    function showPaymentExpired() {
+      const statusDiv = document.querySelector('#payment-success-modal [style*="rgba(245, 158, 11"]');
+      if (statusDiv) {
+        statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
+        statusDiv.style.borderColor = 'rgba(239, 68, 68, 0.2)';
+        statusDiv.innerHTML = `
+          <svg width="24" height="24" fill="none" stroke="var(--error)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <div>
+            <div style="font-weight: 500; color: var(--error);">Payment Expired</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Create a new payment to try again</div>
+          </div>
+        `;
+      }
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('payment-success-modal').classList.remove('active');
+      if (statusPollingInterval) {
+        clearInterval(statusPollingInterval);
+      }
+    }
+
+    function copyWalletAddress() {
+      if (currentPayment) {
+        navigator.clipboard.writeText(currentPayment.wallet_address);
+        const btn = document.getElementById('copy-wallet-btn');
+        btn.innerHTML = '<svg width="20" height="20" fill="none" stroke="var(--success)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+        setTimeout(() => {
+          btn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>';
+        }, 2000);
+      }
+    }
+
+    function copyPaymentLink() {
+      if (currentPayment) {
+        const link = `${window.location.origin}/pay/${currentPayment.id}`;
+        navigator.clipboard.writeText(currentPayment.wallet_address);
+        alert('Wallet address copied! Share this with your customer to receive payment.');
       }
     }
 
@@ -1511,6 +1725,12 @@
     document.getElementById('create-payment-modal').addEventListener('click', (e) => {
       if (e.target.classList.contains('modal-overlay')) {
         closeModal();
+      }
+    });
+
+    document.getElementById('payment-success-modal').addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeSuccessModal();
       }
     });
   </script>
