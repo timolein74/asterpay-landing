@@ -366,16 +366,151 @@
 
     /* Mobile */
     @media (max-width: 480px) {
+      body {
+        padding: 12px;
+        align-items: flex-start;
+        padding-top: 20px;
+      }
+
+      .checkout-container {
+        max-width: 100%;
+      }
+
       .checkout-card {
-        padding: 24px;
+        padding: 20px;
+        border-radius: 16px;
+      }
+
+      .logo {
+        margin-bottom: 16px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+      }
+
+      .logo-text {
+        font-size: 16px;
+      }
+
+      .chain-badge {
+        padding: 5px 10px;
+        font-size: 11px;
+        margin-bottom: 16px;
+      }
+
+      .amount-section {
+        padding: 16px;
+        margin-bottom: 20px;
       }
 
       .amount {
-        font-size: 36px;
+        font-size: 32px;
+      }
+
+      .amount-detail {
+        font-size: 13px;
+      }
+
+      .qr-section {
+        margin-bottom: 20px;
+      }
+
+      .qr-container {
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      .qr-hint {
+        font-size: 12px;
+      }
+
+      .address-section {
+        margin-bottom: 20px;
+      }
+
+      .address-label {
+        font-size: 11px;
+      }
+
+      .address-box {
+        padding: 12px;
+        flex-direction: column;
+        gap: 10px;
       }
 
       .address-text {
+        font-size: 10px;
+        text-align: center;
+        word-break: break-all;
+      }
+
+      .copy-btn {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .status-section {
+        margin-bottom: 20px;
+      }
+
+      .status-box {
+        padding: 12px;
+      }
+
+      .status-title {
+        font-size: 13px;
+      }
+
+      .status-subtitle {
         font-size: 11px;
+      }
+
+      .checkout-footer {
+        padding-top: 16px;
+      }
+
+      .powered-by {
+        font-size: 11px;
+      }
+
+      .success-checkmark {
+        width: 60px;
+        height: 60px;
+      }
+
+      .success-checkmark svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .error-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .error-title {
+        font-size: 16px;
+      }
+
+      .error-message {
+        font-size: 13px;
+      }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 360px) {
+      .checkout-card {
+        padding: 16px;
+      }
+
+      .amount {
+        font-size: 28px;
+      }
+
+      .address-text {
+        font-size: 9px;
       }
     }
   </style>
@@ -534,7 +669,7 @@
       }
 
       try {
-        const response = await fetch(`${API_BASE}/v1/checkout/${paymentId}`);
+        const response = await fetch(`${API_BASE}/v1/public/payment_intents/${paymentId}`);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -636,7 +771,7 @@
     function startPolling() {
       pollInterval = setInterval(async () => {
         try {
-          const response = await fetch(`${API_BASE}/v1/checkout/${paymentId}`);
+          const response = await fetch(`${API_BASE}/v1/public/payment_intents/${paymentId}`);
           if (response.ok) {
             const payment = await response.json();
             
