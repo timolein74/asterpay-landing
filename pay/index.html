@@ -669,7 +669,7 @@
       }
 
       try {
-        const response = await fetch(`${API_BASE}/v1/public/payment_intents/${paymentId}`);
+        const response = await fetch(`${API_BASE}/v1/checkout/${paymentId}`);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -771,7 +771,7 @@
     function startPolling() {
       pollInterval = setInterval(async () => {
         try {
-          const response = await fetch(`${API_BASE}/v1/public/payment_intents/${paymentId}`);
+          const response = await fetch(`${API_BASE}/v1/checkout/${paymentId}`);
           if (response.ok) {
             const payment = await response.json();
             
