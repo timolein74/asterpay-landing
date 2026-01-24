@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation - AsterPay</title>
+  <meta name="description" content="AsterPay API documentation. Learn how to integrate crypto payments into your application.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --bg-white: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --teal: #5eead4;
+      --border: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 48px 0 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 16px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #1e2432;
+      color: #e4e4e7;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    pre {
+      background: #1e2432;
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+    }
+
+    pre code {
+      padding: 0;
+      background: none;
+    }
+
+    .keyword { color: #c792ea; }
+    .string { color: #c3e88d; }
+    .comment { color: #676e95; }
+    .property { color: #f78c6c; }
+    .method { color: #82aaff; }
+
+    ul {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 8px 0;
+      color: var(--text-secondary);
+    }
+
+    .api-endpoint {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .method-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 12px;
+    }
+
+    .method-badge.post { background: #dcfce7; color: #166534; }
+    .method-badge.get { background: #dbeafe; color: #1e40af; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <h1>Documentation</h1>
+    <p class="subtitle">Everything you need to integrate AsterPay into your application.</p>
+
+    <h2>Quick Start</h2>
+    <p>Get started with AsterPay in under 5 minutes.</p>
+
+    <h3>1. Get your API Key</h3>
+    <p>Sign up at <a href="/dashboard/register.html">asterpay.io/dashboard</a> and get your API key from the Settings page.</p>
+
+    <h3>2. Create a Payment Intent</h3>
+    <pre><code><span class="keyword">curl</span> -X POST https://api.asterpay.io/v1/payment_intents \
+  -H <span class="string">"Authorization: Bearer sk_live_..."</span> \
+  -H <span class="string">"Content-Type: application/json"</span> \
+  -d <span class="string">'{
+    "amount": "10.00",
+    "currency": "USDC",
+    "chain": "bsc"
+  }'</span></code></pre>
+
+    <h3>3. Redirect User to Checkout</h3>
+    <p>Use the returned <code>checkout_url</code> or display the <code>wallet_address</code> for payment.</p>
+
+    <h2>API Reference</h2>
+
+    <div class="api-endpoint">
+      <span class="method-badge post">POST</span>
+      <code>/v1/payment_intents</code>
+      <p style="margin-top: 12px;">Create a new payment intent.</p>
+    </div>
+
+    <table>
+      <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      <tr><td>amount</td><td>string</td><td>Payment amount (e.g., "10.00")</td></tr>
+      <tr><td>currency</td><td>string</td><td>ASTERPAY, USDC, or USDT</td></tr>
+      <tr><td>chain</td><td>string</td><td>bsc, ethereum, polygon, base, arbitrum</td></tr>
+      <tr><td>metadata</td><td>object</td><td>Optional custom data</td></tr>
+    </table>
+
+    <div class="api-endpoint">
+      <span class="method-badge get">GET</span>
+      <code>/v1/payment_intents/:id</code>
+      <p style="margin-top: 12px;">Retrieve a payment intent by ID.</p>
+    </div>
+
+    <div class="api-endpoint">
+      <span class="method-badge get">GET</span>
+      <code>/v1/payment_intents</code>
+      <p style="margin-top: 12px;">List all payment intents for your account.</p>
+    </div>
+
+    <h2>Supported Chains</h2>
+    <table>
+      <tr><th>Chain</th><th>Currency</th><th>Gas Cost</th><th>$ASTERPAY</th></tr>
+      <tr><td>BNB Smart Chain</td><td>USDC, USDT, ASTERPAY</td><td>~$0.03</td><td>✅ Yes</td></tr>
+      <tr><td>Polygon</td><td>USDC, USDT</td><td>~$0.01</td><td>❌</td></tr>
+      <tr><td>Base</td><td>USDC</td><td>~$0.01</td><td>❌</td></tr>
+      <tr><td>Arbitrum</td><td>USDC, USDT</td><td>~$0.05</td><td>❌</td></tr>
+      <tr><td>Ethereum</td><td>USDC, USDT</td><td>~$5.00</td><td>❌</td></tr>
+    </table>
+
+    <h2>$ASTERPAY Token</h2>
+    <p>Pay with $ASTERPAY token and get <strong>50% off</strong> all platform fees!</p>
+    <ul>
+      <li>Contract: <code>0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85</code></li>
+      <li>Network: BNB Smart Chain (BSC)</li>
+      <li>Buy on PancakeSwap: <a href="https://pancakeswap.finance/swap?outputCurrency=0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85" target="_blank">Trade $ASTERPAY</a></li>
+    </ul>
+
+    <h2>Webhooks</h2>
+    <p>Receive real-time notifications when payment status changes.</p>
+    <pre><code><span class="comment">// Webhook payload example</span>
+{
+  <span class="property">"event"</span>: <span class="string">"payment.completed"</span>,
+  <span class="property">"payment_id"</span>: <span class="string">"pi_abc123"</span>,
+  <span class="property">"amount"</span>: <span class="string">"10.00"</span>,
+  <span class="property">"currency"</span>: <span class="string">"USDC"</span>,
+  <span class="property">"status"</span>: <span class="string">"paid"</span>
+}</code></pre>
+
+    <h2>SDKs</h2>
+    <p>Coming soon: JavaScript, Python, and PHP SDKs.</p>
+
+    <h2>Support</h2>
+    <p>Need help? Contact us at <a href="mailto:support@asterpay.io">support@asterpay.io</a></p>
+  </div>
+</body>
+</html>

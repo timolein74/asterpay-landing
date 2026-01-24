@@ -875,6 +875,166 @@
       }
     }
 
+    /* Token Section */
+    .token-section {
+      padding: 120px 40px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 100%);
+      color: white;
+    }
+
+    .token-section .section-header h2 {
+      color: white;
+    }
+
+    .token-section .section-header p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .token-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .token-main {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .token-logo {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .token-main h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .token-symbol {
+      font-size: 18px;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .token-stats {
+      display: flex;
+      justify-content: space-around;
+      gap: 16px;
+    }
+
+    .token-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .token-stat .label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+    }
+
+    .token-stat .value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .token-stat .value.highlight {
+      color: var(--teal);
+    }
+
+    .token-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .benefit-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .benefit-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .benefit-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    .token-contract {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .token-contract .label {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+
+    .token-contract code {
+      background: rgba(255,255,255,0.1);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .token-contract code:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .bscscan-link {
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .bscscan-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .token-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .token-benefits {
+        grid-template-columns: 1fr;
+      }
+      
+      .token-stats {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
     /* Animations */
     .fade-up {
       opacity: 0;
@@ -927,7 +1087,8 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a href="#docs">Docs</a>
+        <a href="#token">$ASTERPAY</a>
+        <a href="/docs/">Docs</a>
       </div>
       <a href="/dashboard/register.html" class="btn btn-primary">Get Started</a>
     </div>
@@ -1107,6 +1268,70 @@
     </div>
   </section>
 
+  <!-- $ASTERPAY Token Section -->
+  <section class="token-section" id="token">
+    <div class="container">
+      <div class="section-header">
+        <h2>$ASTERPAY Token</h2>
+        <p>Our native token on BNB Smart Chain. Pay with $ASTERPAY and get 50% off all fees!</p>
+      </div>
+
+      <div class="token-grid">
+        <div class="token-card token-main">
+          <div class="token-logo">💎</div>
+          <h3>AsterPay Token</h3>
+          <div class="token-symbol">$ASTERPAY</div>
+          <div class="token-stats">
+            <div class="token-stat">
+              <span class="label">Network</span>
+              <span class="value">BNB Chain</span>
+            </div>
+            <div class="token-stat">
+              <span class="label">Total Supply</span>
+              <span class="value">100,000,000</span>
+            </div>
+            <div class="token-stat">
+              <span class="label">Fee Discount</span>
+              <span class="value highlight">50% OFF</span>
+            </div>
+          </div>
+          <a href="https://pancakeswap.finance/swap?outputCurrency=0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85" target="_blank" class="btn btn-primary" style="width: 100%; margin-top: 24px;">
+            Buy on PancakeSwap 🥞
+          </a>
+        </div>
+
+        <div class="token-benefits">
+          <div class="benefit-card">
+            <div class="benefit-icon">💰</div>
+            <h4>50% Fee Discount</h4>
+            <p>Pay platform fees with $ASTERPAY and save 50% on every transaction.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">⚡</div>
+            <h4>Low Gas Costs</h4>
+            <p>BNB Chain means transactions cost only ~$0.03 in gas.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🗳️</div>
+            <h4>Governance (Soon)</h4>
+            <p>Vote on protocol changes and new features.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🔥</div>
+            <h4>Deflationary</h4>
+            <p>Fee burns reduce supply over time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="token-contract">
+        <span class="label">Contract Address:</span>
+        <code onclick="navigator.clipboard.writeText('0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85'); this.textContent='Copied!'; setTimeout(() => this.textContent='0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85', 2000);">0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85</code>
+        <a href="https://bscscan.com/token/0x426E8E4a636e3B3586F5Cb4fF1D1eC821e449b85" target="_blank" class="bscscan-link">View on BscScan →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta" id="waitlist">
     <h2>Ready to get started?</h2>
@@ -1149,11 +1374,12 @@
         <span>AsterPay</span>
       </a>
       <div class="footer-links">
-        <a href="#">Features</a>
-        <a href="#">Pricing</a>
-        <a href="#">Documentation</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/docs/">Documentation</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="#token">$ASTERPAY</a>
       </div>
       <div class="footer-copy">© 2026 AsterPay</div>
     </div>
