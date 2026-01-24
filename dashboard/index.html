@@ -1203,7 +1203,7 @@
   </div>
 
   <!-- QR Code Library -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   
   <script>
     const API_BASE = 'https://api.asterpay.io';
@@ -1454,18 +1454,20 @@
       const qrContainer = document.getElementById('qr-code');
       qrContainer.innerHTML = '';
       
-      // Create EIP-681 payment URI for better wallet compatibility
-      const paymentUri = `ethereum:${payment.wallet_address}@${getChainId(payment.chain)}`;
-      
-      QRCode.toCanvas(paymentUri, {
-        width: 180,
-        margin: 0,
-        color: { dark: '#000000', light: '#ffffff' }
-      }, (error, canvas) => {
-        if (!error) {
-          qrContainer.appendChild(canvas);
-        }
-      });
+      // Create QR code with wallet address
+      try {
+        new QRCode(qrContainer, {
+          text: payment.wallet_address,
+          width: 180,
+          height: 180,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      } catch (qrError) {
+        console.error('QR code generation failed:', qrError);
+        qrContainer.innerHTML = '<p style="color: var(--text-muted);">QR code unavailable</p>';
+      }
       
       // Show modal
       document.getElementById('payment-success-modal').classList.add('active');
