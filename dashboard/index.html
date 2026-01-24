@@ -1418,12 +1418,20 @@
           loadPayments('all');
           loadDashboardData();
         } else {
-          const error = await response.json();
-          alert('Failed to create payment: ' + (error.message || 'Unknown error'));
+          const errorText = await response.text();
+          console.error('API Error:', response.status, errorText);
+          let errorMsg = 'Unknown error';
+          try {
+            const error = JSON.parse(errorText);
+            errorMsg = error.message || error.error || JSON.stringify(error);
+          } catch {
+            errorMsg = errorText || `HTTP ${response.status}`;
+          }
+          alert('Failed to create payment: ' + errorMsg);
         }
       } catch (error) {
         console.error('Failed to create payment:', error);
-        alert('Failed to create payment');
+        alert('Failed to create payment: ' + (error.message || 'Network error - check console'));
       } finally {
         createBtn.disabled = false;
         createBtn.innerHTML = 'Create Payment';
