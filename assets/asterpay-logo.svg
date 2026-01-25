@@ -1,10 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6366f1"/>
-      <stop offset="100%" style="stop-color:#818cf8"/>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9f7aea"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6b21a8"/>
+      <stop offset="100%" style="stop-color:#a78bfa"/>
     </linearGradient>
   </defs>
-  <circle cx="16" cy="16" r="15" fill="url(#grad)"/>
-  <path d="M16 6 L18.5 12.5 L25 13 L20 17.5 L21.5 24 L16 20.5 L10.5 24 L12 17.5 L7 13 L13.5 12.5 Z" fill="white"/>
+  <!-- Hexagonal molecular structure -->
+  <!-- Back edges -->
+  <line x1="16" y1="4" x2="24" y2="8" stroke="#6b21a8" stroke-width="1.5"/>
+  <line x1="16" y1="4" x2="8" y2="8" stroke="#6b21a8" stroke-width="1.5"/>
+  <line x1="24" y1="8" x2="24" y2="16" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="8" y1="8" x2="8" y2="16" stroke="#7c3aed" stroke-width="1.5"/>
+  <!-- Middle edges -->
+  <line x1="8" y1="8" x2="16" y2="12" stroke="#8b5cf6" stroke-width="1.5"/>
+  <line x1="24" y1="8" x2="16" y2="12" stroke="#8b5cf6" stroke-width="1.5"/>
+  <line x1="16" y1="12" x2="16" y2="20" stroke="#a78bfa" stroke-width="1.5"/>
+  <!-- Front edges -->
+  <line x1="8" y1="16" x2="16" y2="20" stroke="#9f7aea" stroke-width="1.5"/>
+  <line x1="24" y1="16" x2="16" y2="20" stroke="#9f7aea" stroke-width="1.5"/>
+  <line x1="8" y1="16" x2="8" y2="24" stroke="#a78bfa" stroke-width="1.5"/>
+  <line x1="24" y1="16" x2="24" y2="24" stroke="#a78bfa" stroke-width="1.5"/>
+  <line x1="8" y1="24" x2="16" y2="28" stroke="#c4b5fd" stroke-width="1.5"/>
+  <line x1="24" y1="24" x2="16" y2="28" stroke="#c4b5fd" stroke-width="1.5"/>
+  <!-- Nodes (spheres) -->
+  <circle cx="16" cy="4" r="2.5" fill="url(#grad1)"/>
+  <circle cx="8" cy="8" r="2.5" fill="url(#grad1)"/>
+  <circle cx="24" cy="8" r="2.5" fill="url(#grad1)"/>
+  <circle cx="16" cy="12" r="2.5" fill="url(#grad2)"/>
+  <circle cx="8" cy="16" r="2.5" fill="url(#grad2)"/>
+  <circle cx="24" cy="16" r="2.5" fill="url(#grad2)"/>
+  <circle cx="16" cy="20" r="2.5" fill="url(#grad1)"/>
+  <circle cx="8" cy="24" r="2.5" fill="url(#grad1)"/>
+  <circle cx="24" cy="24" r="2.5" fill="url(#grad1)"/>
+  <circle cx="16" cy="28" r="2.5" fill="url(#grad2)"/>
 </svg>
