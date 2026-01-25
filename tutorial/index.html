@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monetize Your AI App in 10 Minutes - AsterPay</title>
+  <meta name="description" content="Step-by-step tutorial to add crypto payments to your AI application using AsterPay.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --bg-white: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --teal: #5eead4;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--teal));
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 48px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 28px 0 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #1e2432;
+      color: #e4e4e7;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    pre {
+      background: #1e2432;
+      border-radius: 12px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      position: relative;
+    }
+
+    pre code {
+      padding: 0;
+      background: none;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .file-label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 12px;
+      border-radius: 0 12px 0 8px;
+      font-size: 12px;
+      color: #9ca3af;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .keyword { color: #c792ea; }
+    .string { color: #c3e88d; }
+    .comment { color: #676e95; }
+    .property { color: #f78c6c; }
+    .function { color: #82aaff; }
+
+    ul, ol {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 10px 0;
+      color: var(--text-secondary);
+    }
+
+    .callout {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .callout.success {
+      border-left-color: var(--success);
+      background: #ecfdf5;
+    }
+
+    .callout.warning {
+      border-left-color: var(--warning);
+      background: #fffbeb;
+    }
+
+    .callout-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 48px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-box h3 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--accent);
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; }
+      .meta { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <span class="badge">Tutorial</span>
+    <h1>Monetize Your AI App in 10 Minutes</h1>
+    <p class="subtitle">Add crypto payments to any AI application with just a few lines of code. No bank accounts, no card processing, instant global payments.</p>
+    
+    <div class="meta">
+      <span class="meta-item">⏱️ 10 min read</span>
+      <span class="meta-item">📚 Beginner friendly</span>
+      <span class="meta-item">🛠️ Next.js / Python</span>
+    </div>
+
+    <h2><span class="step-number">1</span> Clone a Starter Template</h2>
+    
+    <p>The fastest way to get started is with one of our ready-made templates. Choose your stack:</p>
+
+    <h3>Next.js (React)</h3>
+    <pre><code>git clone https://github.com/AsterPay/nextjs-ai-saas-starter.git my-ai-app
+cd my-ai-app
+npm install</code></pre>
+
+    <h3>Python (FastAPI)</h3>
+    <pre><code>git clone https://github.com/AsterPay/fastapi-api-monetization.git my-ai-api
+cd my-ai-api
+pip install -r requirements.txt</code></pre>
+
+    <h3>Telegram Bot</h3>
+    <pre><code>git clone https://github.com/AsterPay/telegram-bot-payments.git my-bot
+cd my-bot
+pip install -r requirements.txt</code></pre>
+
+    <div class="callout">
+      <div class="callout-title">💡 What's included?</div>
+      <p>Each template includes authentication, credit system, webhook handling, and OpenAI integration. Ready to run!</p>
+    </div>
+
+    <h2><span class="step-number">2</span> Get Your API Keys</h2>
+
+    <p>You'll need two API keys to run your app:</p>
+
+    <ol>
+      <li><strong>AsterPay API Key</strong> - Sign up at <a href="https://asterpay.io/dashboard">asterpay.io/dashboard</a> to get your API key</li>
+      <li><strong>OpenAI API Key</strong> - Get from <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a></li>
+    </ol>
+
+    <h2><span class="step-number">3</span> Configure Environment</h2>
+
+    <p>Copy the example environment file and add your keys:</p>
+
+    <pre><code>cp .env.example .env</code></pre>
+
+    <p>Edit <code>.env</code> with your API keys:</p>
+
+    <pre><code><span class="comment"># AsterPay (required for payments)</span>
+ASTERPAY_API_KEY=<span class="string">sk_live_your_api_key</span>
+ASTERPAY_WEBHOOK_SECRET=<span class="string">whsec_your_webhook_secret</span>
+
+<span class="comment"># OpenAI (required for AI generation)</span>
+OPENAI_API_KEY=<span class="string">sk-your-openai-key</span></code><span class="file-label">.env</span></pre>
+
+    <div class="callout warning">
+      <div class="callout-title">⚠️ Demo Mode</div>
+      <p>Without API keys, the app runs in demo mode. Payments show placeholder links and AI returns mock responses. Perfect for testing!</p>
+    </div>
+
+    <h2><span class="step-number">4</span> Run Your App</h2>
+
+    <h3>Next.js</h3>
+    <pre><code>npm run dev
+<span class="comment"># Open http://localhost:3000</span></code></pre>
+
+    <h3>Python FastAPI</h3>
+    <pre><code>uvicorn main:app --reload
+<span class="comment"># Open http://localhost:8000/docs</span></code></pre>
+
+    <h3>Telegram Bot</h3>
+    <pre><code>python main.py
+<span class="comment"># Open your bot in Telegram</span></code></pre>
+
+    <div class="callout success">
+      <div class="callout-title">🎉 That's it!</div>
+      <p>Your AI app is now running with a complete payment system. Users can buy credits with crypto and use them for AI generation.</p>
+    </div>
+
+    <h2><span class="step-number">5</span> How It Works</h2>
+
+    <p>Here's the payment flow in your app:</p>
+
+    <ol>
+      <li><strong>User wants to buy credits</strong> → Clicks "Buy Credits"</li>
+      <li><strong>Your app creates a payment</strong> → Calls AsterPay API</li>
+      <li><strong>User pays with crypto</strong> → USDC, USDT, or $ASTERPAY</li>
+      <li><strong>AsterPay confirms payment</strong> → Sends webhook to your app</li>
+      <li><strong>Credits added automatically</strong> → User can generate content</li>
+    </ol>
+
+    <h3>The Key Code</h3>
+
+    <p>Creating a payment is just one API call:</p>
+
+    <pre><code><span class="comment">// Create payment intent</span>
+<span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://api.asterpay.io/v1/payment_intents'</span>, {
+  method: <span class="string">'POST'</span>,
+  headers: {
+    <span class="string">'Authorization'</span>: <span class="string">`Bearer ${ASTERPAY_API_KEY}`</span>,
+    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,
+  },
+  body: JSON.<span class="function">stringify</span>({
+    amount: <span class="string">'5.00'</span>,
+    currency: <span class="string">'USDC'</span>,
+    chain: <span class="string">'bsc'</span>,
+    metadata: { user_id: <span class="string">'123'</span>, credits: <span class="string">'100'</span> }
+  }),
+});
+
+<span class="keyword">const</span> { checkout_url } = <span class="keyword">await</span> response.<span class="function">json</span>();
+<span class="comment">// Redirect user to checkout_url</span></code><span class="file-label">JavaScript</span></pre>
+
+    <h3>Handling Webhooks</h3>
+
+    <p>When payment completes, AsterPay sends a webhook:</p>
+
+    <pre><code><span class="comment">// Webhook handler</span>
+<span class="keyword">app</span>.<span class="function">post</span>(<span class="string">'/webhook/asterpay'</span>, <span class="keyword">async</span> (req, res) => {
+  <span class="keyword">const</span> { event, metadata } = req.body;
+  
+  <span class="keyword">if</span> (event === <span class="string">'payment.completed'</span>) {
+    <span class="keyword">const</span> { user_id, credits } = metadata;
+    <span class="keyword">await</span> <span class="function">addCredits</span>(user_id, parseInt(credits));
+  }
+  
+  res.<span class="function">json</span>({ received: <span class="keyword">true</span> });
+});</code><span class="file-label">JavaScript</span></pre>
+
+    <h2><span class="step-number">6</span> Deploy to Production</h2>
+
+    <p>Ready to go live? Deploy your app:</p>
+
+    <h3>Vercel (Next.js)</h3>
+    <pre><code>npx vercel
+<span class="comment"># Set environment variables in Vercel dashboard</span></code></pre>
+
+    <h3>Render (FastAPI / Bots)</h3>
+    <ol>
+      <li>Push to GitHub</li>
+      <li>Create new Web Service on <a href="https://render.com" target="_blank">render.com</a></li>
+      <li>Connect your repo</li>
+      <li>Add environment variables</li>
+      <li>Deploy!</li>
+    </ol>
+
+    <h3>Configure Webhook URL</h3>
+
+    <p>In your AsterPay dashboard, set your webhook URL:</p>
+
+    <pre><code>https://your-app.vercel.app/api/webhook
+<span class="comment"># or</span>
+https://your-api.onrender.com/webhook/asterpay</code></pre>
+
+    <h2>What You've Built</h2>
+
+    <ul class="checklist">
+      <li>AI-powered application with credit-based billing</li>
+      <li>Crypto payment system (USDC, USDT, $ASTERPAY)</li>
+      <li>Automatic webhook handling for payment confirmation</li>
+      <li>Global payments without bank accounts</li>
+      <li>Instant settlements to your wallet</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+
+    <ul>
+      <li><strong>Customize pricing</strong> - Adjust credit packages in your code</li>
+      <li><strong>Add features</strong> - More AI endpoints, different models</li>
+      <li><strong>Use $ASTERPAY token</strong> - Give users 50% off fees</li>
+      <li><strong>Add analytics</strong> - Track usage and revenue</li>
+    </ul>
+
+    <div class="cta-box">
+      <h3>Ready to Build?</h3>
+      <p>Clone a template and start monetizing your AI app today.</p>
+      <a href="https://github.com/AsterPay" class="cta-btn">View Templates on GitHub →</a>
+    </div>
+
+    <h2>Need Help?</h2>
+
+    <ul>
+      <li>📖 <a href="/docs/">Full API Documentation</a></li>
+      <li>💬 <a href="https://t.me/asterpaycommunity" target="_blank">Telegram Community</a></li>
+      <li>📧 <a href="mailto:support@asterpay.io">support@asterpay.io</a></li>
+    </ul>
+
+  </div>
+</body>
+</html>
