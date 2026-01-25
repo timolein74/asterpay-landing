@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandbox & Test Payments - AsterPay</title>
+  <meta name="description" content="Test AsterPay payments safely with our sandbox environment. No real money, full API access.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --bg-white: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --teal: #5eead4;
+      --orange: #f59e0b;
+      --green: #10b981;
+      --border: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .badge {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 48px 0 20px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 28px 0 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #1e2432;
+      color: #e4e4e7;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    pre {
+      background: #1e2432;
+      border-radius: 12px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      position: relative;
+    }
+
+    pre code {
+      padding: 0;
+      background: none;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .file-label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 12px;
+      border-radius: 0 12px 0 8px;
+      font-size: 12px;
+      color: #9ca3af;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .keyword { color: #c792ea; }
+    .string { color: #c3e88d; }
+    .comment { color: #676e95; }
+    .property { color: #f78c6c; }
+
+    .info-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .info-box.test {
+      border-left: 4px solid var(--orange);
+      background: #fffbeb;
+    }
+
+    .info-box.live {
+      border-left: 4px solid var(--green);
+      background: #ecfdf5;
+    }
+
+    .info-box h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-box p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .mode-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .mode-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .mode-card.test {
+      border-top: 4px solid var(--orange);
+    }
+
+    .mode-card.live {
+      border-top: 4px solid var(--green);
+    }
+
+    .mode-card h4 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mode-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mode-card li {
+      padding: 8px 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      background: var(--bg-white);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    td {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    td code {
+      font-size: 12px;
+    }
+
+    .step-list {
+      list-style: none;
+      counter-reset: step;
+      padding: 0;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      padding: 16px 0 16px 48px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .step-list li:last-child {
+      border-bottom: none;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 48px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-box h3 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--accent);
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 28px; }
+      .mode-comparison { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <span class="badge">🧪 Test Mode</span>
+    <h1>Sandbox & Test Payments</h1>
+    <p class="subtitle">Test your AsterPay integration safely without using real money. Full API access, simulated payments.</p>
+
+    <h2>Test Mode vs Live Mode</h2>
+
+    <div class="mode-comparison">
+      <div class="mode-card test">
+        <h4>🧪 Test Mode</h4>
+        <ul>
+          <li>✓ No real money transfers</li>
+          <li>✓ Simulated blockchain transactions</li>
+          <li>✓ Instant payment confirmations</li>
+          <li>✓ Test webhooks</li>
+          <li>✓ API key prefix: <code>sk_test_</code></li>
+        </ul>
+      </div>
+      <div class="mode-card live">
+        <h4>🟢 Live Mode</h4>
+        <ul>
+          <li>✓ Real crypto payments</li>
+          <li>✓ On-chain transactions</li>
+          <li>✓ Real settlements to your wallet</li>
+          <li>✓ Production webhooks</li>
+          <li>✓ API key prefix: <code>sk_live_</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Getting Test API Keys</h2>
+
+    <ol class="step-list">
+      <li>
+        <strong>Sign in to Dashboard</strong><br>
+        <span style="color: var(--text-secondary);">Go to <a href="/dashboard/">asterpay.io/dashboard</a> and log in</span>
+      </li>
+      <li>
+        <strong>Navigate to Settings → API Keys</strong><br>
+        <span style="color: var(--text-secondary);">Find the API Keys section in your settings</span>
+      </li>
+      <li>
+        <strong>Copy your Test API Key</strong><br>
+        <span style="color: var(--text-secondary);">Keys starting with <code>sk_test_</code> are for sandbox</span>
+      </li>
+      <li>
+        <strong>Use in your .env file</strong><br>
+        <span style="color: var(--text-secondary);">Set <code>ASTERPAY_API_KEY=sk_test_...</code></span>
+      </li>
+    </ol>
+
+    <h2>Test API Endpoints</h2>
+
+    <p>Test mode uses the same API endpoints as production:</p>
+
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>URL</th>
+      </tr>
+      <tr>
+        <td>API Base URL</td>
+        <td><code>https://api.asterpay.io/v1</code></td>
+      </tr>
+      <tr>
+        <td>Create Payment</td>
+        <td><code>POST /payment_intents</code></td>
+      </tr>
+      <tr>
+        <td>Get Payment</td>
+        <td><code>GET /payment_intents/:id</code></td>
+      </tr>
+      <tr>
+        <td>Webhooks</td>
+        <td>Same as production</td>
+      </tr>
+    </table>
+
+    <div class="info-box test">
+      <h4>🧪 Test Mode Behavior</h4>
+      <p>When using test API keys, payments are automatically marked as "completed" after a few seconds. No real blockchain transactions occur.</p>
+    </div>
+
+    <h2>Creating a Test Payment</h2>
+
+    <pre><code><span class="keyword">curl</span> -X POST https://api.asterpay.io/v1/payment_intents \
+  -H <span class="string">"Authorization: Bearer sk_test_your_test_key"</span> \
+  -H <span class="string">"Content-Type: application/json"</span> \
+  -d <span class="string">'{
+    "amount": "10.00",
+    "currency": "USDC",
+    "chain": "bsc",
+    "metadata": {
+      "user_id": "test_user_123",
+      "credits": "100"
+    }
+  }'</span></code></pre>
+
+    <h3>Test Response</h3>
+
+    <pre><code>{
+  <span class="property">"id"</span>: <span class="string">"pi_test_abc123"</span>,
+  <span class="property">"status"</span>: <span class="string">"pending"</span>,
+  <span class="property">"amount"</span>: <span class="string">"10.00"</span>,
+  <span class="property">"currency"</span>: <span class="string">"USDC"</span>,
+  <span class="property">"checkout_url"</span>: <span class="string">"https://pay.asterpay.io/test/abc123"</span>,
+  <span class="property">"test_mode"</span>: <span class="keyword">true</span>
+}</code></pre>
+
+    <h2>Testing Webhooks</h2>
+
+    <p>Test webhooks work identically to production. Configure your webhook URL in the dashboard and you'll receive events like:</p>
+
+    <pre><code>{
+  <span class="property">"event"</span>: <span class="string">"payment.completed"</span>,
+  <span class="property">"payment_id"</span>: <span class="string">"pi_test_abc123"</span>,
+  <span class="property">"amount"</span>: <span class="string">"10.00"</span>,
+  <span class="property">"currency"</span>: <span class="string">"USDC"</span>,
+  <span class="property">"test_mode"</span>: <span class="keyword">true</span>,
+  <span class="property">"metadata"</span>: {
+    <span class="property">"user_id"</span>: <span class="string">"test_user_123"</span>,
+    <span class="property">"credits"</span>: <span class="string">"100"</span>
+  }
+}</code></pre>
+
+    <h3>Testing Locally with ngrok</h3>
+
+    <p>To test webhooks on localhost:</p>
+
+    <pre><code><span class="comment"># Install ngrok</span>
+npm install -g ngrok
+
+<span class="comment"># Expose your local server</span>
+ngrok http 3000
+
+<span class="comment"># Use the ngrok URL as webhook URL</span>
+<span class="comment"># https://abc123.ngrok.io/api/webhook</span></code></pre>
+
+    <h2>Test Card Numbers</h2>
+
+    <p>For testing the checkout flow, use these test wallet addresses:</p>
+
+    <table>
+      <tr>
+        <th>Scenario</th>
+        <th>Test Address</th>
+      </tr>
+      <tr>
+        <td>Successful payment</td>
+        <td><code>0x1111...1111</code> (any valid address)</td>
+      </tr>
+      <tr>
+        <td>Payment timeout</td>
+        <td><code>0x0000...timeout</code></td>
+      </tr>
+      <tr>
+        <td>Insufficient funds</td>
+        <td><code>0x0000...declined</code></td>
+      </tr>
+    </table>
+
+    <h2>Switching to Live Mode</h2>
+
+    <div class="info-box live">
+      <h4>🟢 Ready for Production?</h4>
+      <p>Simply replace your test API key (<code>sk_test_</code>) with your live API key (<code>sk_live_</code>) in your environment variables. No code changes required!</p>
+    </div>
+
+    <pre><code><span class="comment"># Test mode</span>
+ASTERPAY_API_KEY=<span class="string">sk_test_abc123...</span>
+
+<span class="comment"># Live mode (just change the key)</span>
+ASTERPAY_API_KEY=<span class="string">sk_live_xyz789...</span></code><span class="file-label">.env</span></pre>
+
+    <div class="cta-box">
+      <h3>Start Testing Now</h3>
+      <p>Get your test API keys and try AsterPay risk-free.</p>
+      <a href="/dashboard/" class="cta-btn">Go to Dashboard →</a>
+    </div>
+
+    <h2>Need Help?</h2>
+
+    <ul>
+      <li>📖 <a href="/docs/">Full API Documentation</a></li>
+      <li>📚 <a href="/tutorial/">Step-by-Step Tutorial</a></li>
+      <li>💬 <a href="https://t.me/asterpaycommunity" target="_blank">Telegram Community</a></li>
+      <li>📧 <a href="mailto:support@asterpay.io">support@asterpay.io</a></li>
+    </ul>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starter Templates - AsterPay</title>
+  <meta name="description" content="Ready-to-use templates for monetizing AI apps, APIs, and bots with AsterPay crypto payments.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --bg-white: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --teal: #5eead4;
+      --pink: #f472b6;
+      --border: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .template-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .template-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .template-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .template-card.nextjs::before { background: var(--accent); }
+    .template-card.fastapi::before { background: var(--teal); }
+    .template-card.telegram::before { background: var(--pink); }
+
+    .template-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .template-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .template-card .desc {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .template-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: var(--bg);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .template-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .template-features li {
+      padding: 6px 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .template-features li::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .clone-box {
+      background: #1e2432;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .clone-box code {
+      font-family: 'JetBrains Mono', monospace;
+      color: #e4e4e7;
+      font-size: 13px;
+      display: block;
+      overflow-x: auto;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+    }
+
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      border-radius: 20px;
+      padding: 48px;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-section h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      opacity: 0.9;
+      margin-bottom: 24px;
+      font-size: 18px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--accent);
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 32px; }
+      .templates-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <div class="hero">
+      <h1>Starter Templates</h1>
+      <p class="subtitle">Clone a ready-to-use template and start accepting crypto payments in minutes. No payment setup required.</p>
+      <div class="badge-row">
+        <span class="badge">🚀 Production Ready</span>
+        <span class="badge">💳 AsterPay Integrated</span>
+        <span class="badge">🤖 AI Included</span>
+      </div>
+    </div>
+
+    <div class="templates-grid">
+      
+      <!-- Next.js Template -->
+      <div class="template-card nextjs">
+        <div class="template-icon">⚛️</div>
+        <h3>Next.js AI SaaS Starter</h3>
+        <p class="desc">Full-stack AI SaaS template with authentication, credit system, and beautiful UI.</p>
+        <div class="template-tags">
+          <span class="tag">Next.js 14</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">OpenAI</span>
+        </div>
+        <ul class="template-features">
+          <li>Credit-based billing system</li>
+          <li>AI content generation</li>
+          <li>Webhook handling</li>
+          <li>Responsive dashboard</li>
+        </ul>
+        <div class="clone-box">
+          <code>git clone https://github.com/AsterPay/nextjs-ai-saas-starter.git</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://github.com/AsterPay/nextjs-ai-saas-starter" target="_blank" class="btn btn-primary">View on GitHub</a>
+          <a href="/tutorial/" class="btn btn-secondary">Tutorial</a>
+        </div>
+      </div>
+
+      <!-- FastAPI Template -->
+      <div class="template-card fastapi">
+        <div class="template-icon">🐍</div>
+        <h3>Python FastAPI API</h3>
+        <p class="desc">API monetization template with per-request billing and automatic credit management.</p>
+        <div class="template-tags">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Pydantic</span>
+          <span class="tag">OpenAI</span>
+        </div>
+        <ul class="template-features">
+          <li>API key authentication</li>
+          <li>Per-request billing</li>
+          <li>Swagger docs included</li>
+          <li>Webhook verification</li>
+        </ul>
+        <div class="clone-box">
+          <code>git clone https://github.com/AsterPay/fastapi-api-monetization.git</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://github.com/AsterPay/fastapi-api-monetization" target="_blank" class="btn btn-primary">View on GitHub</a>
+          <a href="/tutorial/" class="btn btn-secondary">Tutorial</a>
+        </div>
+      </div>
+
+      <!-- Telegram Template -->
+      <div class="template-card telegram">
+        <div class="template-icon">🤖</div>
+        <h3>Telegram Bot</h3>
+        <p class="desc">Complete Telegram bot with inline payments, commands, and AI generation.</p>
+        <div class="template-tags">
+          <span class="tag">Python</span>
+          <span class="tag">python-telegram-bot</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">OpenAI</span>
+        </div>
+        <ul class="template-features">
+          <li>Bot commands & buttons</li>
+          <li>Credit-based billing</li>
+          <li>Inline payment flow</li>
+          <li>Webhook server included</li>
+        </ul>
+        <div class="clone-box">
+          <code>git clone https://github.com/AsterPay/telegram-bot-payments.git</code>
+        </div>
+        <div class="btn-row">
+          <a href="https://github.com/AsterPay/telegram-bot-payments" target="_blank" class="btn btn-primary">View on GitHub</a>
+          <a href="/tutorial/" class="btn btn-secondary">Tutorial</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Build?</h2>
+      <p>Follow our step-by-step tutorial to monetize your AI app in 10 minutes.</p>
+      <a href="/tutorial/" class="cta-btn">Start Tutorial →</a>
+    </div>
+
+  </div>
+</body>
+</html>
