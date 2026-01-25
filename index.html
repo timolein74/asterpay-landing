@@ -112,6 +112,34 @@
       color: var(--text);
     }
 
+    .nav-links .token-link {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #1a1a2e !important;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      animation: tokenPulse 2s ease-in-out infinite;
+      box-shadow: 0 2px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    .nav-links .token-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+      color: #1a1a2e !important;
+    }
+
+    .token-link .token-icon {
+      font-size: 16px;
+    }
+
+    @keyframes tokenPulse {
+      0%, 100% { box-shadow: 0 2px 12px rgba(245, 158, 11, 0.3); }
+      50% { box-shadow: 0 4px 24px rgba(245, 158, 11, 0.6); }
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -1051,6 +1079,47 @@
         transform: translateY(0);
       }
     }
+
+    /* Mobile Floating Token Button */
+    .mobile-token-btn {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #1a1a2e;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+      animation: floatPulse 2s ease-in-out infinite;
+    }
+
+    .mobile-token-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes floatPulse {
+      0%, 100% { 
+        transform: translateY(0);
+        box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+      }
+      50% { 
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(245, 158, 11, 0.6);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-token-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1087,7 +1156,7 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a href="#token">$ASTERPAY</a>
+        <a href="#token" class="token-link"><span class="token-icon">🪙</span> $ASTERPAY</a>
         <a href="/docs/">Docs</a>
       </div>
       <a href="/dashboard/register.html" class="btn btn-primary">Get Started</a>
@@ -1426,5 +1495,10 @@
       }
     });
   </script>
+
+  <!-- Mobile Floating Token Button -->
+  <a href="#token" class="mobile-token-btn">
+    🪙 $ASTERPAY
+  </a>
 </body>
 </html>
