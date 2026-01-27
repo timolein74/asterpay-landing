@@ -820,6 +820,86 @@
       color: var(--text-muted);
     }
 
+    /* Mobile Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: var(--text);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(248, 249, 252, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 100px 40px 40px;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.active {
+      display: flex;
+    }
+    
+    .mobile-menu a {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      padding: 12px 0;
+      transition: color 0.2s;
+    }
+    
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+    
+    .mobile-menu .token-link {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #1a1a2e !important;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    
+    .mobile-menu .btn-primary {
+      margin-top: 16px;
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       h1 { font-size: 40px; }
@@ -843,6 +923,14 @@
       }
 
       .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .desktop-only {
         display: none;
       }
       
@@ -1915,9 +2003,27 @@
         <a href="/team/">Team</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="/dashboard/register.html" class="btn btn-primary">Get Started</a>
+      <a href="/dashboard/register.html" class="btn btn-primary desktop-only">Get Started</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#x402" onclick="closeMobileMenu()">x402 Demo</a>
+    <a href="https://games.asterpay.io" target="_blank">🎮 Gaming SDK</a>
+    <a href="#gaming" onclick="closeMobileMenu()">Gaming</a>
+    <a href="#investors" onclick="closeMobileMenu()">Investors</a>
+    <a href="#token" class="token-link" onclick="closeMobileMenu()">🪙 $ASTERPAY</a>
+    <a href="/docs/">Docs</a>
+    <a href="/team/">Team</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/dashboard/register.html" class="btn btn-primary">Get Started</a>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -2459,6 +2565,28 @@
   </footer>
 
   <script>
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+
     // Formspree form handling
     const form = document.getElementById('waitlist-form');
     form.addEventListener('submit', async (e) => {
