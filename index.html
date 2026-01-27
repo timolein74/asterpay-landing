@@ -935,9 +935,10 @@
 
     .comparison-table th,
     .comparison-table td {
-      padding: 20px 24px;
+      padding: 14px 20px;
       text-align: center;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      white-space: nowrap;
     }
 
     .comparison-table th {
@@ -963,7 +964,13 @@
     }
 
     .comparison-table .feature-icon {
+      display: inline;
+      width: auto;
+      height: auto;
+      background: none;
+      border-radius: 0;
       margin-right: 8px;
+      font-size: 16px;
     }
 
     .comparison-table .check {
