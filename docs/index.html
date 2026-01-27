@@ -314,7 +314,57 @@ python main.py</code></pre>
     </div>
 
     <h2>SDKs</h2>
-    <p>Coming soon: JavaScript, Python, and PHP SDKs.</p>
+    
+    <h3>@asterpay/x402 (TypeScript/JavaScript)</h3>
+    <p>x402 protocol client with AI Agent Wallet and LangChain integration.</p>
+    <pre><code><span class="comment"># Install</span>
+npm install @asterpay/x402
+
+<span class="comment"># Usage</span>
+<span class="keyword">import</span> { createX402Client, createAgentWallet } <span class="keyword">from</span> <span class="string">'@asterpay/x402'</span>;
+
+<span class="keyword">const</span> wallet = createAgentWallet({
+  privateKey: process.env.AGENT_KEY,
+  network: <span class="string">'base'</span>,
+  spendingLimits: { daily: 10 }
+});
+
+<span class="keyword">const</span> client = createX402Client({ wallet });
+<span class="keyword">const</span> response = <span class="keyword">await</span> client.fetch(<span class="string">'https://paid-api.com/data'</span>);</code></pre>
+
+    <h3>asterpay-openai-agents (Python)</h3>
+    <p>Payment tools for OpenAI Agents SDK - give your AI agents the ability to pay.</p>
+    <pre><code><span class="comment"># Install</span>
+pip install asterpay-openai-agents
+
+<span class="comment"># Usage</span>
+<span class="keyword">from</span> agents <span class="keyword">import</span> Agent
+<span class="keyword">from</span> asterpay_agents <span class="keyword">import</span> get_asterpay_tools, AsterPayWallet
+
+wallet = AsterPayWallet(
+    private_key=os.environ[<span class="string">"AGENT_KEY"</span>],
+    network=<span class="string">"base"</span>,
+    daily_limit=10.0
+)
+
+agent = Agent(
+    name=<span class="string">"Shopping Assistant"</span>,
+    tools=get_asterpay_tools(wallet)
+)</code></pre>
+
+    <h3>Unity Gaming SDK</h3>
+    <p>Integrate crypto payments into Unity games with 3 lines of code.</p>
+    <pre><code><span class="comment">// Add to your Unity project via Package Manager</span>
+<span class="comment">// Git URL: https://github.com/asterpay/unity-sdk.git</span>
+
+<span class="keyword">using</span> AsterPay;
+
+<span class="comment">// Create payment</span>
+<span class="keyword">var</span> payment = <span class="keyword">await</span> AsterPayClient.Instance.CreatePayment(
+    amount: 4.99m,
+    itemId: <span class="string">"sword_001"</span>
+);</code></pre>
+    <p><a href="https://games.asterpay.io" target="_blank" style="color: var(--accent);">View Gaming Demo →</a></p>
 
     <h2>Support</h2>
     <p>Need help? Contact us at <a href="mailto:petteri@asterpay.io">petteri@asterpay.io</a></p>
