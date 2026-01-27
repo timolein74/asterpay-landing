@@ -692,6 +692,98 @@
       color: var(--text-muted);
     }
 
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 40px;
+      background: var(--bg);
+    }
+
+    .contact-section .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-section h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .contact-section .contact-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .contact-form {
+      background: var(--bg-white);
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .contact-form label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .contact-form button:hover {
+      background: var(--accent-light);
+    }
+
+    .contact-alt {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .contact-alt a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
     /* Footer */
     footer {
       padding: 60px 40px 40px;
@@ -1627,6 +1719,7 @@
         <a href="#token" class="token-link"><span class="token-icon">🪙</span> $ASTERPAY</a>
         <a href="/docs/">Docs</a>
         <a href="/team/">Team</a>
+        <a href="#contact">Contact</a>
       </div>
       <a href="/dashboard/register.html" class="btn btn-primary">Get Started</a>
     </div>
@@ -2057,6 +2150,36 @@
     </form>
   </section>
 
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p class="contact-subtitle">Have questions? We'd love to hear from you.</p>
+      
+      <form class="contact-form" action="https://formspree.io/f/mzdevdgw" method="POST" id="contact-form">
+        <div class="form-group">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" placeholder="How can we help?" required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New Contact Form Message - AsterPay">
+        <button type="submit">Send Message</button>
+      </form>
+      
+      <p class="contact-alt">
+        Or email us directly: <a href="mailto:petteri@asterpay.io">petteri@asterpay.io</a> | 
+        <a href="https://t.me/asterpaycommunity" target="_blank">Telegram</a>
+      </p>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <div class="footer-content">
@@ -2071,6 +2194,7 @@
         <a href="#pricing">Pricing</a>
         <a href="/docs/">Documentation</a>
         <a href="/team/">Team</a>
+        <a href="#contact">Contact</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
         <a href="/whitepaper/">Whitepaper</a>
@@ -2118,6 +2242,45 @@
         btn.disabled = false;
         setTimeout(() => {
           btn.textContent = 'Join Waitlist';
+          btn.style.background = '';
+        }, 2000);
+      }
+    });
+
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('button');
+      
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        if (response.ok) {
+          btn.textContent = '✓ Message sent!';
+          btn.style.background = '#14b8a6';
+          contactForm.reset();
+          setTimeout(() => {
+            btn.textContent = 'Send Message';
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        } else {
+          throw new Error('Failed');
+        }
+      } catch (error) {
+        btn.textContent = 'Try again';
+        btn.style.background = '#ef4444';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent = 'Send Message';
           btn.style.background = '';
         }, 2000);
       }
