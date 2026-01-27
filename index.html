@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="0CmKdAk8sVgUYz_NoXXiaA9Uq-j8YHH3n4oY--YQrc4" />
-  <title>AsterPay - AI Payment Infrastructure</title>
-  <meta name="description" content="The modern payment layer for AI applications. Accept global payments in minutes.">
+  <title>AsterPay - The European x402 Leader | AI Agent Payment Infrastructure</title>
+  <meta name="description" content="The only MiCA-compliant x402 Facilitator in Europe. AI agents pay each other autonomously. EUR to your bank in under 30 minutes.">
+  <meta name="keywords" content="x402, AI payments, agent payments, MiCA, GDPR, European crypto payments, stablecoin, USDC, EUR, micropayments">
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   
@@ -904,6 +905,180 @@
       }
     }
 
+    /* Comparison Section */
+    .comparison-section {
+      padding: 100px 40px;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+      color: white;
+    }
+
+    .comparison-section .section-header h2 {
+      color: white;
+    }
+
+    .comparison-section .section-header p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      margin-top: 48px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 20px 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .comparison-table th {
+      background: rgba(255,255,255,0.1);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .comparison-table th.highlight {
+      background: var(--accent);
+      color: white;
+    }
+
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .comparison-table td.highlight {
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .comparison-table .feature-icon {
+      margin-right: 8px;
+    }
+
+    .comparison-table .check {
+      color: #10b981;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .comparison-table .cross {
+      color: #ef4444;
+      font-size: 18px;
+    }
+
+    .comparison-table .limited {
+      color: #f59e0b;
+      font-size: 13px;
+    }
+
+    .comparison-table .discount {
+      color: #10b981;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* Investor Section */
+    .investor-section {
+      padding: 100px 40px;
+      background: var(--bg);
+    }
+
+    .investor-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .investor-text h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .investor-text p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .investor-highlights {
+      list-style: none;
+      padding: 0;
+    }
+
+    .investor-highlights li {
+      padding: 12px 0;
+      font-size: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .investor-cta-box {
+      background: white;
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .investor-cta-box h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .investor-cta-box p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .investor-cta-box .btn {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .investor-cta-box .btn-large {
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+
+    .investor-cta-box .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .investor-cta-box .btn-secondary:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-table th,
+      .comparison-table td {
+        padding: 12px 8px;
+        font-size: 12px;
+      }
+
+      .investor-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .investor-cta-box {
+        padding: 32px 24px;
+      }
+    }
+
     /* Token Section */
     .token-section {
       padding: 120px 40px;
@@ -1121,6 +1296,310 @@
         gap: 8px;
       }
     }
+
+    /* AI Agents Section Styles */
+    .ai-agents-section {
+      padding: 120px 40px;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d1829 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-agents-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(94, 234, 212, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .ai-agents-section .section-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ai-agents-section .section-header h2 {
+      color: white;
+    }
+
+    .ai-agents-section .section-header p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .eu-badge-header {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .ai-demo-container {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mini Demo Widget */
+    .mini-demo-widget {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mini-demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .mini-demo-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .mini-demo-badge {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .mini-demo-input {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .mini-demo-input input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: white;
+      font-family: inherit;
+    }
+
+    .mini-demo-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .mini-demo-input input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .mini-demo-input .btn {
+      padding: 14px 24px;
+      font-size: 14px;
+    }
+
+    .mini-demo-results {
+      min-height: 160px;
+    }
+
+    .demo-agent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-agent-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .demo-agent-item .status {
+      font-size: 16px;
+    }
+
+    .demo-agent-item .name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .demo-agent-item .cost {
+      color: #f87171;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+
+    .demo-agent-item .time {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 12px;
+    }
+
+    .demo-agent-item .protocol {
+      background: rgba(99, 102, 241, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      color: #818cf8;
+    }
+
+    .demo-total {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+    }
+
+    .demo-total-amount {
+      font-weight: 700;
+      color: #f87171;
+      font-size: 18px;
+    }
+
+    .demo-settlement {
+      margin-left: auto;
+      color: #4ade80;
+      font-size: 12px;
+    }
+
+    .mini-demo-cta {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .mini-demo-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    }
+
+    /* AI Feature Cards */
+    .ai-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .ai-feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+    }
+
+    .ai-feature-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .ai-feature-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .ai-feature-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .ai-feature-card p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
+    }
+
+    /* AI Stats */
+    .ai-stats {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ai-stat {
+      text-align: center;
+    }
+
+    .ai-stat-value {
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #4ade80, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ai-stat-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .ai-demo-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .ai-features {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .ai-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ai-agents-section {
+        padding: 80px 20px;
+      }
+      
+      .ai-features {
+        grid-template-columns: 1fr;
+      }
+      
+      .mini-demo-input {
+        flex-direction: column;
+      }
+      
+      .ai-stat-value {
+        font-size: 32px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1134,6 +1613,8 @@
         <span>AsterPay</span>
       </a>
       <div class="nav-links">
+        <a href="#x402">x402 Demo</a>
+        <a href="#investors">Investors</a>
         <a href="/templates/">Templates</a>
         <a href="/sandbox/">Sandbox</a>
         <a href="#token" class="token-link"><span class="token-icon">🪙</span> $ASTERPAY</a>
@@ -1318,8 +1799,184 @@
     </div>
   </section>
 
-  <!-- $ASTERPAY Token Section -->
-  <section class="token-section" id="token">
+  <!-- x402 AI Agents Section - NEW -->
+  <section class="ai-agents-section" id="x402">
+    <div class="container">
+      <div class="section-header">
+        <div class="eu-badge-header">🇪🇺 European x402 Leader</div>
+        <h2>AI Agents Pay Each Other</h2>
+        <p>Watch autonomous AI agents transact in real-time using the x402 protocol. EUR to your bank in under 30 minutes.</p>
+      </div>
+
+      <div class="ai-demo-container">
+        <!-- Mini Demo Widget -->
+        <div class="mini-demo-widget">
+          <div class="mini-demo-header">
+            <span class="mini-demo-title">🤖 Live Agent Demo</span>
+            <span class="mini-demo-badge">x402 Protocol</span>
+          </div>
+          
+          <div class="mini-demo-input">
+            <input type="text" id="demo-query" placeholder="e.g., Analyze Bitcoin" value="Analyze Bitcoin">
+            <button id="run-demo-btn" class="btn btn-primary">Run Analysis</button>
+          </div>
+
+          <div class="mini-demo-results" id="demo-results">
+            <div class="demo-agent-list" id="agent-list">
+              <!-- Agent items will be added here -->
+            </div>
+            <div class="demo-total" id="demo-total" style="display: none;">
+              <span>Total Cost:</span>
+              <span class="demo-total-amount" id="total-amount">€0.00</span>
+              <span class="demo-settlement">Settlement: &lt;1 second</span>
+            </div>
+          </div>
+
+          <a href="https://demo.asterpay.io" target="_blank" class="mini-demo-cta">
+            Open Full Demo →
+          </a>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="ai-features">
+          <div class="ai-feature-card">
+            <div class="ai-feature-icon">💶</div>
+            <h4>EUR Off-Ramp</h4>
+            <p>USDC → EUR → SEPA Instant to your bank in under 30 minutes.</p>
+          </div>
+          <div class="ai-feature-card">
+            <div class="ai-feature-icon">🛡️</div>
+            <h4>MiCA-Ready</h4>
+            <p>Built for European regulations. Compliant from day one.</p>
+          </div>
+          <div class="ai-feature-card">
+            <div class="ai-feature-icon">📊</div>
+            <h4>CFO Dashboard</h4>
+            <p>Enterprise-grade treasury management for AI agents.</p>
+          </div>
+          <div class="ai-feature-card">
+            <div class="ai-feature-icon">⚡</div>
+            <h4>Micropayments</h4>
+            <p>Pay-per-API-call. No subscriptions, no minimums.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investor Stats -->
+      <div class="ai-stats">
+        <div class="ai-stat">
+          <div class="ai-stat-value">$30T+</div>
+          <div class="ai-stat-label">AI Agent Economy by 2030</div>
+        </div>
+        <div class="ai-stat">
+          <div class="ai-stat-value">0</div>
+          <div class="ai-stat-label">EU x402 Competitors</div>
+        </div>
+        <div class="ai-stat">
+          <div class="ai-stat-value">&lt;30min</div>
+          <div class="ai-stat-label">EUR to Bank</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why AsterPay Wins Section -->
+  <section class="comparison-section" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why <span style="color: var(--accent);">AsterPay</span> Wins in Europe</h2>
+        <p>The only x402 Facilitator built for European compliance and EUR settlements.</p>
+      </div>
+      
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight">AsterPay</th>
+              <th>Coinbase CDP</th>
+              <th>thirdweb</th>
+              <th>PayAI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="feature-icon">🇪🇺</span> EUR Off-Ramp (SEPA)</td>
+              <td class="highlight"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="limited">Limited</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td><span class="feature-icon">🛡️</span> MiCA Compliant</td>
+              <td class="highlight"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td><span class="feature-icon">🔒</span> GDPR Compliant</td>
+              <td class="highlight"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="limited">Partial</span></td>
+              <td><span class="limited">Partial</span></td>
+            </tr>
+            <tr>
+              <td><span class="feature-icon">⚡</span> x402 Protocol</td>
+              <td class="highlight"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td><span class="feature-icon">💰</span> Token Fee Discount</td>
+              <td class="highlight"><span class="discount">50%</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td><span class="feature-icon">📊</span> Treasury Dashboard</td>
+              <td class="highlight"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="limited">Basic</span></td>
+              <td><span class="limited">Basic</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investor CTA Section -->
+  <section class="investor-section" id="investors">
+    <div class="container">
+      <div class="investor-content">
+        <div class="investor-text">
+          <h2>For Investors</h2>
+          <p>The AI agent economy is projected to reach <strong>$30 trillion by 2030</strong>. AsterPay is building the payment rails for Europe.</p>
+          <ul class="investor-highlights">
+            <li>🇪🇺 First-mover in EU x402 market</li>
+            <li>📈 Zero direct competitors in Europe</li>
+            <li>💶 Live product with EUR off-ramp</li>
+            <li>🛡️ MiCA-ready compliance</li>
+          </ul>
+        </div>
+        <div class="investor-cta-box">
+          <h3>Interested in investing?</h3>
+          <p>Get in touch with our team</p>
+          <a href="mailto:investor@asterpay.io" class="btn btn-primary btn-large">
+            📧 investor@asterpay.io
+          </a>
+          <a href="/whitepaper/" class="btn btn-secondary">
+            📄 Read Whitepaper
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- $ASTERPAY Token Section --><section class="token-section" id="token">
     <div class="container">
       <div class="section-header">
         <h2>$ASTERPAY Token</h2>
@@ -1464,5 +2121,64 @@
   <a href="#token" class="mobile-token-btn">
     🪙 $ASTERPAY
   </a>
+
+  <!-- Mini Demo Script -->
+  <script>
+    // Mini Demo Widget Logic
+    const demoAgents = [
+      { name: 'Price Agent', cost: 0.01, time: 45 },
+      { name: 'News Agent', cost: 0.02, time: 120 },
+      { name: 'Sentiment Agent', cost: 0.03, time: 89 },
+      { name: 'Coordinator', cost: 0.01, time: 12 }
+    ];
+
+    const runDemoBtn = document.getElementById('run-demo-btn');
+    const agentList = document.getElementById('agent-list');
+    const demoTotal = document.getElementById('demo-total');
+    const totalAmount = document.getElementById('total-amount');
+
+    let isRunning = false;
+
+    if (runDemoBtn) {
+      runDemoBtn.addEventListener('click', async () => {
+        if (isRunning) return;
+        isRunning = true;
+        
+        // Clear previous results
+        agentList.innerHTML = '';
+        demoTotal.style.display = 'none';
+        runDemoBtn.textContent = 'Analyzing...';
+        runDemoBtn.disabled = true;
+
+        let total = 0;
+
+        // Animate each agent
+        for (const agent of demoAgents) {
+          await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 200));
+          
+          const item = document.createElement('div');
+          item.className = 'demo-agent-item';
+          item.innerHTML = `
+            <span class="status">✅</span>
+            <span class="name">${agent.name}</span>
+            <span class="cost">-€${agent.cost.toFixed(2)}</span>
+            <span class="time">${agent.time}ms</span>
+            <span class="protocol">x402</span>
+          `;
+          agentList.appendChild(item);
+          total += agent.cost;
+        }
+
+        // Show total
+        await new Promise(resolve => setTimeout(resolve, 300));
+        totalAmount.textContent = `€${total.toFixed(2)}`;
+        demoTotal.style.display = 'flex';
+
+        runDemoBtn.textContent = 'Run Analysis';
+        runDemoBtn.disabled = false;
+        isRunning = false;
+      });
+    }
+  </script>
 </body>
 </html>
