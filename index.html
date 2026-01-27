@@ -1699,6 +1699,199 @@
         font-size: 32px;
       }
     }
+
+    /* Gaming SDK Section */
+    .gaming-section {
+      padding: 120px 40px;
+      background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a1a2e 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gaming-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 30% 30%, rgba(244, 114, 182, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .gaming-section .section-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gaming-section .section-header h2 {
+      color: white;
+    }
+
+    .gaming-section .section-header p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .gaming-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f472b6 0%, #a855f7 100%);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      animation: gamingPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes gamingPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.7); }
+    }
+
+    .gaming-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gaming-feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 32px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .gaming-feature-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-4px);
+      border-color: rgba(244, 114, 182, 0.4);
+    }
+
+    .gaming-feature-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .gaming-feature-card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .gaming-feature-card p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
+    }
+
+    .gaming-stats {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gaming-stat {
+      text-align: center;
+    }
+
+    .gaming-stat-value {
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f472b6, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gaming-stat-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+    }
+
+    .gaming-cta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-gaming {
+      background: linear-gradient(135deg, #f472b6 0%, #a855f7 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-gaming:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(244, 114, 182, 0.4);
+    }
+
+    .btn-gaming-outline {
+      background: transparent;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .btn-gaming-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 900px) {
+      .gaming-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .gaming-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gaming-section {
+        padding: 80px 20px;
+      }
+      
+      .gaming-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gaming-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .gaming-stat-value {
+        font-size: 32px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1713,6 +1906,7 @@
       </a>
       <div class="nav-links">
         <a href="#x402">x402 Demo</a>
+        <a href="https://games.asterpay.io" target="_blank">🎮 Gaming SDK</a>
         <a href="#investors">Investors</a>
         <a href="/templates/">Templates</a>
         <a href="/sandbox/">Sandbox</a>
@@ -1976,6 +2170,64 @@
           <div class="ai-stat-value">&lt;30min</div>
           <div class="ai-stat-label">EUR to Bank</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gaming SDK Section - NEW -->
+  <section class="gaming-section" id="gaming">
+    <div class="container">
+      <div class="section-header">
+        <div class="gaming-badge">🎮 NEW: Unity SDK v1.0</div>
+        <h2>The Payment Layer for <span style="color: #f472b6;">AI-Powered Games</span></h2>
+        <p>Give your NPCs wallets. Pay tournament winners instantly. Accept crypto in Unity with 3 lines of code.</p>
+      </div>
+
+      <div class="gaming-grid">
+        <div class="gaming-feature-card">
+          <div class="gaming-feature-icon">🤖</div>
+          <h4>AI NPC Wallets</h4>
+          <p>Every NPC can have an autonomous wallet with spending limits and real-time balance tracking.</p>
+        </div>
+        <div class="gaming-feature-card">
+          <div class="gaming-feature-icon">🏆</div>
+          <h4>Tournament Payouts</h4>
+          <p>Distribute prizes to thousands of players in seconds. Escrow support built-in.</p>
+        </div>
+        <div class="gaming-feature-card">
+          <div class="gaming-feature-icon">⚡</div>
+          <h4>Micropayments</h4>
+          <p>x402 protocol for pay-per-use items. Only 0.5% fees vs 30% app store fees.</p>
+        </div>
+        <div class="gaming-feature-card">
+          <div class="gaming-feature-icon">🎯</div>
+          <h4>Unity Native</h4>
+          <p>Drop-in SDK with ScriptableObjects, Editor tools, and sample scenes included.</p>
+        </div>
+      </div>
+
+      <div class="gaming-stats">
+        <div class="gaming-stat">
+          <div class="gaming-stat-value">$301B</div>
+          <div class="gaming-stat-label">Blockchain Gaming 2030</div>
+        </div>
+        <div class="gaming-stat">
+          <div class="gaming-stat-value">$52.6B</div>
+          <div class="gaming-stat-label">AI Agent Gaming 2030</div>
+        </div>
+        <div class="gaming-stat">
+          <div class="gaming-stat-value">69.4%</div>
+          <div class="gaming-stat-label">CAGR 2024-2030</div>
+        </div>
+      </div>
+
+      <div class="gaming-cta">
+        <a href="https://games.asterpay.io" target="_blank" class="btn btn-gaming">
+          🎮 Try Live Demo
+        </a>
+        <a href="https://asterpay.io/docs/unity" class="btn btn-gaming-outline">
+          📖 Documentation
+        </a>
       </div>
     </div>
   </section>
