@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KYC Policy - AsterPay</title>
+  <meta name="description" content="AsterPay KYC Policy - When KYC is required and when it's not. Clear explanation of our compliance approach.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --accent: #6366f1;
+      --border: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .last-updated {
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 40px 0 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 24px 0 12px;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    ul {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 8px 0;
+      color: var(--text-secondary);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    th {
+      background: var(--accent);
+      color: white;
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+
+    .highlight-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 28px; }
+      table { font-size: 14px; }
+      th, td { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <h1>KYC Policy Explained</h1>
+    <p class="last-updated">Last updated: January 27, 2026</p>
+
+    <div class="highlight-box">
+      <strong>Quick Summary:</strong>
+      <p>AsterPay operates with a <strong>risk-based KYC approach</strong>. Most crypto-to-crypto payments require no KYC. KYC is required only for EUR off-ramp (fiat bank transfers) and high-volume merchants. All transactions undergo automatic sanctions screening.</p>
+    </div>
+
+    <h2>When KYC is NOT Required</h2>
+
+    <h3>1. Crypto-to-Crypto Payments (Payers)</h3>
+    <p>If you're paying with cryptocurrency (USDC, USDT, etc.), <strong>no KYC is required</strong>. You can:</p>
+    <ul>
+      <li>Pay from any wallet</li>
+      <li>Make unlimited transactions</li>
+      <li>Use AsterPay services anonymously</li>
+    </ul>
+    <p><strong>Why?</strong> Crypto-to-crypto transactions are peer-to-peer and don't involve traditional banking systems.</p>
+
+    <h3>2. Low-Volume Merchants</h3>
+    <p>Merchants processing less than <strong>€10,000 per month</strong> in crypto payments:</p>
+    <ul>
+      <li>No KYC required for account setup</li>
+      <li>Light onboarding process</li>
+      <li>Start accepting payments immediately</li>
+    </ul>
+
+    <h2>When KYC IS Required</h2>
+
+    <h3>1. EUR Off-Ramp Users</h3>
+    <p>If you want to convert USDC to EUR and receive funds in your bank account:</p>
+    <ul>
+      <li><strong>KYC is mandatory</strong> for all EUR off-ramp transactions</li>
+      <li>Required by EU regulations (MiCA, AML directives)</li>
+      <li>Bank account verification required</li>
+      <li>Identity verification via our KYC provider</li>
+    </ul>
+    <p><strong>Why?</strong> Fiat bank transfers require compliance with EU financial regulations and anti-money laundering (AML) laws.</p>
+
+    <h3>2. High-Volume Merchants</h3>
+    <p>Merchants processing <strong>€10,000+ per month</strong>:</p>
+    <ul>
+      <li>Light KYC verification required</li>
+      <li>Business registration verification</li>
+      <li>Enhanced due diligence for enterprise customers</li>
+    </ul>
+
+    <h2>KYC Requirements Summary</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User Type</th>
+          <th>KYC Requirement</th>
+          <th>Threshold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Payer (crypto-to-crypto)</strong></td>
+          <td>❌ No KYC</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td><strong>Merchant (low volume)</strong></td>
+          <td>❌ No KYC</td>
+          <td>&lt; €10K/month</td>
+        </tr>
+        <tr>
+          <td><strong>Merchant (high volume)</strong></td>
+          <td>✅ Light KYC</td>
+          <td>€10K+/month</td>
+        </tr>
+        <tr>
+          <td><strong>EUR Off-Ramp user</strong></td>
+          <td>✅ Full KYC</td>
+          <td>All transactions</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Compliance & Security</h2>
+
+    <h3>Automatic Sanctions Screening</h3>
+    <p><strong>All transactions</strong>, regardless of KYC status, undergo:</p>
+    <ul>
+      <li><strong>OFAC screening:</strong> US sanctions list checks</li>
+      <li><strong>EU sanctions screening:</strong> European Union sanctions checks</li>
+      <li><strong>KYT monitoring:</strong> Know Your Transaction - suspicious activity detection</li>
+      <li><strong>AML checks:</strong> Anti-money laundering pattern detection</li>
+    </ul>
+
+    <h3>MiCA Compliance</h3>
+    <p>AsterPay is preparing for full MiCA (Markets in Crypto-Assets) compliance:</p>
+    <ul>
+      <li>EU-based legal entity</li>
+      <li>GDPR-compliant data handling</li>
+      <li>CASP license application in progress (Q2 2026)</li>
+      <li>Full MiCA compliance planned (Q4 2026)</li>
+    </ul>
+    <p><a href="/mica-compliance">Learn more about our MiCA compliance roadmap →</a></p>
+
+    <h2>Privacy & Data Protection</h2>
+    <p>When KYC is required, we:</p>
+    <ul>
+      <li>Use <strong>certified KYC providers</strong> (Sumsub, Onfido, or similar)</li>
+      <li>Store data in <strong>EU data centers</strong> (GDPR compliant)</li>
+      <li>Never share your data with third parties (except as required by law)</li>
+      <li>Allow you to <strong>request data deletion</strong> at any time</li>
+    </ul>
+
+    <h2>Questions?</h2>
+    <p>If you have questions about our KYC policy:</p>
+    <ul>
+      <li>Email: <a href="mailto:compliance@asterpay.io">compliance@asterpay.io</a></li>
+      <li>Legal: <a href="mailto:legal@asterpay.io">legal@asterpay.io</a></li>
+    </ul>
+
+    <h2>Related Documents</h2>
+    <ul>
+      <li><a href="/terms">Terms of Service</a></li>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="/mica-compliance">MiCA Compliance Roadmap</a></li>
+      <li><a href="/security">Security</a></li>
+    </ul>
+  </div>
+</body>
+</html>

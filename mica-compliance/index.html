@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiCA Compliance Roadmap - AsterPay</title>
+  <meta name="description" content="AsterPay MiCA Compliance Roadmap - Preparing for Markets in Crypto-Assets Regulation compliance.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --accent: #6366f1;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --pending: #6b7280;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .last-updated {
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 40px 0 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 24px 0 12px;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    ul {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 8px 0;
+      color: var(--text-secondary);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    th {
+      background: var(--accent);
+      color: white;
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-done {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+    }
+
+    .status-progress {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent);
+    }
+
+    .status-planned {
+      background: rgba(107, 114, 128, 0.1);
+      color: var(--pending);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+
+    .highlight-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 28px; }
+      table { font-size: 14px; }
+      th, td { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <h1>MiCA Compliance Roadmap</h1>
+    <p class="last-updated">Last updated: January 27, 2026</p>
+
+    <div class="highlight-box">
+      <strong>What is MiCA?</strong>
+      <p>The Markets in Crypto-Assets Regulation (MiCA) is the EU's comprehensive regulatory framework for crypto-assets. It establishes uniform rules for crypto-asset service providers (CASPs) across the European Union.</p>
+    </div>
+
+    <h2>Current Status: Preparing for MiCA</h2>
+    <p>AsterPay is actively preparing for full MiCA compliance. We are committed to operating as a regulated entity under EU law.</p>
+
+    <h2>Compliance Requirements & Status</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Status</th>
+          <th>Timeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Legal Entity (EU)</strong></td>
+          <td><span class="status-badge status-done">✅ Done</span></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>AML Policy</strong></td>
+          <td><span class="status-badge status-done">✅ Done</span></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>KYT Integration</strong></td>
+          <td><span class="status-badge status-done">✅ Done</span></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>GDPR Compliance</strong></td>
+          <td><span class="status-badge status-done">✅ Done</span></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>Sanctions Screening</strong></td>
+          <td><span class="status-badge status-done">✅ Done</span></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>CASP License Application</strong></td>
+          <td><span class="status-badge status-progress">🔄 In Progress</span></td>
+          <td>Q2 2026</td>
+        </tr>
+        <tr>
+          <td><strong>Full MiCA Compliance</strong></td>
+          <td><span class="status-badge status-planned">⏳ Planned</span></td>
+          <td>Q4 2026</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>What "MiCA-Ready" Means Today</h2>
+
+    <p>While we work towards full MiCA compliance, AsterPay already implements many MiCA requirements:</p>
+
+    <h3>✅ Completed</h3>
+    <ul>
+      <li><strong>EU-based legal entity:</strong> Registered in Finland/EU</li>
+      <li><strong>GDPR-compliant data handling:</strong> All data processed in EU data centers</li>
+      <li><strong>AML/sanctions screening:</strong> Automatic OFAC and EU sanctions checks on all transactions</li>
+      <li><strong>KYT monitoring:</strong> Know Your Transaction - suspicious activity detection</li>
+      <li><strong>Risk-based KYC:</strong> KYC required for EUR off-ramp and high-volume merchants</li>
+      <li><strong>Transparent terms:</strong> Clear terms of service and privacy policy</li>
+    </ul>
+
+    <h3>🔄 In Progress</h3>
+    <ul>
+      <li><strong>CASP license application:</strong> Preparing application with Finnish Financial Supervisory Authority (FIN-FSA)</li>
+      <li><strong>Enhanced compliance documentation:</strong> Internal policies and procedures</li>
+      <li><strong>Regulatory reporting:</strong> Transaction reporting systems</li>
+    </ul>
+
+    <h3>⏳ Planned</h3>
+    <ul>
+      <li><strong>Full MiCA compliance:</strong> Complete implementation of all MiCA requirements</li>
+      <li><strong>Regulatory portal:</strong> Direct integration with regulatory authorities</li>
+      <li><strong>Enhanced KYC:</strong> Full KYC integration for all regulated services</li>
+      <li><strong>Travel Rule compliance:</strong> FATF Travel Rule implementation</li>
+    </ul>
+
+    <h2>Our Partners</h2>
+
+    <h3>Legal & Compliance</h3>
+    <ul>
+      <li><strong>Legal Counsel:</strong> [Law Firm Name] - EU financial services regulation</li>
+      <li><strong>Compliance Partner:</strong> [Compliance Partner Name] - MiCA compliance consulting</li>
+    </ul>
+
+    <h3>Banking & Payments</h3>
+    <ul>
+      <li><strong>Banking Partner:</strong> [Bank Partner Name] - EUR off-ramp services</li>
+      <li><strong>KYC Provider:</strong> [KYC Provider Name] - Identity verification</li>
+    </ul>
+
+    <h3>Technology</h3>
+    <ul>
+      <li><strong>Blockchain Infrastructure:</strong> Multi-chain support (Base, Ethereum, Polygon, Arbitrum, BSC)</li>
+      <li><strong>Security:</strong> Regular security audits and penetration testing</li>
+    </ul>
+
+    <h2>Timeline</h2>
+
+    <h3>Q1 2026 (Current)</h3>
+    <ul>
+      <li>✅ Legal entity established</li>
+      <li>✅ AML/KYT systems operational</li>
+      <li>🔄 CASP license application preparation</li>
+    </ul>
+
+    <h3>Q2 2026</h3>
+    <ul>
+      <li>🔄 Submit CASP license application</li>
+      <li>🔄 Enhanced compliance documentation</li>
+      <li>🔄 Regulatory reporting systems</li>
+    </ul>
+
+    <h3>Q3-Q4 2026</h3>
+    <ul>
+      <li>⏳ License approval (expected)</li>
+      <li>⏳ Full MiCA compliance implementation</li>
+      <li>⏳ Regulatory portal integration</li>
+    </ul>
+
+    <h2>What This Means for You</h2>
+
+    <h3>For Developers & Merchants</h3>
+    <ul>
+      <li><strong>Regulated service:</strong> You're using a service that complies with EU regulations</li>
+      <li><strong>Legal clarity:</strong> Clear legal framework and terms</li>
+      <li><strong>Future-proof:</strong> Ready for EU regulatory requirements</li>
+      <li><strong>Enterprise-ready:</strong> Can be used by enterprise customers requiring compliance</li>
+    </ul>
+
+    <h3>For Users (Payers)</h3>
+    <ul>
+      <li><strong>Consumer protection:</strong> EU consumer protection laws apply</li>
+      <li><strong>Transparency:</strong> Clear terms and fee structure</li>
+      <li><strong>Security:</strong> Regulated security and operational standards</li>
+    </ul>
+
+    <h2>Questions?</h2>
+    <p>For questions about our MiCA compliance:</p>
+    <ul>
+      <li>Compliance: <a href="mailto:compliance@asterpay.io">compliance@asterpay.io</a></li>
+      <li>Legal: <a href="mailto:legal@asterpay.io">legal@asterpay.io</a></li>
+    </ul>
+
+    <h2>Related Documents</h2>
+    <ul>
+      <li><a href="/terms">Terms of Service</a></li>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="/kyc-policy">KYC Policy</a></li>
+      <li><a href="/security">Security</a></li>
+    </ul>
+  </div>
+</body>
+</html>
