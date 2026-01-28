@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent GPU Purchase Demo | AsterPay</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text: #e5e7eb;
+            --text-dim: #9ca3af;
+            --border: #1f1f2e;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 18px;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-icon {
+            font-size: 24px;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Agent Panel */
+        .agent-message {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+        }
+
+        .agent-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* Providers Table */
+        .providers-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .providers-table th,
+        .providers-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .providers-table th {
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .provider-row {
+            transition: all 0.3s ease;
+        }
+
+        .provider-row:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .provider-row.selected {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid var(--success);
+        }
+
+        .provider-row.selected td:first-child {
+            padding-left: 9px;
+        }
+
+        .provider-name {
+            font-weight: 500;
+        }
+
+        .price-per-hour {
+            color: var(--text-dim);
+        }
+
+        .total-price {
+            font-weight: 600;
+        }
+
+        .cheapest-badge {
+            background: var(--success);
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            opacity: 0.3;
+            transition: opacity 0.5s ease;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+        }
+
+        .timeline-item.completed {
+            opacity: 1;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: var(--accent);
+            animation: pulse 1.5s infinite;
+        }
+
+        .timeline-item.completed .timeline-dot {
+            background: var(--success);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            50% { box-shadow: 0 0 0 10px transparent; }
+        }
+
+        .timeline-content h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .timeline-time {
+            font-size: 12px;
+            color: var(--success);
+            margin-top: 4px;
+        }
+
+        /* Cost Comparison */
+        .comparison-box {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-row.highlight {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .stripe-price {
+            color: #ef4444;
+            text-decoration: line-through;
+        }
+
+        .savings {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* Settlement Panel */
+        .settlement-info {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .settlement-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .settlement-label {
+            color: var(--text-dim);
+        }
+
+        .settlement-value {
+            font-weight: 600;
+        }
+
+        .iban-display {
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+            background: var(--bg-dark);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        /* Why Stripe Fails */
+        .stripe-fails {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+        }
+
+        .stripe-fails h4 {
+            color: #ef4444;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .fail-item {
+            display: flex;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .fail-icon {
+            color: #ef4444;
+        }
+
+        /* Controls */
+        .controls {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            margin-left: 12px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .price-update {
+            animation: priceFlash 0.3s ease;
+        }
+
+        @keyframes priceFlash {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(99, 102, 241, 0.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">⚡ AsterPay Demo</div>
+            <h1>AI Agent Purchases GPU Compute</h1>
+            <p class="subtitle">Watch an autonomous agent find the cheapest GPU and pay with x402</p>
+        </header>
+
+        <div class="demo-container">
+            <!-- Left Panel: Agent & Providers -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-icon">🤖</span>
+                    <span class="panel-title">AI Agent: ML-Trainer-7</span>
+                </div>
+
+                <div class="agent-avatar">🤖</div>
+                <div class="agent-message" id="agent-message">
+                    Initializing compute search...
+                </div>
+
+                <table class="providers-table">
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>Price/Hour</th>
+                            <th>Total (100h)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="providers-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+
+                <div class="stripe-fails" id="stripe-fails" style="display: none;">
+                    <h4>❌ Why This Doesn't Work with Stripe</h4>
+                    <div class="fail-item">
+                        <span class="fail-icon">✗</span>
+                        <span>Agent can't "log in" to Stripe</span>
+                    </div>
+                    <div class="fail-item">
+                        <span class="fail-icon">✗</span>
+                        <span>Spot prices change in seconds — humans can't approve fast enough</span>
+                    </div>
+                    <div class="fail-item">
+                        <span class="fail-icon">✗</span>
+                        <span>$82 payment: Stripe fee ~$3.00 vs AsterPay $0.41</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Payment & Settlement -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-icon">💳</span>
+                    <span class="panel-title">x402 Payment Flow</span>
+                </div>
+
+                <div class="timeline" id="timeline">
+                    <div class="timeline-item" id="step-1">
+                        <div class="timeline-dot">1</div>
+                        <div class="timeline-content">
+                            <h4>Agent Requests Compute</h4>
+                            <p>Need: 100 GPU-hours, A100, within 2h</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="step-2">
+                        <div class="timeline-dot">2</div>
+                        <div class="timeline-content">
+                            <h4>Price Discovery</h4>
+                            <p>Scanning 4 providers in real-time...</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="step-3">
+                        <div class="timeline-dot">3</div>
+                        <div class="timeline-content">
+                            <h4>Select Cheapest</h4>
+                            <p>Vast.ai spot: $0.82/h = $82 total</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="step-4">
+                        <div class="timeline-dot">4</div>
+                        <div class="timeline-content">
+                            <h4>x402 Payment</h4>
+                            <p>82 USDC sent via Base L2</p>
+                            <div class="timeline-time" style="display: none;">✓ Confirmed in 1.2s</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="step-5">
+                        <div class="timeline-dot">5</div>
+                        <div class="timeline-content">
+                            <h4>Compute Running</h4>
+                            <p>ML training job executing...</p>
+                            <div class="timeline-time" style="display: none;">✓ Completed in 1h 47m</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="step-6">
+                        <div class="timeline-dot">6</div>
+                        <div class="timeline-content">
+                            <h4>EUR Settlement</h4>
+                            <p>Merchant receives EUR via SEPA Instant</p>
+                            <div class="timeline-time" style="display: none;">✓ €76.50 arrived in 28 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settlement-info" id="settlement-info" style="display: none;">
+                    <div class="settlement-row">
+                        <span class="settlement-label">USDC Received</span>
+                        <span class="settlement-value">82.00 USDC</span>
+                    </div>
+                    <div class="settlement-row">
+                        <span class="settlement-label">Exchange Rate</span>
+                        <span class="settlement-value">1 USDC = €0.9329</span>
+                    </div>
+                    <div class="settlement-row">
+                        <span class="settlement-label">AsterPay Fee (0.5%)</span>
+                        <span class="settlement-value">-€0.38</span>
+                    </div>
+                    <div class="settlement-row">
+                        <span class="settlement-label">Net EUR</span>
+                        <span class="settlement-value" style="color: var(--success);">€76.12</span>
+                    </div>
+                    <div class="iban-display">
+                        IBAN: DE89 3704 0044 0532 0130 00<br>
+                        SEPA Reference: ASTERPAY-OR-7X9K2M
+                    </div>
+                </div>
+
+                <div class="comparison-box" id="comparison-box" style="display: none;">
+                    <div class="comparison-title">💰 Cost Comparison</div>
+                    <div class="comparison-row">
+                        <span>Stripe Fee (2.9% + €0.30)</span>
+                        <span class="stripe-price">$2.68</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span>AsterPay Fee (0.5%)</span>
+                        <span>$0.41</span>
+                    </div>
+                    <div class="comparison-row highlight">
+                        <span>Merchant Saves</span>
+                        <span class="savings">$2.27 (85%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="start-btn" onclick="startDemo()">▶ Run Demo</button>
+            <button class="btn btn-secondary" onclick="resetDemo()">↻ Reset</button>
+        </div>
+
+        <footer>
+            <p>This is a simulation. No real payments are made.</p>
+            <p style="margin-top: 8px;">
+                <a href="/">← Back to AsterPay</a> · 
+                <a href="/docs">Documentation</a> · 
+                <a href="/ir/preseed">Investor Deck</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const providers = [
+            { name: 'AWS eu-west-1', pricePerHour: 2.50, region: '🇮🇪' },
+            { name: 'Lambda Labs', pricePerHour: 1.89, region: '🇺🇸' },
+            { name: 'Vast.ai (spot)', pricePerHour: 0.82, region: '🌍', cheapest: true },
+            { name: 'Akash Network', pricePerHour: 0.95, region: '🌐' },
+        ];
+
+        const gpuHours = 100;
+        let currentStep = 0;
+        let isRunning = false;
+
+        function renderProviders(highlightCheapest = false) {
+            const tbody = document.getElementById('providers-body');
+            tbody.innerHTML = providers.map(p => {
+                const total = (p.pricePerHour * gpuHours).toFixed(0);
+                const isSelected = highlightCheapest && p.cheapest;
+                return `
+                    <tr class="provider-row ${isSelected ? 'selected' : ''}">
+                        <td>
+                            <span class="provider-name">${p.region} ${p.name}</span>
+                            ${p.cheapest && highlightCheapest ? '<span class="cheapest-badge">SELECTED</span>' : ''}
+                        </td>
+                        <td class="price-per-hour">$${p.pricePerHour.toFixed(2)}/h</td>
+                        <td class="total-price">$${total}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateAgentMessage(msg) {
+            const el = document.getElementById('agent-message');
+            el.textContent = msg;
+            el.classList.add('fade-in');
+            setTimeout(() => el.classList.remove('fade-in'), 500);
+        }
+
+        function activateStep(stepNum) {
+            // Deactivate all
+            for (let i = 1; i <= 6; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active');
+            }
+            // Complete previous steps
+            for (let i = 1; i < stepNum; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.add('completed');
+                step.querySelector('.timeline-dot').textContent = '✓';
+            }
+            // Activate current
+            if (stepNum <= 6) {
+                document.getElementById(`step-${stepNum}`).classList.add('active');
+            }
+        }
+
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function startDemo() {
+            if (isRunning) return;
+            isRunning = true;
+            document.getElementById('start-btn').disabled = true;
+
+            // Reset
+            renderProviders(false);
+            document.getElementById('stripe-fails').style.display = 'none';
+            document.getElementById('settlement-info').style.display = 'none';
+            document.getElementById('comparison-box').style.display = 'none';
+
+            // Step 1: Request
+            activateStep(1);
+            updateAgentMessage('> Requesting compute: 100 GPU-hours (A100), deadline: 2h');
+            await sleep(1500);
+
+            // Step 2: Price Discovery
+            activateStep(2);
+            updateAgentMessage('> Scanning providers...');
+            await sleep(800);
+            
+            // Simulate price updates
+            for (let i = 0; i < providers.length; i++) {
+                updateAgentMessage(`> Found: ${providers[i].name} @ $${providers[i].pricePerHour}/h`);
+                await sleep(600);
+            }
+
+            // Step 3: Select Cheapest
+            activateStep(3);
+            renderProviders(true);
+            updateAgentMessage('> Selected: Vast.ai (spot) — $82 total (cheapest)');
+            await sleep(1500);
+
+            // Show why Stripe fails
+            document.getElementById('stripe-fails').style.display = 'block';
+            await sleep(2000);
+
+            // Step 4: Payment
+            activateStep(4);
+            updateAgentMessage('> Initiating x402 payment: 82 USDC on Base...');
+            await sleep(1200);
+            updateAgentMessage('> Transaction confirmed! Hash: 0x7a3f...9c2d');
+            document.querySelector('#step-4 .timeline-time').style.display = 'block';
+            await sleep(1500);
+
+            // Step 5: Compute Running
+            activateStep(5);
+            updateAgentMessage('> Compute job started. Training ML model...');
+            await sleep(2000);
+            updateAgentMessage('> Training complete! Model accuracy: 94.7%');
+            document.querySelector('#step-5 .timeline-time').style.display = 'block';
+            await sleep(1500);
+
+            // Step 6: EUR Settlement
+            activateStep(6);
+            updateAgentMessage('> EUR settlement initiated via AsterPay...');
+            await sleep(1500);
+            updateAgentMessage('> SEPA Instant transfer complete!');
+            document.querySelector('#step-6 .timeline-time').style.display = 'block';
+            
+            // Show settlement details
+            document.getElementById('settlement-info').style.display = 'block';
+            document.getElementById('comparison-box').style.display = 'block';
+            
+            await sleep(1000);
+            
+            // Mark step 6 as complete
+            document.getElementById('step-6').classList.remove('active');
+            document.getElementById('step-6').classList.add('completed');
+            document.querySelector('#step-6 .timeline-dot').textContent = '✓';
+
+            updateAgentMessage('✓ Complete! Merchant received €76.12 in 28 minutes.');
+            
+            isRunning = false;
+            document.getElementById('start-btn').disabled = false;
+        }
+
+        function resetDemo() {
+            isRunning = false;
+            document.getElementById('start-btn').disabled = false;
+            
+            // Reset timeline
+            for (let i = 1; i <= 6; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+                step.querySelector('.timeline-dot').textContent = i;
+                const time = step.querySelector('.timeline-time');
+                if (time) time.style.display = 'none';
+            }
+            
+            // Reset other elements
+            renderProviders(false);
+            updateAgentMessage('Initializing compute search...');
+            document.getElementById('stripe-fails').style.display = 'none';
+            document.getElementById('settlement-info').style.display = 'none';
+            document.getElementById('comparison-box').style.display = 'none';
+        }
+
+        // Initial render
+        renderProviders(false);
+    </script>
+</body>
+</html>
