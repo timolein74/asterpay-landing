@@ -1175,6 +1175,105 @@
       font-size: 18px;
     }
 
+    /* Enterprise Compliance Section */
+    .compliance-section {
+      padding: 100px 40px;
+      background: var(--bg-white);
+    }
+
+    .compliance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .compliance-card {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .compliance-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(99, 102, 241, 0.1);
+    }
+
+    .compliance-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .compliance-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .compliance-status {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .compliance-status.no-kyc {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .compliance-status.kyc-required {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+    }
+
+    .compliance-status.always-on {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent);
+    }
+
+    .compliance-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .compliance-card li {
+      padding: 8px 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .compliance-card li:last-child {
+      border-bottom: none;
+    }
+
+    .compliance-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .compliance-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .compliance-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
     /* Investor Section */
     .investor-section {
       padding: 100px 40px;
@@ -2707,6 +2806,60 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enterprise Compliance Section -->
+  <section class="compliance-section" id="compliance">
+    <div class="container">
+      <div class="section-header">
+        <h2>Enterprise <span style="color: var(--accent);">Compliance</span></h2>
+        <p>Clear regulatory framework for businesses and enterprises.</p>
+      </div>
+      
+      <div class="compliance-grid">
+        <div class="compliance-card">
+          <div class="compliance-icon">🔓</div>
+          <h3>Crypto-to-Crypto Payments</h3>
+          <p class="compliance-status no-kyc">No KYC Required</p>
+          <ul>
+            <li>Instant stablecoin payments</li>
+            <li>AI agent transactions</li>
+            <li>x402 protocol payments</li>
+            <li>Non-custodial architecture</li>
+          </ul>
+        </div>
+        
+        <div class="compliance-card">
+          <div class="compliance-icon">🏦</div>
+          <h3>EUR Off-Ramp (SEPA)</h3>
+          <p class="compliance-status kyc-required">KYC Required</p>
+          <ul>
+            <li>USDC → EUR conversion</li>
+            <li>Bank transfer to your account</li>
+            <li>MiCA-compliant process</li>
+            <li>Settlement in &lt;30 minutes</li>
+          </ul>
+        </div>
+        
+        <div class="compliance-card">
+          <div class="compliance-icon">🛡️</div>
+          <h3>All Transactions</h3>
+          <p class="compliance-status always-on">Always Active</p>
+          <ul>
+            <li>OFAC/EU sanctions screening</li>
+            <li>AML transaction monitoring</li>
+            <li>GDPR-compliant data handling</li>
+            <li>Secure webhook signing</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="compliance-cta">
+        <a href="/kyc-policy/" class="btn btn-secondary">KYC Policy Details →</a>
+        <a href="/mica-compliance/" class="btn btn-secondary">MiCA Roadmap →</a>
+        <a href="/security/" class="btn btn-secondary">Security →</a>
       </div>
     </div>
   </section>
