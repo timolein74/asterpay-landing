@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x402 Tutorial - AsterPay Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a24;
+      --text: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --green: #10b981;
+      --border: #2a2a3a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Header */
+    header {
+      padding: 60px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Content */
+    .content {
+      padding: 40px 0;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 48px 0 20px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 16px;
+      color: var(--accent-light);
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 24px 0 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    /* Code blocks */
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+
+    p code, li code {
+      background: var(--bg-card);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--accent-light);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    /* Info boxes */
+    .info-box {
+      background: var(--bg-card);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+    }
+
+    .info-box.success {
+      border-left-color: var(--green);
+    }
+
+    .info-box p {
+      margin: 0;
+    }
+
+    /* Diagram */
+    .diagram {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .toc h4 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc li {
+      margin-bottom: 8px;
+    }
+
+    .toc a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover {
+      color: var(--accent-light);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .cta-section h3 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: var(--accent);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 16px;
+      transition: transform 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">
+        <span>📦</span> AsterPay Docs
+      </a>
+      <div class="nav-links">
+        <a href="/docs/">Overview</a>
+        <a href="/docs/x402-tutorial.html">x402 Tutorial</a>
+        <a href="/docs/sdk-reference.html">SDK Reference</a>
+        <a href="https://github.com/asterpay">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>How to Implement x402 Payments with AsterPay</h1>
+      <p>The Complete Guide to AI Agent Payments + EUR Off-Ramp</p>
+      <div class="meta">
+        <span>⏱️ ~15 min read</span>
+        <span>💻 TypeScript</span>
+        <span>🔗 Base, Polygon, Solana</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="toc">
+        <h4>📋 Table of Contents</h4>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#part1">Part 1: Setting Up the Server (Seller)</a></li>
+          <li><a href="#part2">Part 2: Creating the AI Agent Client (Buyer)</a></li>
+          <li><a href="#part3">Part 3: EUR Off-Ramp Integration</a></li>
+          <li><a href="#part4">Part 4: LangChain Integration</a></li>
+          <li><a href="#part5">Part 5: Production Deployment</a></li>
+          <li><a href="#security">Security Best Practices</a></li>
+        </ul>
+      </div>
+
+      <h2 id="overview">Overview</h2>
+      <p>x402 is the open protocol for internet-native payments, using HTTP 402 "Payment Required" to let AI agents and services pay each other instantly. AsterPay is an <strong>x402 Facilitator</strong> that adds:</p>
+
+      <ul>
+        <li>🇪🇺 <strong>EUR Off-Ramp</strong> — USDC → EUR via SEPA in &lt;30 minutes</li>
+        <li>🤖 <strong>AI Agent Wallets</strong> — Spending limits and controls</li>
+        <li>🔗 <strong>Multi-Chain</strong> — Base, Polygon, Arbitrum, Solana</li>
+        <li>⚡ <strong>0.5% Fees</strong> — 50% off with $ASTERPAY token</li>
+      </ul>
+
+      <p>In this guide, you'll build:</p>
+      <ol>
+        <li>An x402-protected API endpoint</li>
+        <li>An AI agent that pays for API calls automatically</li>
+        <li>EUR off-ramp integration for European developers</li>
+      </ol>
+
+      <h3>What You Will Need</h3>
+      <ul>
+        <li>Node.js v18+ installed</li>
+        <li>Basic TypeScript/JavaScript knowledge</li>
+        <li>An EVM wallet with testnet USDC (Base Sepolia)</li>
+        <li>AsterPay API key (get one at <a href="https://asterpay.io/dashboard">asterpay.io/dashboard</a>)</li>
+      </ul>
+
+      <h2 id="part1">Part 1: Setting Up the Server (Seller)</h2>
+
+      <h3>Step 1: Initialize Project</h3>
+      <pre><code class="language-bash">mkdir asterpay-x402-demo
+cd asterpay-x402-demo
+npm init -y
+npm install express @asterpay-io/x402 dotenv
+npm install -D typescript @types/express @types/node ts-node</code></pre>
+
+      <h3>Step 2: Environment Variables</h3>
+      <p>Create <code>.env</code>:</p>
+      <pre><code class="language-bash"># Your wallet address (receives payments)
+WALLET_ADDRESS=0xYourWalletAddressHere
+
+# AsterPay API Key (get from dashboard)
+ASTERPAY_API_KEY=ap_live_xxxxxxxxxxxx
+
+# Network (base-sepolia for testing, base for production)
+NETWORK=base-sepolia
+
+# Server port
+PORT=3000</code></pre>
+
+      <h3>Step 3: Create the x402 Protected Server</h3>
+      <pre><code class="language-typescript">import express from 'express';
+import { createX402Middleware, X402Config } from '@asterpay-io/x402';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+
+// AsterPay x402 Configuration
+const x402Config: X402Config = {
+  payTo: process.env.WALLET_ADDRESS!,
+  network: process.env.NETWORK as 'base' | 'base-sepolia',
+  
+  facilitator: {
+    url: 'https://x402.asterpay.io',
+    apiKey: process.env.ASTERPAY_API_KEY
+  },
+  
+  // Optional: EUR off-ramp
+  eurOfframp: {
+    enabled: true,
+    iban: process.env.EUR_IBAN
+  }
+};
+
+// Create middleware with pricing
+const x402Middleware = createX402Middleware(x402Config, {
+  'GET /api/market-data': { price: '$0.01' },
+  'GET /api/ai-analysis': { price: '$0.05' },
+  'POST /api/generate-image': { price: '$0.10' },
+});
+
+app.use(x402Middleware);
+
+// Market data endpoint - $0.01 per request
+app.get('/api/market-data', (req, res) => {
+  res.json({
+    symbol: 'BTC',
+    price: 98542.50,
+    timestamp: new Date().toISOString()
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 x402 API running on http://localhost:${PORT}`);
+});</code></pre>
+
+      <h2 id="part2">Part 2: Creating the AI Agent Client (Buyer)</h2>
+
+      <pre><code class="language-typescript">import { AgentWallet, createX402Fetch } from '@asterpay-io/x402';
+
+async function main() {
+  // Create AI Agent Wallet with Spending Limits
+  const agentWallet = new AgentWallet({
+    privateKey: process.env.AGENT_PRIVATE_KEY!,
+    network: 'base-sepolia',
+    
+    // Spending controls - critical for AI agents!
+    spendingLimits: {
+      perTransaction: 0.10,  // Max $0.10 per tx
+      daily: 5.00,           // Max $5.00 per day
+      monthly: 50.00         // Max $50.00 per month
+    }
+  });
+
+  console.log('🤖 Agent Wallet:', agentWallet.address);
+  console.log('💰 Balance:', await agentWallet.getBalance(), 'USDC');
+
+  // Create x402-enabled Fetch (auto-handles payments)
+  const x402Fetch = createX402Fetch(agentWallet);
+
+  // Make Paid API Call
+  const response = await x402Fetch('http://localhost:3000/api/market-data');
+  const data = await response.json();
+  console.log('Data:', data);
+}
+
+main();</code></pre>
+
+      <h2 id="part3">Part 3: EUR Off-Ramp Integration</h2>
+
+      <div class="diagram">
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐<br>
+│  AI Agent   │────▶│  AsterPay   │────▶│   Circle    │────▶│  Your Bank  │<br>
+│  Pays USDC  │     │  Facilitator│     │  SEPA API   │     │  (EUR)      │<br>
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘<br>
+     $0.10              Verify              Convert           €0.09<br>
+                        Settle            USDC → EUR         &lt;30 min
+      </div>
+
+      <pre><code class="language-typescript">const x402Config: X402Config = {
+  payTo: process.env.WALLET_ADDRESS!,
+  network: 'base',
+  
+  facilitator: {
+    url: 'https://x402.asterpay.io',
+    apiKey: process.env.ASTERPAY_API_KEY
+  },
+  
+  // Enable EUR off-ramp
+  eurOfframp: {
+    enabled: true,
+    iban: 'FI21 1234 5600 0007 85', // Your IBAN
+    autoConvert: true,
+    minAmount: 10.00,
+    schedule: 'daily'
+  }
+};</code></pre>
+
+      <h2 id="part4">Part 4: LangChain Integration</h2>
+
+      <pre><code class="language-typescript">import { ChatOpenAI } from '@langchain/openai';
+import { createOpenAIToolsAgent } from 'langchain/agents';
+import { AsterPayTool } from '@asterpay-io/x402/langchain';
+
+// Create AsterPay tool for LangChain
+const asterPayTool = new AsterPayTool({
+  wallet: agentWallet,
+  description: 'Pay for external API services using x402'
+});
+
+// Create agent with payment capability
+const agent = await createOpenAIToolsAgent({
+  llm: new ChatOpenAI({ modelName: 'gpt-4' }),
+  tools: [asterPayTool],
+  prompt: agentPrompt
+});
+
+// Agent can now pay for services automatically
+const result = await executor.invoke({
+  input: 'Get the current BTC price from the market API'
+});</code></pre>
+
+      <h2 id="part5">Part 5: Production Deployment</h2>
+
+      <h3>Vercel Deployment</h3>
+      <pre><code class="language-json">{
+  "version": 2,
+  "builds": [
+    { "src": "src/server.ts", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "src/server.ts" }
+  ]
+}</code></pre>
+
+      <pre><code class="language-bash">vercel env add WALLET_ADDRESS
+vercel env add ASTERPAY_API_KEY
+vercel --prod</code></pre>
+
+      <h2 id="security">Security Best Practices</h2>
+
+      <div class="info-box">
+        <p><strong>⚠️ Important:</strong> Never use your main wallet for AI agents. Always create dedicated agent wallets with strict spending limits.</p>
+      </div>
+
+      <pre><code class="language-typescript">// ✅ DO: Use dedicated agent wallet with limits
+const agentWallet = new AgentWallet({
+  privateKey: AGENT_SPECIFIC_KEY,
+  spendingLimits: {
+    perTransaction: 0.10,
+    daily: 5.00
+  },
+  // Only allow payments to trusted APIs
+  allowedRecipients: [
+    '0xTrustedAPI1...',
+    '0xTrustedAPI2...'
+  ]
+});</code></pre>
+
+      <div class="cta-section">
+        <h3>Ready to Get Started?</h3>
+        <p>Create your free AsterPay account and get your API key in seconds.</p>
+        <a href="https://asterpay.io/dashboard/register.html" class="cta-button">Get API Key →</a>
+      </div>
+
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="https://asterpay.io/docs">AsterPay Documentation</a></li>
+        <li><a href="https://x402.org">x402 Protocol Specification</a></li>
+        <li><a href="https://github.com/asterpay">GitHub Examples</a></li>
+        <li><a href="https://t.me/asterpaycommunity">Telegram Community</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 AsterPay | <a href="https://asterpay.io">asterpay.io</a> | <a href="https://twitter.com/Asterpayment">@Asterpayment</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
