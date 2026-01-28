@@ -1,0 +1,5 @@
+# Cloudflare Pages Headers
+# Tämä varmistaa että /api/index.html palautetaan oikein
+
+/api/*
+  X-Robots-Tag: noindex

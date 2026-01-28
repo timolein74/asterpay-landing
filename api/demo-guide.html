@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Guide - AsterPay Data API</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #1a1a24;
+      --text: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent: #6366f1;
+      --green: #10b981;
+      --border: #2a2a3a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 40px 0 20px;
+      color: var(--accent);
+    }
+
+    .demo-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .demo-step {
+      margin: 20px 0;
+      padding: 16px;
+      background: rgba(99, 102, 241, 0.1);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+    }
+
+    .demo-step h3 {
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--green);
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .highlight {
+      background: rgba(16, 185, 129, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--green);
+    }
+
+    .talking-point {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      border-left: 4px solid var(--accent);
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .checklist li:before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      margin: 8px 8px 8px 0;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 AsterPay Data API - Demo Guide</h1>
+    <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 40px;">
+      Konkreettiset ohjeet sijoittajille ja asiakkaille
+    </p>
+
+    <!-- 5-Minute Demo -->
+    <div class="demo-section">
+      <h2>⏱️ 5-Minutin Demo</h2>
+      
+      <div class="demo-step">
+        <h3>Vaihe 1: Näytä Landing Page (30s)</h3>
+        <p><strong>Mikä:</strong> Avaa <code>api.asterpay.io</code></p>
+        <p><strong>Mitä sanot:</strong></p>
+        <div class="talking-point">
+          "Tämä on ensimmäinen julkinen API joka hyväksyy x402-maksuja. 
+          Meillä on 13 endpointtia eri hinnoilla, alkaen $0.001:sta."
+        </div>
+      </div>
+
+      <div class="demo-step">
+        <h3>Vaihe 2: Tee Pyyntö Ilman Maksua (1 min)</h3>
+        <p><strong>Terminaalissa:</strong></p>
+        <pre><code>curl -v https://api.asterpay.io/v1/market/price/BTC</code></pre>
+        <p><strong>Mitä näet:</strong> HTTP 402 Payment Required + JSON</p>
+        <p><strong>Mitä sanot:</strong></p>
+        <div class="talking-point">
+          "Kun teet pyynnön ilman maksua, saat 402 Payment Required -vastauksen.
+          Tässä on maksutiedot: $0.001, osoite, network."
+        </div>
+      </div>
+
+      <div class="demo-step">
+        <h3>Vaihe 3: Demo x402 SDK:lla (2 min)</h3>
+        <p><strong>Koodi:</strong></p>
+        <pre><code>import { createX402Client, createAgentWallet } from '@asterpay-io/x402';
+
+const wallet = createAgentWallet({
+  name: 'Demo Agent',
+  privateKey: process.env.PRIVATE_KEY!,
+  network: 'base-sepolia',
+  spendingLimits: { daily: 10.00 }
+});
+
+const client = createX402Client({
+  wallet: wallet.config,
+  autoPayEnabled: true
+});
+
+// Automaattinen maksu!
+const response = await client.fetch('https://api.asterpay.io/v1/market/price/BTC');
+const data = await response.json();
+console.log('BTC Price:', data.data.price);</code></pre>
+        <p><strong>Mitä sanot:</strong></p>
+        <div class="talking-point">
+          "Tässä on koodi joka käyttää API:ta. 
+          x402 SDK hoitaa maksun automaattisesti - kehittäjä ei tarvitse 
+          kirjoittaa maksulogiikkaa. Agent maksaa, saa datan, jatkaa työtä."
+        </div>
+      </div>
+
+      <div class="demo-step">
+        <h3>Vaihe 4: Näytä Tulos (30s)</h3>
+        <p><strong>Mitä näytät:</strong></p>
+        <ul>
+          <li>Console output: BTC hinta</li>
+          <li>Transaction hash blockchainissa</li>
+          <li>API call log</li>
+        </ul>
+        <p><strong>Mitä sanot:</strong></p>
+        <div class="talking-point">
+          "Tässä on tulos: BTC hinta $98,542.50.
+          Maksu tehtiin automaattisesti, transaktio on blockchainissa.
+          Koko prosessi kesti alle sekunnin."
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Demo Scripts -->
+    <div class="demo-section">
+      <h2>🚀 Quick Demo Scripts</h2>
+      
+      <h3>Market Data Demo</h3>
+      <pre><code>tsx demos/demo-market-data.ts</code></pre>
+      <p>Näyttää: BTC/ETH hinnat, automaattinen maksu, kulut</p>
+
+      <h3>AI Summarization Demo</h3>
+      <pre><code>tsx demos/demo-ai-summarize.ts</code></pre>
+      <p>Näyttää: Tekstin yhteenveto, compression ratio, maksu</p>
+    </div>
+
+    <!-- Key Messages -->
+    <div class="demo-section">
+      <h2>💬 Key Messages</h2>
+      
+      <h3>Sijoittajille:</h3>
+      <ul class="checklist">
+        <li>First production x402 API</li>
+        <li>Real users, real payments</li>
+        <li>$30T AI agent economy opportunity</li>
+        <li>First mover advantage</li>
+      </ul>
+
+      <h3>Asiakkaille:</h3>
+      <ul class="checklist">
+        <li>Pay per request ($0.001 - $0.10)</li>
+        <li>No subscriptions</li>
+        <li>AI agent native</li>
+        <li>15-minute integration</li>
+      </ul>
+    </div>
+
+    <!-- Demo Checklist -->
+    <div class="demo-section">
+      <h2>✅ Demo Checklist</h2>
+      
+      <h3>Pre-Demo:</h3>
+      <ul class="checklist">
+        <li>API tested and working</li>
+        <li>Testnet USDC available</li>
+        <li>Demo scripts ready</li>
+        <li>Screenshots prepared</li>
+        <li>Video ready (optional)</li>
+      </ul>
+
+      <h3>During Demo:</h3>
+      <ul class="checklist">
+        <li>Show problem clearly</li>
+        <li>Demonstrate solution</li>
+        <li>Show live example</li>
+        <li>Answer questions</li>
+        <li>Collect feedback</li>
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div class="demo-section">
+      <h2>📚 Resources</h2>
+      <a href="/api/" class="btn">Landing Page</a>
+      <a href="/docs" class="btn">Documentation</a>
+      <a href="https://github.com/asterpay/x402-api" class="btn">GitHub</a>
+    </div>
+  </div>
+</body>
+</html>

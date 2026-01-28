@@ -1,3 +1,8 @@
+# API routes - must be before wildcards
+/api /api/index.html 200
+/api/demo-guide.html /api/demo-guide.html 200
+/api/* /api/index.html 200
+
 # Checkout page - handle all /pay/* routes
 /pay/* /pay/index.html 200
 
