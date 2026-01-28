@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERC-8004 Integration | AsterPay - Trust Layer for AI Agents</title>
+  <meta name="description" content="AsterPay is integrating ERC-8004 Trustless Agents standard. The first platform where AI agents build trust, earn money, and receive euros.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    :root {
+      --bg: #0f0f23;
+      --bg-card: #1a1a2e;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent: #6366f1;
+      --accent-secondary: #8b5cf6;
+      --success: #10b981;
+      --border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      max-width: 700px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 48px 0 24px 0;
+      color: var(--text);
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 32px 0 16px 0;
+      color: var(--text);
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    /* Stack Diagram */
+    .stack-diagram {
+      margin: 48px 0;
+    }
+
+    .stack-layer {
+      display: flex;
+      align-items: center;
+      padding: 24px;
+      margin-bottom: 2px;
+      border-radius: 12px;
+    }
+
+    .stack-layer:first-child {
+      border-radius: 12px 12px 4px 4px;
+    }
+
+    .stack-layer:last-child {
+      border-radius: 4px 4px 12px 12px;
+    }
+
+    .stack-layer.trust {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.15));
+      border: 1px solid rgba(99, 102, 241, 0.4);
+    }
+
+    .stack-layer.payment {
+      background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 211, 238, 0.15));
+      border: 1px solid rgba(74, 222, 128, 0.4);
+    }
+
+    .stack-layer.settlement {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(249, 115, 22, 0.15));
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+
+    .stack-layer.compliance {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.15));
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .stack-icon {
+      font-size: 32px;
+      margin-right: 20px;
+    }
+
+    .stack-content h4 {
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stack-content p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .stack-label {
+      margin-left: auto;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .feature-card {
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 32px 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .timeline-date {
+      width: 100px;
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin: 6px 20px 0 0;
+      flex-shrink: 0;
+    }
+
+    .timeline-dot.upcoming {
+      background: transparent;
+      border: 2px solid var(--accent);
+    }
+
+    .timeline-content h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 16px;
+      margin: 32px 0;
+    }
+
+    .highlight-box h3 {
+      margin-top: 0;
+      color: var(--text);
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+    }
+
+    /* Comparison Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    .check {
+      color: var(--success);
+    }
+
+    .cross {
+      color: #ef4444;
+    }
+
+    .question {
+      color: #fbbf24;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 48px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      margin-top: 48px;
+    }
+
+    .cta-section h3 {
+      margin-top: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--accent);
+    }
+
+    /* Links */
+    .links-section {
+      margin: 32px 0;
+    }
+
+    .links-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .links-section a:hover {
+      text-decoration: underline;
+    }
+
+    .links-section li {
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 40px 20px; }
+      h1 { font-size: 32px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .stack-layer { flex-wrap: wrap; }
+      .stack-label { margin-left: 0; margin-top: 12px; width: 100%; text-align: center; }
+      .timeline-item { flex-direction: column; }
+      .timeline-date { margin-bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to AsterPay</a>
+    
+    <div class="badge">🔐 Coming Q2 2026</div>
+    <h1>ERC-8004 <span>Agent Identity</span> Integration</h1>
+    <p class="subtitle">The first platform where AI agents build trust, earn money, and receive euros. AsterPay is integrating the ERC-8004 Trustless Agents standard.</p>
+
+    <h2>The Complete AI Agent Stack</h2>
+    <p>AI agents need four layers to operate autonomously. AsterPay is building all four.</p>
+
+    <div class="stack-diagram">
+      <div class="stack-layer trust">
+        <span class="stack-icon">🔐</span>
+        <div class="stack-content">
+          <h4>Trust Layer</h4>
+          <p>"Who can I trust?"</p>
+        </div>
+        <span class="stack-label">ERC-8004</span>
+      </div>
+      <div class="stack-layer payment">
+        <span class="stack-icon">💸</span>
+        <div class="stack-content">
+          <h4>Payment Layer</h4>
+          <p>"How do I pay?"</p>
+        </div>
+        <span class="stack-label">x402 Protocol</span>
+      </div>
+      <div class="stack-layer settlement">
+        <span class="stack-icon">💶</span>
+        <div class="stack-content">
+          <h4>Settlement Layer</h4>
+          <p>"How do I get euros?"</p>
+        </div>
+        <span class="stack-label">EUR Off-Ramp</span>
+      </div>
+      <div class="stack-layer compliance">
+        <span class="stack-icon">🇪🇺</span>
+        <div class="stack-content">
+          <h4>Compliance Layer</h4>
+          <p>"Is this legal in EU?"</p>
+        </div>
+        <span class="stack-label">MiCA-Aligned</span>
+      </div>
+    </div>
+
+    <h2>What is ERC-8004?</h2>
+    <p>ERC-8004 (Trustless Agents) is an Ethereum standard published in August 2025 that creates a trust layer for autonomous AI agents. It defines three on-chain registries:</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🆔</div>
+        <h4>Identity Registry</h4>
+        <p>ERC-721 NFT-based identity for each agent. Points to off-chain Agent Card with capabilities and endpoints.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h4>Reputation Registry</h4>
+        <p>On-chain feedback system with scores (0-100) and proofOfPayment linking reputation to real transactions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h4>Validation Registry</h4>
+        <p>Third-party validation interface supporting stake-based, zkML, and TEE oracle verifications.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h3>Why ERC-8004 + x402?</h3>
+      <p>ERC-8004 is explicitly designed to complement the x402 payment protocol. The standard defines a <code>proofOfPayment</code> field that stores x402 transaction hashes, linking every payment to reputation. Real money = real trust.</p>
+    </div>
+
+    <h2>AsterPay Integration</h2>
+    <p>When we integrate ERC-8004, every AI agent using AsterPay will be able to:</p>
+    
+    <ul style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 24px;">
+      <li><strong style="color: var(--text);">Register on-chain identity</strong> — ERC-8004 Agent NFT with verifiable history</li>
+      <li><strong style="color: var(--text);">Build reputation from transactions</strong> — Every x402 payment updates reputation with proofOfPayment</li>
+      <li><strong style="color: var(--text);">Get discovered by other agents</strong> — Searchable registry of trusted agents</li>
+      <li><strong style="color: var(--text);">Cash out to EUR</strong> — USDC earnings to SEPA Instant bank transfers</li>
+    </ul>
+
+    <h2>Competitive Landscape</h2>
+    <p>No competitor combines all four capabilities for the European market:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>AsterPay</th>
+          <th>PayAI</th>
+          <th>Coinbase</th>
+          <th>Monerium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>x402 Facilitator</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>EUR Off-Ramp</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>ERC-8004 Support</td>
+          <td class="check">✓ Building</td>
+          <td class="question">?</td>
+          <td class="question">?</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>MiCA-Aligned</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Roadmap</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-date">Q1 2026</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content">
+          <h4>Research & Builder Program</h4>
+          <p>Deep spec analysis, ERC-8004 Builder Program application, technical PoC planning</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Q2 2026</span>
+        <span class="timeline-dot upcoming"></span>
+        <div class="timeline-content">
+          <h4>Identity Integration</h4>
+          <p>Deploy Identity Registry on Base Sepolia, Agent Registration API, IPFS Agent Cards</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Q3 2026</span>
+        <span class="timeline-dot upcoming"></span>
+        <div class="timeline-content">
+          <h4>Reputation Integration</h4>
+          <p>x402 → Reputation webhook, proofOfPayment implementation, beta testing</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Q4 2026</span>
+        <span class="timeline-dot upcoming"></span>
+        <div class="timeline-content">
+          <h4>Production Launch</h4>
+          <p>Mainnet deployment (Base, Polygon), public API, agent discovery features</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>ERC-8004 Resources</h2>
+    <div class="links-section">
+      <ul>
+        <li>EIP Specification: <a href="https://eips.ethereum.org/EIPS/eip-8004" target="_blank">eips.ethereum.org/EIPS/eip-8004</a></li>
+        <li>Official Website: <a href="https://8004.org" target="_blank">8004.org</a></li>
+        <li>Builder Program: <a href="https://8004.org/builder-program" target="_blank">8004.org/builder-program</a></li>
+        <li>GitHub: <a href="https://github.com/ethereum/ERCs/pull/1170" target="_blank">github.com/ethereum/ERCs/pull/1170</a></li>
+      </ul>
+    </div>
+
+    <h3>Backers & Supporters</h3>
+    <p>ERC-8004 is supported by major players in the Ethereum ecosystem:</p>
+    <ul style="color: var(--text-secondary); margin-left: 20px;">
+      <li><strong style="color: var(--text);">Ethereum Foundation</strong> — Created dedicated dAI (Decentralized AI) team</li>
+      <li><strong style="color: var(--text);">MetaMask</strong> — Marco De Rossi (AI Lead, co-author)</li>
+      <li><strong style="color: var(--text);">Coinbase</strong> — Erik Reppel (co-author)</li>
+      <li><strong style="color: var(--text);">Google</strong> — Jordan Ellis (co-author)</li>
+      <li><strong style="color: var(--text);">Partners</strong> — ENS, EigenLayer, The Graph, Taiko</li>
+    </ul>
+
+    <div class="cta-section">
+      <h3>Interested in ERC-8004 + AsterPay?</h3>
+      <p style="margin-bottom: 24px;">We're actively building the Trust + Payment + Settlement stack for AI agents in Europe.</p>
+      <a href="mailto:petteri@asterpay.io" class="btn">Get in Touch</a>
+      <a href="/docs/" class="btn btn-secondary">Read the Docs</a>
+    </div>
+
+    <p style="text-align: center; margin-top: 48px; font-size: 14px; color: var(--text-secondary);">
+      Last updated: January 2026 | <a href="/" style="color: var(--accent);">AsterPay</a>
+    </p>
+  </div>
+</body>
+</html>

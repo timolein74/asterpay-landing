@@ -2383,6 +2383,60 @@
       margin-top: 4px;
     }
 
+    /* ERC-8004 Banner */
+    .erc8004-banner {
+      margin-top: 48px;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .erc8004-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .erc8004-banner h3 {
+      font-size: 24px;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .erc8004-banner p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .erc8004-features {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .erc8004-feature {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .btn-sm {
+      padding: 10px 24px;
+      font-size: 14px;
+    }
+
     @media (max-width: 900px) {
       .ai-demo-container {
         grid-template-columns: 1fr;
@@ -3241,6 +3295,19 @@
             <h4>Micropayments</h4>
             <p>Pay-per-API-call. No subscriptions, no minimums.</p>
           </div>
+        </div>
+
+        <!-- ERC-8004 Coming Soon Banner -->
+        <div class="erc8004-banner">
+          <div class="erc8004-badge">🔐 Coming Q2 2026</div>
+          <h3>ERC-8004 Agent Identity Integration</h3>
+          <p>The first platform where AI agents build <strong>trust</strong>, earn <strong>money</strong>, and receive <strong>euros</strong>.</p>
+          <div class="erc8004-features">
+            <span class="erc8004-feature">🆔 On-chain Identity</span>
+            <span class="erc8004-feature">⭐ Reputation Registry</span>
+            <span class="erc8004-feature">🔗 proofOfPayment</span>
+          </div>
+          <a href="/erc-8004/" class="btn btn-secondary btn-sm">Learn More →</a>
         </div>
       </div>
 
