@@ -335,6 +335,49 @@
       align-items: center;
     }
 
+    .hero-value-props {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .value-prop {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.1);
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .value-icon {
+      font-size: 20px;
+    }
+
+    .value-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hero-dev-link {
+      margin-top: 24px;
+      font-size: 14px;
+    }
+
+    .hero-dev-link a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-dev-link a:hover {
+      color: var(--accent);
+    }
+
     /* Stats */
     .stats {
       display: flex;
@@ -545,6 +588,485 @@
       font-size: 15px;
       color: var(--text-secondary);
       line-height: 1.6;
+    }
+
+    /* ROI Calculator Section */
+    .calculator-section {
+      padding: 100px 40px;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+      color: white;
+    }
+
+    .calculator-section .section-header h2 {
+      color: white;
+    }
+
+    .calculator-section .section-header p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .calculator-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    .calculator-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .calc-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .calc-input-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .input-with-currency,
+    .input-with-percent {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+
+    .input-with-currency .currency,
+    .input-with-percent .percent {
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .input-with-currency input,
+    .input-with-percent input {
+      flex: 1;
+      padding: 16px;
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    .calculator-results {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .result-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .result-card.highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.1));
+      border-color: var(--accent);
+    }
+
+    .result-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+    }
+
+    .result-value {
+      font-size: 48px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .result-value.small {
+      font-size: 32px;
+    }
+
+    .result-value.green {
+      color: #10b981;
+    }
+
+    .result-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 8px;
+    }
+
+    .result-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .calculator-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .cta-note {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Settlement Comparison Section */
+    .settlement-section {
+      padding: 100px 40px;
+      background: var(--bg-white);
+    }
+
+    .settlement-table-wrapper {
+      overflow-x: auto;
+      margin-top: 48px;
+    }
+
+    .settlement-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .settlement-table th,
+    .settlement-table td {
+      padding: 20px 24px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .settlement-table th {
+      background: var(--bg);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .settlement-table td {
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .settlement-table .highlight-row {
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+    }
+
+    .settlement-table .highlight-row td {
+      font-weight: 600;
+    }
+
+    .highlight-text {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .status-yes {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .status-no {
+      color: #ef4444;
+    }
+
+    .status-partial {
+      color: #f59e0b;
+    }
+
+    .settlement-benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .benefit-card {
+      text-align: center;
+      padding: 32px;
+    }
+
+    .benefit-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .benefit-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .benefit-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Solutions Section */
+    .solutions-section {
+      padding: 100px 40px;
+      background: var(--bg);
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .solution-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .solution-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .solution-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .solution-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .solution-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .solution-card li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .solution-card li:last-child {
+      border-bottom: none;
+    }
+
+    .solution-card li::before {
+      content: "✓ ";
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .calculator-wrapper {
+        grid-template-columns: 1fr;
+      }
+      
+      .result-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .settlement-benefits {
+        grid-template-columns: 1fr;
+      }
+      
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Case Study Section */
+    .case-study-section {
+      padding: 100px 40px;
+      background: var(--bg);
+    }
+
+    .case-study-card {
+      background: white;
+      border-radius: 24px;
+      padding: 48px;
+      margin-top: 48px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    .case-study-badge {
+      position: absolute;
+      top: -12px;
+      left: 32px;
+      background: var(--accent);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .case-study-header {
+      margin-bottom: 32px;
+    }
+
+    .case-study-company {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .company-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--bg);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .case-study-company h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .company-type {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .case-study-problem,
+    .case-study-solution {
+      margin-bottom: 32px;
+    }
+
+    .case-study-problem h4,
+    .case-study-solution h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .case-study-problem ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .case-study-problem li {
+      padding: 8px 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .case-study-problem li::before {
+      content: "• ";
+      color: #ef4444;
+    }
+
+    .case-study-solution p {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .case-study-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+      border-radius: 16px;
+    }
+
+    .result-stat {
+      text-align: center;
+    }
+
+    .result-stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .result-stat-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .case-study-quote {
+      font-size: 18px;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.7;
+      border-left: 4px solid var(--accent);
+      padding-left: 24px;
+      margin: 0;
+    }
+
+    .case-study-quote cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      font-style: normal;
+      color: var(--text-secondary);
+    }
+
+    .case-study-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .case-study-cta p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .case-study-card {
+        padding: 32px 24px;
+      }
+      
+      .case-study-results {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
     }
 
     /* Pricing */
@@ -2267,17 +2789,15 @@
         <span>AsterPay</span>
       </a>
       <div class="nav-links">
-        <a href="#sdks">SDKs</a>
-        <a href="#x402">x402 Demo</a>
-        <a href="https://games.asterpay.io" target="_blank">🎮 Gaming</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#why-asterpay">Why AsterPay</a>
+        <a href="#compliance">Compliance</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/docs/">Developers</a>
         <a href="#investors">Investors</a>
-        <a href="/sandbox/">Sandbox</a>
-        <a href="#token" class="token-link"><span class="token-icon">🪙</span> $ASTERPAY</a>
-        <a href="/docs/">Docs</a>
-        <a href="/team/">Team</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="/dashboard/register.html" class="btn btn-primary desktop-only">Get Started</a>
+      <a href="#contact" class="btn btn-primary desktop-only">Talk to Sales</a>
       <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
         <span></span>
         <span></span>
@@ -2288,15 +2808,14 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#sdks" onclick="closeMobileMenu()">📦 SDKs</a>
-    <a href="#x402" onclick="closeMobileMenu()">x402 Demo</a>
-    <a href="https://games.asterpay.io" target="_blank">🎮 Gaming</a>
+    <a href="#solutions" onclick="closeMobileMenu()">Solutions</a>
+    <a href="#why-asterpay" onclick="closeMobileMenu()">Why AsterPay</a>
+    <a href="#compliance" onclick="closeMobileMenu()">Compliance</a>
+    <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+    <a href="/docs/">Developers</a>
     <a href="#investors" onclick="closeMobileMenu()">Investors</a>
-    <a href="#token" class="token-link" onclick="closeMobileMenu()">🪙 $ASTERPAY</a>
-    <a href="/docs/">Docs</a>
-    <a href="/team/">Team</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-    <a href="/dashboard/register.html" class="btn btn-primary">Get Started</a>
+    <a href="#contact" class="btn btn-primary">Talk to Sales</a>
   </div>
 
   <!-- Hero -->
@@ -2319,112 +2838,225 @@
 
     <div class="hero-content fade-up">
       <h1>
-        Instant <span class="highlight">Crypto Payments</span><br>
-        for AI Applications
+        Instant <span class="highlight">EUR Payouts</span><br>
+        for Global Marketplaces
       </h1>
       <p class="hero-text">
-        The payment layer for AI tools, SaaS & autonomous agents. 
-        No bank account, no KYC, no monthly fees. Setup in minutes.
+        Reduce payout costs, settle in minutes, and stay MiCA-compliant.<br>
+        Stablecoin settlement + SEPA Instant payouts, built for finance and operations teams.
       </p>
 
-      <!-- Code Window -->
-      <div class="code-window fade-up">
-        <div class="code-header">
-          <div class="code-dots">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-          </div>
-          <span class="code-lang">TypeScript</span>
+      <!-- Value Props for Finance -->
+      <div class="hero-value-props fade-up">
+        <div class="value-prop">
+          <span class="value-icon">💰</span>
+          <span class="value-text">Save 1-3% vs traditional payouts</span>
         </div>
-        <div class="code-body">
-          <pre><code><span class="keyword">import</span> { <span class="type">AsterPay</span> } <span class="keyword">from</span> <span class="string">'@asterpay/sdk'</span>;
-
-<span class="keyword">const</span> <span class="variable">aster</span> = <span class="keyword">new</span> <span class="type">AsterPay</span>({ <span class="property">apiKey</span>: <span class="string">'sk_live_...'</span> });
-
-<span class="comment">// Create a payment - that's it! ✨</span>
-<span class="keyword">const</span> <span class="variable">payment</span> = <span class="keyword">await</span> <span class="variable">aster</span>.<span class="method">createPayment</span>({
-  <span class="property">amount</span>: <span class="string">'10.00'</span>,    <span class="comment">// $10 USDC</span>
-  <span class="property">chain</span>: <span class="string">'base'</span>,      <span class="comment">// Lowest fees</span>
-});
-
-<span class="variable">console</span>.<span class="method">log</span>(<span class="variable">payment</span>.<span class="property">wallet_address</span>); <span class="comment">// User pays here</span></code></pre>
+        <div class="value-prop">
+          <span class="value-icon">⚡</span>
+          <span class="value-text">Minutes, not days</span>
+        </div>
+        <div class="value-prop">
+          <span class="value-icon">🛡️</span>
+          <span class="value-text">MiCA-compliant</span>
         </div>
       </div>
 
       <div class="hero-buttons">
-        <a href="#waitlist" class="btn btn-primary">Start free integration</a>
-        <a href="#pricing" class="btn btn-ghost">View pricing</a>
+        <a href="#calculator" class="btn btn-primary">Calculate your savings</a>
+        <a href="#contact" class="btn btn-ghost">Talk to payouts specialist</a>
       </div>
+      
+      <p class="hero-dev-link">
+        <a href="/docs/">Developer documentation →</a>
+      </p>
     </div>
 
     <div class="stats fade-up">
       <div class="stat">
         <div class="stat-value">0.5%</div>
-        <div class="stat-label">Transaction fee</div>
+        <div class="stat-label">Payout fee</div>
       </div>
       <div class="stat">
-        <div class="stat-value">100+</div>
-        <div class="stat-label">Networks</div>
+        <div class="stat-value">&lt;30min</div>
+        <div class="stat-label">EUR Settlement</div>
       </div>
       <div class="stat">
-        <div class="stat-value">&lt;3s</div>
-        <div class="stat-label">Settlement</div>
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Weekend payouts</div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="features" id="features">
+  <!-- ROI Calculator Section -->
+  <section class="calculator-section" id="calculator">
     <div class="container">
       <div class="section-header">
-        <h2>Built for AI developers</h2>
-        <p>Everything you need to monetize your AI application globally without traditional banking complexity.</p>
+        <h2>Calculate Your <span style="color: var(--accent);">Savings</span></h2>
+        <p>See how much you can save compared to traditional payout providers.</p>
       </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon purple">⚡</div>
-          <h3>5-Minute Setup</h3>
-          <p>Integrate our SDK with just a few lines of code. Start accepting payments immediately.</p>
+      <div class="calculator-wrapper">
+        <div class="calculator-inputs">
+          <div class="calc-input-group">
+            <label>Monthly payout volume</label>
+            <div class="input-with-currency">
+              <span class="currency">€</span>
+              <input type="number" id="calc-volume" value="100000" min="1000" step="1000">
+            </div>
+          </div>
+          <div class="calc-input-group">
+            <label>Average payout size</label>
+            <div class="input-with-currency">
+              <span class="currency">€</span>
+              <input type="number" id="calc-avg-payout" value="500" min="10" step="10">
+            </div>
+          </div>
+          <div class="calc-input-group">
+            <label>Current provider fee</label>
+            <div class="input-with-percent">
+              <input type="number" id="calc-current-fee" value="2.5" min="0.5" max="5" step="0.1">
+              <span class="percent">%</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon teal">🌍</div>
-          <h3>Global Reach</h3>
-          <p>Accept payments from 190+ countries. No geographic restrictions, no bank account required.</p>
+
+        <div class="calculator-results">
+          <div class="result-card highlight">
+            <div class="result-label">Annual savings with AsterPay</div>
+            <div class="result-value" id="result-savings">€24,000</div>
+            <div class="result-note">Based on 0.5% fee vs your current <span id="current-fee-display">2.5%</span></div>
+          </div>
+          <div class="result-row">
+            <div class="result-card">
+              <div class="result-label">Your current annual cost</div>
+              <div class="result-value small" id="result-current">€30,000</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">With AsterPay</div>
+              <div class="result-value small green" id="result-asterpay">€6,000</div>
+            </div>
+          </div>
+          <div class="result-card cash-flow">
+            <div class="result-label">Cash freed by faster settlement</div>
+            <div class="result-value small" id="result-cash">€8,219</div>
+            <div class="result-note">3-day float → same-day settlement</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon peach">🔒</div>
-          <h3>Non-Custodial</h3>
-          <p>We never hold your funds. Payments go directly to your wallet with zero counterparty risk.</p>
+      </div>
+
+      <div class="calculator-cta">
+        <a href="#contact" class="btn btn-primary">Get a custom quote</a>
+        <span class="cta-note">No commitment • Response within 24h</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Settlement Comparison Section -->
+  <section class="settlement-section" id="why-asterpay">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Finance Teams <span style="color: var(--accent);">Choose AsterPay</span></h2>
+        <p>Same compliance, faster money, lower cost.</p>
+      </div>
+
+      <div class="settlement-table-wrapper">
+        <table class="settlement-table">
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>Settlement Time</th>
+              <th>Weekend Payouts</th>
+              <th>Fees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stripe Connect</strong></td>
+              <td>2-5 business days</td>
+              <td><span class="status-no">✗</span></td>
+              <td>2-4% + FX spread</td>
+            </tr>
+            <tr>
+              <td><strong>PayPal Mass Pay</strong></td>
+              <td>Instant* (with holds)</td>
+              <td><span class="status-partial">⚠️</span></td>
+              <td>2-5% + FX</td>
+            </tr>
+            <tr>
+              <td><strong>Bank Wire</strong></td>
+              <td>1-2 business days</td>
+              <td><span class="status-no">✗</span></td>
+              <td>€15-50 per transfer</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>AsterPay</strong></td>
+              <td><span class="highlight-text">Minutes (SEPA Instant)</span></td>
+              <td><span class="status-yes">✓ 24/7</span></td>
+              <td><span class="highlight-text">0.5% flat</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="settlement-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <h3>Lower Costs</h3>
+          <p>0.5% flat fee vs 2-4% with traditional providers. No hidden FX spreads.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <h3>Instant Settlement</h3>
+          <p>SEPA Instant payouts settle in minutes, not days. Free up working capital.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <h3>EU Compliant</h3>
+          <p>MiCA-aligned, GDPR-compliant, with full AML/sanctions screening.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section class="how-it-works">
+  <!-- Solutions Section -->
+  <section class="solutions-section" id="solutions">
     <div class="container">
       <div class="section-header">
-        <h2>How it works</h2>
-        <p>Get started in three simple steps</p>
+        <h2>Built for <span style="color: var(--accent);">Marketplaces</span></h2>
+        <p>Automated payout orchestration for platforms that pay sellers, creators, and partners.</p>
       </div>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Create an account</h3>
-          <p>Sign up and get your API key in seconds. No paperwork required.</p>
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <div class="solution-icon">🛒</div>
+          <h3>Marketplace Payouts</h3>
+          <p>Pay your sellers instantly when orders complete. Reduce payout operations overhead.</p>
+          <ul>
+            <li>Automated seller payouts</li>
+            <li>Multi-currency support</li>
+            <li>Real-time reporting</li>
+          </ul>
         </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Integrate the SDK</h3>
-          <p>Add a few lines of code to your application using our simple SDK.</p>
+        <div class="solution-card">
+          <div class="solution-icon">🎨</div>
+          <h3>Creator Economy</h3>
+          <p>Pay creators, affiliates, and influencers globally without the banking headaches.</p>
+          <ul>
+            <li>Instant commission payouts</li>
+            <li>No minimum thresholds</li>
+            <li>Self-service withdrawal</li>
+          </ul>
         </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Accept payments</h3>
-          <p>Start receiving payments from users worldwide instantly.</p>
+        <div class="solution-card">
+          <div class="solution-icon">🎮</div>
+          <h3>Gaming & Esports</h3>
+          <p>Prize payouts, player earnings, and tournament winnings settled in minutes.</p>
+          <ul>
+            <li>Instant prize distribution</li>
+            <li>Global player payouts</li>
+            <li>Tournament automation</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -2469,6 +3101,71 @@
           </ul>
           <a href="#waitlist" class="btn btn-primary" style="width: 100%;">Contact Sales</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Section -->
+  <section class="case-study-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Real <span style="color: var(--accent);">Results</span></h2>
+        <p>How European marketplaces are transforming their payout operations.</p>
+      </div>
+
+      <div class="case-study-card">
+        <div class="case-study-badge">Case Study</div>
+        <div class="case-study-content">
+          <div class="case-study-header">
+            <div class="case-study-company">
+              <div class="company-icon">🛒</div>
+              <div>
+                <h3>EU-based Creator Marketplace</h3>
+                <span class="company-type">Design Partner • Private Beta</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study-problem">
+            <h4>The Challenge</h4>
+            <ul>
+              <li>High payout fees eating into margins (2.5% + FX)</li>
+              <li>3-5 day settlement delays affecting seller satisfaction</li>
+              <li>Weekend payouts impossible, causing support tickets</li>
+              <li>Complex compliance for cross-border payments</li>
+            </ul>
+          </div>
+
+          <div class="case-study-solution">
+            <h4>The Solution</h4>
+            <p>Stablecoin settlement with SEPA Instant payouts through AsterPay, fully integrated with existing finance workflows.</p>
+          </div>
+
+          <div class="case-study-results">
+            <div class="result-stat">
+              <div class="result-stat-value">↓ 1.8%</div>
+              <div class="result-stat-label">Payout fee reduction</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-value">3 days → 15 min</div>
+              <div class="result-stat-label">Settlement time</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-value">↑ 23%</div>
+              <div class="result-stat-label">Seller retention</div>
+            </div>
+          </div>
+
+          <blockquote class="case-study-quote">
+            "We cut our payout costs significantly and our sellers love getting paid instantly. The compliance piece was actually easier than our previous provider."
+            <cite>— Head of Finance, EU Creator Marketplace</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="case-study-cta">
+        <p>Want similar results for your marketplace?</p>
+        <a href="#contact" class="btn btn-primary">Talk to our team</a>
       </div>
     </div>
   </section>
@@ -3006,16 +3703,16 @@
         <span>AsterPay</span>
       </a>
       <div class="footer-links">
-        <a href="#features">Features</a>
+        <a href="#solutions">Solutions</a>
         <a href="#pricing">Pricing</a>
-        <a href="/docs/">Documentation</a>
+        <a href="/docs/">Developers</a>
         <a href="/faq/">FAQ</a>
+        <a href="#compliance">Compliance</a>
+        <a href="/security/">Security</a>
         <a href="/team/">Team</a>
         <a href="#contact">Contact</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-        <a href="/whitepaper/">Whitepaper</a>
-        <a href="#token">$ASTERPAY</a>
         <a href="https://x.com/asterpayio" target="_blank">𝕏 Twitter</a>
         <a href="https://t.me/asterpaycommunity" target="_blank">Telegram</a>
       </div>
@@ -3124,6 +3821,60 @@
         }, 2000);
       }
     });
+  </script>
+
+  <!-- ROI Calculator Script -->
+  <script>
+    // ROI Calculator Logic
+    const volumeInput = document.getElementById('calc-volume');
+    const avgPayoutInput = document.getElementById('calc-avg-payout');
+    const currentFeeInput = document.getElementById('calc-current-fee');
+    
+    const resultSavings = document.getElementById('result-savings');
+    const resultCurrent = document.getElementById('result-current');
+    const resultAsterpay = document.getElementById('result-asterpay');
+    const resultCash = document.getElementById('result-cash');
+    const currentFeeDisplay = document.getElementById('current-fee-display');
+    
+    function formatCurrency(amount) {
+      return '€' + Math.round(amount).toLocaleString('en-US');
+    }
+    
+    function calculateROI() {
+      const monthlyVolume = parseFloat(volumeInput.value) || 100000;
+      const avgPayout = parseFloat(avgPayoutInput.value) || 500;
+      const currentFee = parseFloat(currentFeeInput.value) || 2.5;
+      const asterpayFee = 0.5;
+      
+      // Annual calculations
+      const annualVolume = monthlyVolume * 12;
+      const currentAnnualCost = annualVolume * (currentFee / 100);
+      const asterpayAnnualCost = annualVolume * (asterpayFee / 100);
+      const annualSavings = currentAnnualCost - asterpayAnnualCost;
+      
+      // Cash freed by faster settlement (3 days float -> same day)
+      // Float cost = volume * (days / 365) * cost of capital (8%)
+      const floatDays = 3;
+      const costOfCapital = 0.08;
+      const cashFreed = monthlyVolume * (floatDays / 30) * costOfCapital * 12;
+      
+      // Update display
+      resultSavings.textContent = formatCurrency(annualSavings);
+      resultCurrent.textContent = formatCurrency(currentAnnualCost);
+      resultAsterpay.textContent = formatCurrency(asterpayAnnualCost);
+      resultCash.textContent = formatCurrency(cashFreed);
+      currentFeeDisplay.textContent = currentFee + '%';
+    }
+    
+    // Add event listeners
+    if (volumeInput && avgPayoutInput && currentFeeInput) {
+      volumeInput.addEventListener('input', calculateROI);
+      avgPayoutInput.addEventListener('input', calculateROI);
+      currentFeeInput.addEventListener('input', calculateROI);
+      
+      // Initial calculation
+      calculateROI();
+    }
   </script>
 
   <!-- Mobile Floating Token Button -->
