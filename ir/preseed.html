@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsterPay - Pitch Deck</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom left, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .slide-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Cover Slide */
+        .cover {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+        
+        .tagline {
+            font-size: 32px;
+            font-weight: 500;
+            color: #e5e7eb;
+            margin-bottom: 48px;
+        }
+        
+        .cover-meta {
+            font-size: 18px;
+            color: #9ca3af;
+        }
+        
+        /* Section Headers */
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        
+        p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #d1d5db;
+            margin-bottom: 24px;
+        }
+        
+        .highlight {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        /* Problem Slide */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .problem-card {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .problem-card .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .problem-card h3 {
+            color: #ef4444;
+        }
+        
+        .problem-card p {
+            font-size: 16px;
+            color: #9ca3af;
+        }
+        
+        /* Solution Slide */
+        .solution-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .stack-layer {
+            display: flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 24px 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .stack-layer:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateX(8px);
+        }
+        
+        .stack-icon {
+            font-size: 36px;
+            margin-right: 24px;
+            width: 60px;
+        }
+        
+        .stack-label {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            width: 200px;
+        }
+        
+        .stack-tech {
+            font-size: 18px;
+            color: #10b981;
+            font-weight: 500;
+        }
+        
+        .stack-desc {
+            font-size: 16px;
+            color: #9ca3af;
+            margin-left: auto;
+        }
+        
+        /* Market Slide */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            margin-top: 32px;
+        }
+        
+        .market-stat {
+            text-align: center;
+            padding: 48px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 24px;
+        }
+        
+        .market-stat .number {
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .market-stat .label {
+            font-size: 20px;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+        
+        .market-stat .year {
+            font-size: 16px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        /* Product Slide */
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        .feature-card {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .feature-card .icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        
+        .feature-card .status {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 4px 12px;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Business Model */
+        .pricing-comparison {
+            margin-top: 32px;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table th {
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            color: #9ca3af;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pricing-table td {
+            padding: 20px;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .pricing-table .asterpay-row {
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .pricing-table .asterpay-row td {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .check {
+            color: #10b981;
+        }
+        
+        .cross {
+            color: #ef4444;
+        }
+        
+        /* Traction Slide */
+        .traction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 32px;
+        }
+        
+        .traction-section {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .traction-section h3 {
+            color: #6366f1;
+            margin-bottom: 24px;
+        }
+        
+        .traction-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .traction-item .status-icon {
+            font-size: 24px;
+            margin-right: 16px;
+            width: 32px;
+        }
+        
+        .traction-item .text {
+            font-size: 18px;
+            color: #d1d5db;
+        }
+        
+        /* Competition Slide */
+        .competition-table {
+            width: 100%;
+            margin-top: 32px;
+            border-collapse: collapse;
+        }
+        
+        .competition-table th {
+            padding: 16px;
+            text-align: center;
+            font-size: 16px;
+            color: #9ca3af;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .competition-table th:first-child {
+            text-align: left;
+        }
+        
+        .competition-table td {
+            padding: 16px;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .competition-table td:first-child {
+            text-align: left;
+            color: #9ca3af;
+        }
+        
+        .competition-table .asterpay-col {
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .competition-table .asterpay-col.header {
+            color: #10b981;
+            font-weight: 700;
+        }
+        
+        /* Team Slide */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            margin-top: 32px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        
+        .team-member h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .team-member .role {
+            font-size: 18px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+        
+        .team-member .bio {
+            font-size: 16px;
+            color: #9ca3af;
+        }
+        
+        /* Ask Slide */
+        .ask-content {
+            text-align: center;
+        }
+        
+        .ask-amount {
+            font-size: 96px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .ask-type {
+            font-size: 28px;
+            color: #9ca3af;
+            margin-bottom: 48px;
+        }
+        
+        .use-of-funds {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        
+        .fund-item {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .fund-item .percentage {
+            font-size: 48px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+        
+        .fund-item .label {
+            font-size: 18px;
+            color: #d1d5db;
+        }
+        
+        /* Contact Slide */
+        .contact-info {
+            text-align: center;
+            margin-top: 48px;
+        }
+        
+        .contact-item {
+            font-size: 24px;
+            color: #d1d5db;
+            margin-bottom: 16px;
+        }
+        
+        .contact-item a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+        
+        /* Slide number */
+        .slide-number {
+            position: absolute;
+            bottom: 32px;
+            right: 48px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        /* Print styles */
+        @media print {
+            .slide {
+                min-height: 100vh;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        
+        @page {
+            size: 16in 9in;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Cover -->
+    <div class="slide cover">
+        <div class="slide-content">
+            <div class="logo">AsterPay</div>
+            <div class="tagline">Payment Infrastructure for AI Agents</div>
+            <p style="font-size: 24px; color: #9ca3af; margin-bottom: 48px;">
+                The complete stack: Trust + Payments + EUR Settlement
+            </p>
+            <div class="cover-meta">
+                Pre-Seed Round | January 2026<br>
+                <span style="color: #6366f1;">asterpay.io</span>
+            </div>
+        </div>
+        <div class="slide-number">1</div>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>The Problem</h2>
+            <h1>AI Agents Can't Use Traditional Payment Rails</h1>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">🚫</div>
+                    <h3>Human Required</h3>
+                    <p>Stripe, PayPal, and banks require human approval. AI agents can't sign in, verify identity, or click "confirm".</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">⏳</div>
+                    <h3>Too Slow</h3>
+                    <p>T+3 settlement doesn't work for real-time agent-to-agent transactions. Agents need instant settlement.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">💸</div>
+                    <h3>Wrong Economics</h3>
+                    <p>2.9% + $0.30 per transaction makes micropayments impossible. Agents need to pay $0.001 for API calls.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">2</div>
+    </div>
+
+    <!-- Slide 3: Solution -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Our Solution</h2>
+            <h1>The Complete AI Agent Payment Stack</h1>
+            
+            <div class="solution-stack">
+                <div class="stack-layer">
+                    <div class="stack-icon">🔐</div>
+                    <div class="stack-label">TRUST</div>
+                    <div class="stack-tech">ERC-8004</div>
+                    <div class="stack-desc">Agent identity & reputation on-chain</div>
+                </div>
+                <div class="stack-layer">
+                    <div class="stack-icon">💸</div>
+                    <div class="stack-label">PAYMENT</div>
+                    <div class="stack-tech">x402 Protocol</div>
+                    <div class="stack-desc">USDC micropayments, instant settlement</div>
+                </div>
+                <div class="stack-layer">
+                    <div class="stack-icon">💶</div>
+                    <div class="stack-label">SETTLEMENT</div>
+                    <div class="stack-tech">EUR Off-Ramp</div>
+                    <div class="stack-desc">USDC → EUR via SEPA Instant (<30 min)</div>
+                </div>
+                <div class="stack-layer">
+                    <div class="stack-icon">🇪🇺</div>
+                    <div class="stack-label">COMPLIANCE</div>
+                    <div class="stack-tech">MiCA-Aligned</div>
+                    <div class="stack-desc">EU regulatory framework from day one</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 48px; text-align: center; font-size: 24px;">
+                <span class="highlight">No competitor combines all four layers.</span>
+            </p>
+        </div>
+        <div class="slide-number">3</div>
+    </div>
+
+    <!-- Slide 4: Market -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Market Opportunity</h2>
+            <h1>$100B+ Market by 2030</h1>
+            
+            <div class="market-grid">
+                <div class="market-stat">
+                    <div class="number">$108B</div>
+                    <div class="label">AI Agent Economy</div>
+                    <div class="year">2030 projection</div>
+                </div>
+                <div class="market-stat">
+                    <div class="number">$50B+</div>
+                    <div class="label">x402 Transaction Volume</div>
+                    <div class="year">2030 projection</div>
+                </div>
+                <div class="market-stat">
+                    <div class="number">€7.5B</div>
+                    <div class="label">EU Share (15%)</div>
+                    <div class="year">AsterPay's addressable market</div>
+                </div>
+                <div class="market-stat">
+                    <div class="number">35,000%</div>
+                    <div class="label">x402 Growth</div>
+                    <div class="year">Q4 2025 vs Q3 2025</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">4</div>
+    </div>
+
+    <!-- Slide 5: Product -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Product</h2>
+            <h1>What We've Built</h1>
+            
+            <div class="product-features">
+                <div class="feature-card">
+                    <div class="icon">📦</div>
+                    <h3>x402 SDK</h3>
+                    <p>npm package for instant USDC micropayments. One-line integration for developers.</p>
+                    <div class="status">✅ Live</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💶</div>
+                    <h3>EUR Off-Ramp</h3>
+                    <p>USDC → EUR → SEPA Instant. Merchants get euros in their bank account in under 30 minutes.</p>
+                    <div class="status">🔨 In Development</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔐</div>
+                    <h3>ERC-8004 Integration</h3>
+                    <p>AI agent identity and reputation. Trust verification before payment.</p>
+                    <div class="status">📋 Roadmap Q2 2026</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌐</div>
+                    <h3>Multi-Chain</h3>
+                    <p>Base, Polygon, Arbitrum, Ethereum, BSC. Go where your users are.</p>
+                    <div class="status">✅ Live</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">5</div>
+    </div>
+
+    <!-- Slide 6: Business Model -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Business Model</h2>
+            <h1>Simple, Transparent Pricing</h1>
+            
+            <div class="pricing-comparison">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>Fee</th>
+                            <th>Settlement</th>
+                            <th>AI Agents</th>
+                            <th>Micropayments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Stripe</td>
+                            <td>2.9% + €0.30</td>
+                            <td>T+3 days</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>PayPal</td>
+                            <td>2.9% + €0.35</td>
+                            <td>T+1 day</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Bank Wire</td>
+                            <td>€15-50</td>
+                            <td>1-5 days</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr class="asterpay-row">
+                            <td>AsterPay</td>
+                            <td>0.5% flat</td>
+                            <td><30 minutes</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p style="margin-top: 48px; text-align: center;">
+                Revenue model: <span class="highlight">0.5% of transaction volume</span><br>
+                <span style="color: #9ca3af; font-size: 18px;">€7.5B EU market × 1% share × 0.5% fee = €375K+ annual revenue potential</span>
+            </p>
+        </div>
+        <div class="slide-number">6</div>
+    </div>
+
+    <!-- Slide 7: Traction -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Traction & Status</h2>
+            <h1>Ready to Launch</h1>
+            
+            <div class="traction-grid">
+                <div class="traction-section">
+                    <h3>✅ Completed</h3>
+                    <div class="traction-item">
+                        <span class="status-icon">✅</span>
+                        <span class="text">Company registered (Robust Holdings Oy)</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">✅</span>
+                        <span class="text">Product live (asterpay.io)</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">✅</span>
+                        <span class="text">x402 SDK published (npm)</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">✅</span>
+                        <span class="text">API documentation complete</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">✅</span>
+                        <span class="text">MiCA-aligned compliance framework</span>
+                    </div>
+                </div>
+                
+                <div class="traction-section">
+                    <h3>🔄 In Progress</h3>
+                    <div class="traction-item">
+                        <span class="status-icon">🔄</span>
+                        <span class="text">Circle onboarding (EUR settlement)</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">🔄</span>
+                        <span class="text">Monerium application submitted</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">🔄</span>
+                        <span class="text">ERC-8004 Builder Program application</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">📋</span>
+                        <span class="text">EUR off-ramp backend (Q2 2026)</span>
+                    </div>
+                    <div class="traction-item">
+                        <span class="status-icon">📋</span>
+                        <span class="text">First customers (Q2-Q3 2026)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">7</div>
+    </div>
+
+    <!-- Slide 8: Competition -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Competitive Landscape</h2>
+            <h1>The Only Complete Stack in Europe</h1>
+            
+            <table class="competition-table">
+                <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th class="asterpay-col header">AsterPay</th>
+                        <th>PayAI</th>
+                        <th>Coinbase</th>
+                        <th>Monerium</th>
+                        <th>Circle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>x402 Protocol</td>
+                        <td class="asterpay-col check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                    </tr>
+                    <tr>
+                        <td>EUR Off-Ramp</td>
+                        <td class="asterpay-col check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>ERC-8004</td>
+                        <td class="asterpay-col check">✓</td>
+                        <td style="color: #9ca3af;">?</td>
+                        <td style="color: #9ca3af;">?</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                    </tr>
+                    <tr>
+                        <td>MiCA-Aligned</td>
+                        <td class="asterpay-col check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>EU-First Focus</td>
+                        <td class="asterpay-col check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-top: 48px; text-align: center; font-size: 24px;">
+                <span class="highlight">We're the only platform with all five.</span>
+            </p>
+        </div>
+        <div class="slide-number">8</div>
+    </div>
+
+    <!-- Slide 9: Roadmap -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Roadmap</h2>
+            <h1>Path to €1M ARR</h1>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 48px;">
+                <div style="flex: 1; padding: 32px; background: rgba(99, 102, 241, 0.1); border-radius: 16px; margin-right: 24px;">
+                    <h3 style="color: #6366f1;">Q1-Q2 2026</h3>
+                    <p style="font-size: 16px; margin-bottom: 0;">
+                        • Complete Circle/Monerium integration<br>
+                        • Launch EUR off-ramp<br>
+                        • ERC-8004 integration<br>
+                        • First paying customers
+                    </p>
+                </div>
+                <div style="flex: 1; padding: 32px; background: rgba(99, 102, 241, 0.1); border-radius: 16px; margin-right: 24px;">
+                    <h3 style="color: #6366f1;">Q3-Q4 2026</h3>
+                    <p style="font-size: 16px; margin-bottom: 0;">
+                        • CASP license application<br>
+                        • 10+ active customers<br>
+                        • €100K+ monthly volume<br>
+                        • Seed round preparation
+                    </p>
+                </div>
+                <div style="flex: 1; padding: 32px; background: rgba(16, 185, 129, 0.1); border-radius: 16px;">
+                    <h3 style="color: #10b981;">2027</h3>
+                    <p style="font-size: 16px; margin-bottom: 0;">
+                        • CASP license obtained<br>
+                        • Circle Mint direct access<br>
+                        • €1M+ monthly volume<br>
+                        • €1M ARR target
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">9</div>
+    </div>
+
+    <!-- Slide 10: Ask -->
+    <div class="slide">
+        <div class="slide-content ask-content">
+            <h2>The Ask</h2>
+            
+            <div class="ask-amount">€200K</div>
+            <div class="ask-type">Pre-Seed Round (±25%)</div>
+            
+            <div class="use-of-funds">
+                <div class="fund-item">
+                    <div class="percentage">40%</div>
+                    <div class="label">Tech & Integrations<br><span style="font-size: 14px; color: #9ca3af;">Circle, Monerium, x402</span></div>
+                </div>
+                <div class="fund-item">
+                    <div class="percentage">25%</div>
+                    <div class="label">CASP & Compliance<br><span style="font-size: 14px; color: #9ca3af;">Lithuania license, legal</span></div>
+                </div>
+                <div class="fund-item">
+                    <div class="percentage">20%</div>
+                    <div class="label">Sales & Customers<br><span style="font-size: 14px; color: #9ca3af;">First 10-20 customers</span></div>
+                </div>
+                <div class="fund-item">
+                    <div class="percentage">15%</div>
+                    <div class="label">Operations<br><span style="font-size: 14px; color: #9ca3af;">Runway & buffer</span></div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 48px;">
+                Target: <span class="highlight">12 months runway</span> to revenue and seed round<br>
+                <span style="font-size: 18px; color: #9ca3af;">Valuation: €1.2-1.5M pre-money | 10-15% dilution</span>
+            </p>
+        </div>
+        <div class="slide-number">10</div>
+    </div>
+
+    <!-- Slide 11: Contact -->
+    <div class="slide cover">
+        <div class="slide-content">
+            <div class="logo">AsterPay</div>
+            <div class="tagline">Let's Build the Future of AI Payments</div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="https://asterpay.io">asterpay.io</a>
+                </div>
+                <div class="contact-item">
+                    <a href="mailto:petteri@asterpay.io">petteri@asterpay.io</a>
+                </div>
+                <div class="contact-item">
+                    <a href="mailto:investor@asterpay.io">investor@asterpay.io</a>
+                </div>
+                <div class="contact-item" style="margin-top: 32px; color: #6b7280;">
+                    Robust Holdings Oy | Y-tunnus: 3216297-9 | Finland
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">11</div>
+    </div>
+
+</body>
+</html>
