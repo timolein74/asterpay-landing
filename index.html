@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="0CmKdAk8sVgUYz_NoXXiaA9Uq-j8YHH3n4oY--YQrc4" />
   <title>AsterPay - The European x402 Leader | AI Agent Payment Infrastructure</title>
-  <meta name="description" content="The only MiCA-compliant x402 Facilitator in Europe. AI agents pay each other autonomously. EUR to your bank in under 30 minutes.">
-  <meta name="keywords" content="x402, AI payments, agent payments, MiCA, GDPR, European crypto payments, stablecoin, USDC, EUR, micropayments">
+  <meta name="description" content="European x402 Facilitator. Payment infrastructure for AI Agents & Gaming. 0.5% fees, 100+ chains, instant settlement. EU-based.">
+  <meta name="keywords" content="x402, AI payments, agent payments, European crypto payments, stablecoin, USDC, EUR, micropayments, gaming payments">
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   
@@ -2224,12 +2224,11 @@
 
     <div class="hero-content fade-up">
       <h1>
-        Instant <span class="highlight">Crypto Payments</span><br>
-        for AI Applications
+        The European <span class="highlight">x402 Facilitator</span> ⚡
       </h1>
       <p class="hero-text">
-        The payment layer for AI tools, SaaS & autonomous agents. 
-        No bank account, no KYC, no monthly fees. Setup in minutes.
+        Payment infrastructure for AI Agents & Gaming 🤖🎮<br>
+        0.5% fees | 100+ chains | &lt;3s settlement | EU-based 🇪🇺
       </p>
 
       <!-- Code Window -->
@@ -2243,23 +2242,22 @@
           <span class="code-lang">TypeScript</span>
         </div>
         <div class="code-body">
-          <pre><code><span class="keyword">import</span> { <span class="type">AsterPay</span> } <span class="keyword">from</span> <span class="string">'@asterpay/sdk'</span>;
+          <pre><code><span class="keyword">import</span> { <span class="type">x402Client</span>, <span class="type">AgentWallet</span> } <span class="keyword">from</span> <span class="string">'@asterpay-io/x402'</span>;
 
-<span class="keyword">const</span> <span class="variable">aster</span> = <span class="keyword">new</span> <span class="type">AsterPay</span>({ <span class="property">apiKey</span>: <span class="string">'sk_live_...'</span> });
+<span class="comment">// AI Agent pays for API calls automatically</span>
+<span class="keyword">const</span> <span class="variable">wallet</span> = <span class="keyword">new</span> <span class="type">AgentWallet</span>({ <span class="property">privateKey</span>: <span class="string">'...'</span> });
+<span class="keyword">const</span> <span class="variable">client</span> = <span class="keyword">new</span> <span class="type">x402Client</span>(<span class="variable">wallet</span>);
 
-<span class="comment">// Create a payment - that's it! ✨</span>
-<span class="keyword">const</span> <span class="variable">payment</span> = <span class="keyword">await</span> <span class="variable">aster</span>.<span class="method">createPayment</span>({
-  <span class="property">amount</span>: <span class="string">'10.00'</span>,    <span class="comment">// $10 USDC</span>
-  <span class="property">chain</span>: <span class="string">'base'</span>,      <span class="comment">// Lowest fees</span>
-});
+<span class="comment">// x402 handles payment negotiation automatically ⚡</span>
+<span class="keyword">const</span> <span class="variable">data</span> = <span class="keyword">await</span> <span class="variable">client</span>.<span class="method">fetch</span>(<span class="string">'https://api.example.com/data'</span>);
 
-<span class="variable">console</span>.<span class="method">log</span>(<span class="variable">payment</span>.<span class="property">wallet_address</span>); <span class="comment">// User pays here</span></code></pre>
+<span class="variable">console</span>.<span class="method">log</span>(<span class="variable">data</span>); <span class="comment">// Paid €0.01, got data!</span></code></pre>
         </div>
       </div>
 
       <div class="hero-buttons">
-        <a href="#waitlist" class="btn btn-primary">Start free integration</a>
-        <a href="#pricing" class="btn btn-ghost">View pricing</a>
+        <a href="#x402" class="btn btn-primary">See x402 Demo</a>
+        <a href="#investors" class="btn btn-ghost">For Investors</a>
       </div>
     </div>
 
@@ -2270,11 +2268,11 @@
       </div>
       <div class="stat">
         <div class="stat-value">100+</div>
-        <div class="stat-label">Networks</div>
+        <div class="stat-label">Chains supported</div>
       </div>
       <div class="stat">
         <div class="stat-value">&lt;3s</div>
-        <div class="stat-label">Settlement</div>
+        <div class="stat-label">Settlement time</div>
       </div>
     </div>
   </section>
@@ -2425,8 +2423,8 @@
           </div>
           <div class="ai-feature-card">
             <div class="ai-feature-icon">🛡️</div>
-            <h4>MiCA-Ready</h4>
-            <p>Built for European regulations. Compliant from day one.</p>
+            <h4>EU-Based</h4>
+            <p>Built in Europe, for European businesses. GDPR-aware infrastructure.</p>
           </div>
           <div class="ai-feature-card">
             <div class="ai-feature-icon">📊</div>
@@ -2677,7 +2675,7 @@
               <td><span class="cross">✗</span></td>
             </tr>
             <tr>
-              <td><span class="feature-icon">🛡️</span> MiCA Compliant</td>
+              <td><span class="feature-icon">🇪🇺</span> EU-Based Team</td>
               <td class="highlight"><span class="check">✓</span></td>
               <td><span class="cross">✗</span></td>
               <td><span class="cross">✗</span></td>
@@ -2728,7 +2726,7 @@
             <li>🇪🇺 First-mover in EU x402 market</li>
             <li>📈 Zero direct competitors in Europe</li>
             <li>💶 Live product with EUR off-ramp</li>
-            <li>🛡️ MiCA-ready compliance</li>
+            <li>🛡️ EU-based operations</li>
           </ul>
         </div>
         <div class="investor-cta-box">
