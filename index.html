@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="0CmKdAk8sVgUYz_NoXXiaA9Uq-j8YHH3n4oY--YQrc4" />
-  <title>AsterPay - Payment Infrastructure for AI Agents | European x402 Facilitator</title>
-  <meta name="description" content="European x402 Facilitator. Payment infrastructure for AI agents. Trust + Payments + EUR Settlement. MiCA-aligned. EUR to your bank in under 30 minutes.">
+  <title>AsterPay - Monetize Your API with x402 | AI Agents Pay Per Call</title>
+  <meta name="description" content="Monetize your API with x402 protocol. AI agents pay per call with USDC micropayments. Get EUR to your bank via SEPA Instant. European x402 Facilitator.">
   <meta name="keywords" content="x402, AI payments, AI agents, x402 facilitator, European crypto payments, USDC, EUR, micropayments, ERC-8004, MiCA">
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -2224,11 +2224,11 @@
 
     <div class="hero-content fade-up">
       <h1>
-        European <span class="highlight">x402 Facilitator</span>
+        Monetize Your API with <span class="highlight">x402</span>
       </h1>
       <p class="hero-text">
-        Payment Infrastructure for AI Agents<br>
-        Trust + Payments + EUR Settlement | MiCA-aligned 🇪🇺
+        AI agents pay per API call with USDC micropayments<br>
+        You get EUR to your bank via SEPA Instant 🇪🇺
       </p>
 
       <!-- Code Window -->
@@ -2242,17 +2242,16 @@
           <span class="code-lang">TypeScript</span>
         </div>
         <div class="code-body">
-          <pre><code><span class="keyword">import</span> { <span class="type">AsterPay</span> } <span class="keyword">from</span> <span class="string">'@asterpay/sdk'</span>;
+          <pre><code><span class="keyword">import</span> { <span class="type">x402</span> } <span class="keyword">from</span> <span class="string">'@asterpay-io/x402'</span>;
 
-<span class="keyword">const</span> <span class="variable">aster</span> = <span class="keyword">new</span> <span class="type">AsterPay</span>({ <span class="property">apiKey</span>: <span class="string">'sk_live_...'</span> });
+<span class="comment">// Add x402 middleware to your API endpoint</span>
+<span class="variable">app</span>.<span class="method">use</span>(<span class="string">'/api/analyze'</span>, <span class="method">x402</span>({
+  <span class="property">price</span>: <span class="string">'$0.01'</span>,        <span class="comment">// per request</span>
+  <span class="property">recipient</span>: <span class="string">'0x...'</span>,   <span class="comment">// your wallet</span>
+}));
 
-<span class="comment">// Create a payment - that's it! ✨</span>
-<span class="keyword">const</span> <span class="variable">payment</span> = <span class="keyword">await</span> <span class="variable">aster</span>.<span class="method">createPayment</span>({
-  <span class="property">amount</span>: <span class="string">'10.00'</span>,    <span class="comment">// $10 USDC</span>
-  <span class="property">chain</span>: <span class="string">'base'</span>,      <span class="comment">// Lowest fees</span>
-});
-
-<span class="variable">console</span>.<span class="method">log</span>(<span class="variable">payment</span>.<span class="property">wallet_address</span>); <span class="comment">// User pays here</span></code></pre>
+<span class="comment">// AI agents pay automatically per call ⚡</span>
+<span class="comment">// You get EUR via SEPA Instant 💶</span></code></pre>
         </div>
       </div>
 
@@ -2282,8 +2281,8 @@
   <section class="features" id="features">
     <div class="container">
       <div class="section-header">
-        <h2>The Complete AI Agent Payment Stack</h2>
-        <p>Everything AI agents need to transact autonomously in Europe.</p>
+        <h2>The Complete API Monetization Stack</h2>
+        <p>Everything you need to charge AI agents for your API.</p>
       </div>
 
       <div class="features-grid" style="grid-template-columns: repeat(4, 1fr);">
@@ -2311,53 +2310,25 @@
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section class="how-it-works">
-    <div class="container">
-      <div class="section-header">
-        <h2>How it works</h2>
-        <p>Get started in three simple steps</p>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Create an account</h3>
-          <p>Sign up and get your API key in seconds. No paperwork required.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Integrate the SDK</h3>
-          <p>Add a few lines of code to your application using our simple SDK.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Accept payments</h3>
-          <p>Start receiving payments from users worldwide instantly.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Pricing -->
   <section class="pricing" id="pricing">
     <div class="container">
       <div class="section-header">
         <h2>Simple pricing</h2>
-        <p>No monthly fees. Pay only for successful transactions.</p>
+        <p>No monthly fees. We take 0.5% when AI agents pay your API.</p>
       </div>
 
       <div class="pricing-cards">
         <div class="pricing-card">
           <div class="pricing-name">Starter</div>
-          <div class="pricing-desc">For indie developers</div>
+          <div class="pricing-desc">For API providers</div>
           <div class="pricing-price">0.5% <span>per transaction</span></div>
           <div class="pricing-note">No minimum volume</div>
           <ul class="pricing-features">
-            <li>Unlimited transactions</li>
-            <li>5 live chains (Base, Ethereum, Polygon, Arbitrum, BSC)</li>
-            <li>Webhook notifications</li>
-            <li>Dashboard access</li>
+            <li>x402 middleware (npm install)</li>
+            <li>Unlimited API calls</li>
+            <li>EUR off-ramp included</li>
+            <li>5 chains (Base, Ethereum, Polygon, Arbitrum, BSC)</li>
             <li>Email support</li>
           </ul>
           <a href="/dashboard/register.html" class="btn btn-primary" style="width: 100%;">Get Started</a>
@@ -2366,14 +2337,14 @@
         <div class="pricing-card featured">
           <div class="pricing-badge">Popular</div>
           <div class="pricing-name">Scale</div>
-          <div class="pricing-desc">For growing businesses</div>
+          <div class="pricing-desc">For high-volume APIs</div>
           <div class="pricing-price">0.25% <span>per transaction</span></div>
           <div class="pricing-note">Pay with $ASTERPAY token</div>
           <ul class="pricing-features">
             <li>Everything in Starter</li>
             <li>50% fee discount with token</li>
-            <li>Priority processing</li>
-            <li>Advanced analytics</li>
+            <li>Priority EUR settlement (&lt;30 min)</li>
+            <li>Custom pricing tiers</li>
             <li>Dedicated support</li>
           </ul>
           <a href="#waitlist" class="btn btn-primary" style="width: 100%;">Contact Sales</a>
