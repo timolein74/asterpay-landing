@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsterPay Plugin for ElizaOS - AI Agent Payments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=SF+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #86868b;
+            --accent-purple: #6366f1;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --border-color: rgba(255,255,255,0.08);
+            --glow-purple: rgba(99, 102, 241, 0.4);
+            --glow-green: rgba(16, 185, 129, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--glow-purple) 0%, transparent 70%);
+            top: -400px;
+            right: -200px;
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--glow-green) 0%, transparent 70%);
+            bottom: -300px;
+            left: -100px;
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite 4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent-purple);
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge img {
+            width: 20px;
+            height: 20px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-green) 50%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+            color: white;
+            box-shadow: 0 4px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* Demo Section */
+        .demo-section {
+            padding: 120px 24px;
+            position: relative;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 64px;
+        }
+
+        /* Chat Demo */
+        .chat-demo {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .agent-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .agent-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .agent-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            margin-left: auto;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-messages {
+            padding: 24px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            max-width: 85%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .message.agent .message-avatar {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .message.user .message-avatar {
+            background: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .message-content {
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .message.agent .message-content {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user .message-content {
+            background: var(--accent-purple);
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-content code {
+            font-family: 'SF Mono', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .message-content .success {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message:nth-child(1) { animation-delay: 0.5s; }
+        .message:nth-child(2) { animation-delay: 1.5s; }
+        .message:nth-child(3) { animation-delay: 3s; }
+        .message:nth-child(4) { animation-delay: 4s; }
+        .message:nth-child(5) { animation-delay: 5.5s; }
+        .message:nth-child(6) { animation-delay: 6.5s; }
+
+        /* Features Grid */
+        .features-section {
+            padding: 120px 24px;
+            background: var(--bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon.purple { background: rgba(99, 102, 241, 0.15); }
+        .feature-icon.green { background: rgba(16, 185, 129, 0.15); }
+        .feature-icon.blue { background: rgba(59, 130, 246, 0.15); }
+        .feature-icon.pink { background: rgba(236, 72, 153, 0.15); }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Code Block */
+        .code-section {
+            padding: 120px 24px;
+        }
+
+        .code-block {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot.red { background: #ff5f57; }
+        .code-dot.yellow { background: #febc2e; }
+        .code-dot.green { background: #28c840; }
+
+        .code-title {
+            margin-left: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .code-content {
+            padding: 24px;
+            font-family: 'SF Mono', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .code-content .comment { color: #6a737d; }
+        .code-content .keyword { color: var(--accent-pink); }
+        .code-content .string { color: var(--accent-green); }
+        .code-content .property { color: var(--accent-blue); }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 24px;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 56px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            padding: 120px 24px;
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .footer-cta p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .chat-messages {
+                min-height: 350px;
+            }
+
+            .message {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="badge">
+            <span>🤖</span>
+            <span>ElizaOS Plugin</span>
+        </div>
+        <h1><span>AI Agent</span><br>Payments</h1>
+        <p class="subtitle">Enable your ElizaOS agents to send payments, create invoices, and convert USDC to EUR — all with natural language.</p>
+        <div class="cta-group">
+            <a href="https://asterpay.io/dashboard" class="btn btn-primary">
+                Get API Key
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://github.com/AsterPay/plugin-payments" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                View on GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section class="demo-section">
+        <p class="section-label">Live Demo</p>
+        <h2 class="section-title">See it in action</h2>
+        
+        <div class="chat-demo">
+            <div class="chat-header">
+                <div class="agent-avatar">🤖</div>
+                <div class="agent-info">
+                    <h3>PaymentAgent</h3>
+                    <p>Powered by AsterPay</p>
+                </div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="chat-messages">
+                <div class="message user">
+                    <div class="message-avatar">👤</div>
+                    <div class="message-content">Pay 50 USDC to alice.eth</div>
+                </div>
+                <div class="message agent">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <span class="success">✅ Payment sent!</span><br><br>
+                        <strong>Amount:</strong> 50 USDC<br>
+                        <strong>Recipient:</strong> alice.eth<br>
+                        <strong>Fee:</strong> 0.25 USDC<br>
+                        <strong>Tx:</strong> <code>0x7a2b...e4f1</code>
+                    </div>
+                </div>
+                <div class="message user">
+                    <div class="message-avatar">👤</div>
+                    <div class="message-content">What's my balance?</div>
+                </div>
+                <div class="message agent">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        💰 <strong>Wallet Balance</strong><br><br>
+                        <strong>Available:</strong> 1,200.00 USDC<br>
+                        <strong>EUR Equivalent:</strong> €1,110.00
+                    </div>
+                </div>
+                <div class="message user">
+                    <div class="message-avatar">👤</div>
+                    <div class="message-content">Convert 500 USDC to EUR</div>
+                </div>
+                <div class="message agent">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        🇪🇺 <strong>EUR Conversion Initiated</strong><br><br>
+                        <strong>Converting:</strong> 500.00 USDC<br>
+                        <strong>You'll receive:</strong> €462.50<br>
+                        <strong>Rate:</strong> 1 USDC = €0.9250<br><br>
+                        ⚡ <strong>SEPA Instant</strong> — Arriving in ~15 min
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <p class="section-label">Capabilities</p>
+        <h2 class="section-title">Everything your agents need</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon purple">💸</div>
+                <h3>x402 Payments</h3>
+                <p>Send and receive payments using Coinbase's x402 protocol. Works with any x402-compatible service.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon green">🇪🇺</div>
+                <h3>EUR Off-Ramp</h3>
+                <p>Convert USDC to EUR via SEPA Instant. Money in your bank account in under 30 minutes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon blue">📄</div>
+                <h3>Invoice Generation</h3>
+                <p>Create x402 invoices for your agent's services. Get paid instantly when invoices are fulfilled.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon pink">🔐</div>
+                <h3>Agent Wallets</h3>
+                <p>Dedicated wallet infrastructure for AI agents with full transaction history and balance tracking.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon purple">🪪</div>
+                <h3>ERC-8004 Identity</h3>
+                <p>Compatible with the ERC-8004 agent identity standard for verifiable agent reputation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon green">✅</div>
+                <h3>MiCA Compliant</h3>
+                <p>Built for European regulations from day one. GDPR and MiCA compliance built into every transaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Example -->
+    <section class="code-section">
+        <p class="section-label">Quick Start</p>
+        <h2 class="section-title">Add payments in 60 seconds</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dot red"></div>
+                <div class="code-dot yellow"></div>
+                <div class="code-dot green"></div>
+                <span class="code-title">character.json</span>
+            </div>
+            <div class="code-content">
+<span class="comment">// Add to your agent's character config</span>
+{
+  <span class="property">"name"</span>: <span class="string">"PaymentAgent"</span>,
+  <span class="property">"plugins"</span>: [<span class="string">"@asterpay/plugin-payments"</span>],
+  <span class="property">"settings"</span>: {
+    <span class="property">"secrets"</span>: {
+      <span class="property">"ASTERPAY_API_KEY"</span>: <span class="string">"ap_your_key_here"</span>,
+      <span class="property">"ASTERPAY_EUR_IBAN"</span>: <span class="string">"FI12345678901234"</span>
+    }
+  }
+}
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h2>&lt;30</h2>
+                <p>Minutes to EUR</p>
+            </div>
+            <div class="stat-item">
+                <h2>0.5%</h2>
+                <p>Transaction Fee</p>
+            </div>
+            <div class="stat-item">
+                <h2>€0</h2>
+                <p>Setup Cost</p>
+            </div>
+            <div class="stat-item">
+                <h2>4</h2>
+                <p>Actions Included</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <h2>Ready to enable payments?</h2>
+        <p>Join the growing ecosystem of AI agents using AsterPay for their payment infrastructure.</p>
+        <div class="cta-group">
+            <a href="https://asterpay.io/dashboard" class="btn btn-primary">
+                Get Started Free
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://docs.asterpay.io/elizaos" class="btn btn-secondary">
+                Read the Docs
+            </a>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--border-color);">
+        <p>Built with 💜 in Finland 🇫🇮</p>
+        <p style="margin-top: 8px;">
+            <a href="https://asterpay.io" style="color: var(--accent-purple); text-decoration: none;">AsterPay</a> · 
+            <a href="https://8004tokens.xyz/ecosystem" style="color: var(--accent-green); text-decoration: none;">ERC-8004 Ecosystem</a>
+        </p>
+    </footer>
+
+</body>
+</html>
