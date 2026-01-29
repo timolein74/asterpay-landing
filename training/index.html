@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AsterPay Teknologia - Pikakoulutus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #f8f9fc;
+      color: #1a1a2e;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #1a1a2e;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 50px;
+      font-size: 1.1rem;
+    }
+
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #6366f1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 .number {
+      background: #6366f1;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #374151;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-left: 4px solid #6366f1;
+      padding: 20px 24px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .flow-diagram {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      background: white;
+      border: 2px solid #e5e7eb;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .flow-step.highlight {
+      background: #6366f1;
+      color: white;
+      border-color: #6366f1;
+    }
+
+    .flow-arrow {
+      color: #9ca3af;
+      font-size: 1.2rem;
+    }
+
+    .example-box {
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    .example-box h4 {
+      color: #92400e;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .example-box p {
+      color: #78350f;
+      margin: 0;
+    }
+
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 20px 24px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    .code-block .comment {
+      color: #6c7086;
+    }
+
+    .code-block .keyword {
+      color: #cba6f7;
+    }
+
+    .code-block .string {
+      color: #a6e3a1;
+    }
+
+    .code-block .status {
+      color: #f9e2af;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+      background: #f9fafb;
+      font-weight: 600;
+      color: #374151;
+      font-size: 0.9rem;
+    }
+
+    td {
+      color: #4b5563;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+      color: white;
+      padding: 24px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .qa-item {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 12px 0;
+    }
+
+    .qa-item .question {
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .qa-item .answer {
+      color: #059669;
+      font-style: italic;
+    }
+
+    .tech-box {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 24px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      margin: 20px 0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    ul {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #374151;
+    }
+
+    .emoji {
+      font-size: 1.2rem;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .comparison-card {
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .comparison-card.bad {
+      background: #fef2f2;
+      border: 2px solid #fecaca;
+    }
+
+    .comparison-card.good {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+    }
+
+    .comparison-card h4 {
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .comparison-card.bad h4 {
+      color: #dc2626;
+    }
+
+    .comparison-card.good h4 {
+      color: #16a34a;
+    }
+
+    .print-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+
+    .print-btn:hover {
+      background: #4f46e5;
+    }
+
+    @media print {
+      .print-btn { display: none; }
+      body { padding: 20px; }
+      .section { break-inside: avoid; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .section { padding: 24px 20px; }
+      .flow-steps { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+      .comparison { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 AsterPay Teknologia</h1>
+    <p class="subtitle">Pikakoulutus - Tapaamisiin valmistautuminen</p>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <h2><span class="number">1</span> Mikä AsterPay on?</h2>
+      
+      <p><strong>Lyhyesti:</strong> Olemme <strong>x402 Facilitator</strong> – välitämme AI-agenttien maksuja USDC-stablecoinilla ja muunnamme ne euroiksi yrityksen pankkitilille.</p>
+
+      <div class="flow-diagram">
+        <div class="flow-steps">
+          <div class="flow-step">🤖 AI Agentti</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">x402 maksu (USDC)</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step highlight">AsterPay</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">SEPA Instant</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">💶 EUR pankkitilille</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <h4>💡 Käytännön esimerkki</h4>
+        <p>Kuvittele AI-agentti, joka tarvitsee GPU-laskentatehoa. Se ei voi avata pankkitiliä tai käyttää luottokorttia. Sen sijaan agentti maksaa palvelusta USDC:llä – ja AsterPay huolehtii siitä, että GPU-palveluntarjoaja saa eurot pankkitililleen.</p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <h2><span class="number">2</span> x402-protokolla (Coinbase)</h2>
+      
+      <p>x402 on <strong>HTTP-standardi AI-agenttien maksuille</strong>. Nimi tulee HTTP-statuskoodista 402 "Payment Required".</p>
+
+      <div class="highlight-box">
+        <p>🎯 Ydinajatus: Agentti pyytää palvelua → saa "maksa ensin" -vastauksen → maksaa automaattisesti → saa palvelun. <strong>Ei ihmistä välissä.</strong></p>
+      </div>
+
+      <p><strong>Näin se toimii teknisesti:</strong></p>
+
+      <div class="code-block">
+<span class="comment">// 1. Agentti pyytää palvelua</span>
+<span class="keyword">GET</span> /api/compute
+
+<span class="comment">// 2. Palvelin vastaa: "Maksa ensin"</span>
+<span class="status">← 402 Payment Required</span>
+<span class="status">← X-Payment:</span> <span class="string">{"amount": "0.10", "currency": "USDC", "address": "0x..."}</span>
+
+<span class="comment">// 3. Agentti maksaa automaattisesti</span>
+<span class="keyword">→ USDC siirto lähetetään lohkoketjuun</span>
+
+<span class="comment">// 4. Palvelu toimitetaan</span>
+<span class="status">← 200 OK</span> + vastaus agentille
+      </div>
+
+      <div class="example-box">
+        <h4>💡 Vertaa arkipäivään</h4>
+        <p>Ajattele kahviautomaattia: syötät kolikon (maksu) → saat kahvin (palvelu). x402 on sama idea, mutta AI-agenteille ja digitaalisille palveluille. Koko prosessi tapahtuu millisekunneissa.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <h2><span class="number">3</span> AsterPayn rooli arvoketjussa</h2>
+      
+      <p>Emme kilpaile x402:n kanssa – <strong>mahdollistamme sen käytön Euroopassa</strong>.</p>
+
+      <table>
+        <tr>
+          <th>Kerros</th>
+          <th>Mitä teemme</th>
+          <th>Käytännössä</th>
+        </tr>
+        <tr>
+          <td><strong>SDK</strong></td>
+          <td>TypeScript/Python kirjastot</td>
+          <td>Kehittäjä integroi 10 rivillä koodia</td>
+        </tr>
+        <tr>
+          <td><strong>Facilitator</strong></td>
+          <td>Vastaanotetaan x402-maksut</td>
+          <td>Varmistamme että maksu on aito</td>
+        </tr>
+        <tr>
+          <td><strong>Settlement</strong></td>
+          <td>USDC → EUR muunnos</td>
+          <td>Parhaat kurssit, ei piilomaksuja</td>
+        </tr>
+        <tr>
+          <td><strong>Off-ramp</strong></td>
+          <td>SEPA Instant siirto</td>
+          <td>EUR pankkitilille alle 30 minuutissa</td>
+        </tr>
+      </table>
+
+      <div class="example-box">
+        <h4>💡 Miksi tämä on tärkeää?</h4>
+        <p>Ilman AsterPayta yritys joutuisi itse käsittelemään krypton: avaamaan pörssitili, vaihtamaan valuutat, hoitamaan compliance-asiat. Me hoidamme kaiken – yritys saa vain eurot tilille.</p>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <h2><span class="number">4</span> ERC-8004 – AI-agenttien identiteetti</h2>
+      
+      <p>Uusi Ethereum-standardi joka julkaistiin juuri. Antaa AI-agenteille <strong>identiteetin ja maineen</strong>.</p>
+
+      <div class="comparison">
+        <div class="comparison-card bad">
+          <h4>❌ Ilman ERC-8004</h4>
+          <p>Agentti on vain anonyymi lompakko. Ei voi todistaa luotettavuuttaan. Palveluntarjoaja ei tiedä onko agentti turvallinen.</p>
+        </div>
+        <div class="comparison-card good">
+          <h4>✅ ERC-8004:n kanssa</h4>
+          <p>Agentti voi todistaa: "Olen tehnyt 1000 onnistunutta maksua, 0 petosta". Palveluntarjoaja voi luottaa agenttiin.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p>🔗 <strong>AsterPay yhdistää:</strong> ERC-8004 (identiteetti & maine) + x402 (maksut) = Luotettavat, automaattiset maksut</p>
+      </div>
+
+      <div class="example-box">
+        <h4>💡 Käytännön esimerkki</h4>
+        <p>GPU-palveluntarjoaja voi asettaa säännön: "Hyväksyn vain agentit joilla on 100+ onnistunutta maksua". ERC-8004 mahdollistaa tämän tarkistuksen automaattisesti ennen maksun hyväksymistä.</p>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <h2><span class="number">5</span> Miksi Eurooppa?</h2>
+      
+      <ul>
+        <li><strong>MiCA-compliant</strong> – EU:n uusi kryptosääntely (2024-2025). Olemme valmiita.</li>
+        <li><strong>GDPR-compliant</strong> – Eurooppalainen tietosuoja huomioitu.</li>
+        <li><strong>Ei kilpailua</strong> – Ei yhtään muuta x402 facilitatoria Euroopassa.</li>
+        <li><strong>"Last mile" ongelma</strong> – USDC → EUR on vaikea. Me ratkaisemme sen.</li>
+      </ul>
+
+      <div class="example-box">
+        <h4>💡 Miksi tämä on mahdollisuus?</h4>
+        <p>USA:ssa on useita x402-pelaajia. Euroopassa <strong>ei yhtään</strong>. Yritykset Euroopassa haluavat eurot tilille, ei kryptoa. Me olemme ainoa joka tarjoaa tämän.</p>
+      </div>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <h2><span class="number">6</span> Tekniset komponentit</h2>
+      
+      <div class="tech-box">┌─────────────────────────────────────────────────────┐
+│                    AsterPay                         │
+├─────────────────────────────────────────────────────┤
+│  @asterpay/sdk          → TypeScript SDK            │
+│  @asterpay/x402-sdk     → x402 protokolla           │
+│  blockchain-service     → BSC/ETH/Base monitoring   │
+│  settlement-worker      → USDC→EUR muunnos          │
+│  payment-api            → REST API                  │
+└─────────────────────────────────────────────────────┘</div>
+
+      <p><strong>Tuetut lohkoketjut:</strong> Ethereum, Base, BNB Smart Chain, Polygon</p>
+      <p><strong>Tuetut stablecoinit:</strong> USDC, USDT</p>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <h2><span class="number">7</span> Asiakascase – Konkreettinen esimerkki</h2>
+      
+      <div class="flow-diagram" style="background: #ecfdf5;">
+        <p style="text-align: center; margin-bottom: 16px;"><strong>🏢 AI SaaS -yritys myy GPU-laskentaa AI-agenteille</strong></p>
+        
+        <div class="flow-steps">
+          <div class="flow-step">🤖 Agentti käyttää GPU:ta</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">Maksaa 0.10 USDC/kutsu</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step highlight">AsterPay kerää</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">Muuntaa EUR</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">💶 SEPA tilille</div>
+        </div>
+      </div>
+
+      <table>
+        <tr>
+          <th>Metriikka</th>
+          <th>Arvo</th>
+        </tr>
+        <tr>
+          <td>API-kutsuja/päivä</td>
+          <td>10,000</td>
+        </tr>
+        <tr>
+          <td>Hinta per kutsu</td>
+          <td>$0.10 USDC</td>
+        </tr>
+        <tr>
+          <td>Päivittäinen volyymi</td>
+          <td>$1,000</td>
+        </tr>
+        <tr>
+          <td>AsterPay fee (0.5%)</td>
+          <td>$5/päivä</td>
+        </tr>
+        <tr>
+          <td>Yritys saa (EUR)</td>
+          <td>~€920/päivä tilille</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section">
+      <h2><span class="number">8</span> Avainluvut – Muista nämä!</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="value">&lt;30 min</div>
+          <div class="label">USDC → EUR tilille</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">0.5%</div>
+          <div class="label">Transaktiomaksu</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">€0</div>
+          <div class="label">Setup fee</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">24/7</div>
+          <div class="label">Automaattinen</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <h4>💡 Vertailu kilpailijoihin</h4>
+        <p>Perinteiset kryptopörssit veloittavat 1-3% + nostomaksut. Pankkisiirrot kestävät 1-3 päivää. Me: 0.5% ja alle 30 minuuttia.</p>
+      </div>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section">
+      <h2><span class="number">9</span> Mitä tarvitset Depalta/Alignilta?</h2>
+      
+      <ul>
+        <li>✅ <strong>Stablecoin off-ramp API</strong> – USDC → EUR muunnos</li>
+        <li>✅ <strong>SEPA Instant</strong> – Nopeat pankkisiirrot</li>
+        <li>✅ <strong>Compliance-tuki</strong> – AML/KYC integraatio</li>
+        <li>✅ <strong>T+0 settlement</strong> – Sama päivä, ei T+2</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>🎯 <strong>Tavoite:</strong> Löytää kumppani joka hoitaa USDC→EUR muunnoksen ja SEPA-siirrot, jotta voimme keskittyä x402-fasilitointiin.</p>
+      </div>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section">
+      <h2><span class="number">10</span> Valmistaudu kysymyksiin</h2>
+
+      <div class="qa-item">
+        <div class="question">"Mikä on volyymienne?"</div>
+        <div class="answer">→ "Pre-launch. Tavoite $50-100K/kk ensimmäiset 6kk, skaalautuu AI-adoption mukana."</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="question">"Ketkä ovat asiakkaitanne?"</div>
+        <div class="answer">→ "AI SaaS -yritykset jotka myyvät palveluita AI-agenteille – GPU compute, data APIs, automation tools."</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="question">"Miksi x402 eikä joku muu?"</div>
+        <div class="answer">→ "Coinbase kehitti sen, se on tulossa standardiksi. Olemme ensimmäinen eurooppalainen facilitator."</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="question">"Miksi ette käytä Stripea tai PayPalia?"</div>
+        <div class="answer">→ "Ne eivät tue AI-agentteja. Agentti ei voi avata Stripe-tiliä tai syöttää luottokorttia. Siksi tarvitaan krypto."</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="question">"Miksi Eurooppa?"</div>
+        <div class="answer">→ "Ei kilpailua, MiCA-sääntely luo luottamusta, yritykset haluavat euroja ei kryptoa."</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="section" style="text-align: center; background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%); color: white;">
+      <h2 style="color: white; justify-content: center;"><span class="emoji">🎯</span> Muista tapaamisessa</h2>
+      <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">
+        <strong>1.</strong> Olemme ainoa x402 facilitator Euroopassa<br>
+        <strong>2.</strong> Ratkaisemme "last mile" ongelman (USDC → EUR)<br>
+        <strong>3.</strong> Tarvitsemme off-ramp kumppanin – he tarvitsevat asiakkaita
+      </p>
+    </div>
+
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Tulosta PDF</button>
+</body>
+</html>
